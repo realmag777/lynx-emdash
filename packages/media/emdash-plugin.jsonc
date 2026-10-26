@@ -1,0 +1,30 @@
+{
+	"$schema": "./node_modules/@emdash-cms/plugin-cli/schemas/emdash-plugin.schema.json",
+
+	"slug": "lynx-media",
+	// Placeholder until publication (2026-09-29).
+	"publisher": "did:plc:aaaaaaaaaaaaaaaaaaaaaaaa",
+
+	"name": "LYNX Media",
+	"license": "MIT",
+	"author": { "name": "realmag777", "url": "https://realmag777.com" },
+	"security": { "email": "realmag777@gmail.com" },
+	"description": "Companion of LYNX: imports images by URL into the media library for AI agents. The LYNX core itself needs no network access.",
+	"keywords": ["media", "images", "import", "mcp"],
+
+	// Images from any public host (EmDash refuses private and internal addresses) into the media
+	// library. Nothing else: no content access, no storage.
+	"sections": {
+		"description": { "file": "docs/description.md" },
+		"installation": { "file": "docs/installation.md" },
+		"security": { "file": "docs/security.md" }
+	},
+	"release": {
+		"artifacts": {
+			"icon": { "file": "assets/icon.png" },
+			"banner": { "file": "assets/banner.png" }
+		}
+	},
+	"capabilities": ["media:write", "network:request:unrestricted"],
+	"allowedHosts": []
+}

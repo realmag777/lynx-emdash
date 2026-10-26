@@ -1,0 +1,25 @@
+{
+	"name": "@realmag777/lynx-presets",
+	"version": "0.1.0",
+	"private": true,
+	"description": "LYNX demo presets (cars, real estate): EmDash seed files and a REST installer.",
+	"license": "MIT",
+	"author": "Rostislav Sofronov (realmag777) (https://realmag777.com)",
+	"homepage": "https://realmag777.com",
+	"type": "module",
+	"exports": {
+		".": "./src/index.ts"
+	},
+	"scripts": {
+		"build": "node tools/build-seeds.ts",
+		"test": "vitest run",
+		"typecheck": "tsc -p tsconfig.json"
+	},
+	"devDependencies": {
+		"emdash": "^1.0.1",
+		"typescript": "^5.9.0",
+		"vitest": "^4.1.0",
+		"@types/node": "^24.0.0",
+		"@realmag777/lynx-engine": "workspace:*"
+	}
+}

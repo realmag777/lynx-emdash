@@ -1,0 +1,45 @@
+{
+	"name": "@realmag777/lynx-grid",
+	"version": "0.2.0",
+	"private": true,
+	"description": "LYNX Grid: native EmDash admin page with a spreadsheet-style editor over the LYNX core routes (inline edits, selection, bulk edit with preview, jobs, history, views).",
+	"license": "MIT",
+	"author": "Rostislav Sofronov (realmag777) (https://realmag777.com)",
+	"homepage": "https://realmag777.com",
+	"type": "module",
+	"main": "src/index.ts",
+	"exports": {
+		".": "./src/index.ts",
+		"./admin": "./src/admin.tsx"
+	},
+	"files": [
+		"src"
+	],
+	"scripts": {
+		"test": "vitest run",
+		"typecheck": "tsc -p tsconfig.json"
+	},
+	"peerDependencies": {
+		"@cloudflare/kumo": "^2.6.0",
+		"@phosphor-icons/react": "^2.1.10",
+		"emdash": "^1.0.1",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0",
+		"@emdash-cms/admin": "^1.0.1"
+	},
+	"dependencies": {
+		"@realmag777/lynx-engine": "workspace:*",
+		"@realmag777/lynx-presets": "workspace:*"
+	},
+	"devDependencies": {
+		"@cloudflare/kumo": "2.6.0",
+		"@phosphor-icons/react": "2.1.10",
+		"@types/react": "19.3.0",
+		"@types/react-dom": "^19.0.0",
+		"emdash": "^1.0.1",
+		"react": "19.2.4",
+		"react-dom": "19.2.4",
+		"typescript": "^5.9.0",
+		"vitest": "^4.1.0"
+	}
+}

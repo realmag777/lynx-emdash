@@ -1,0 +1,52 @@
+[
+	{
+		"name": "import_media",
+		"description": "Writes (adds files to the media library). Part of LYNX Media, the companion of the LYNX plugin. Downloads up to 20 images from http(s) addresses and adds them to the media library; in the sandbox one call does 3 and returns the rest in remaining: call again with them straight away. imported gives for each URL the value an image field takes. Put it into entries only through LYNX - lynx__create_entries rows, or lynx__update_entry / lynx__apply_bulk (e.g. {\"field\":\"cover\",\"behavior\":\"set\",\"value\":<value>}); a gallery takes [{\"image\":<value>}, ...] - so the change is in LYNX history and can be rolled back. The files stay in the media library; EmDash's media_delete removes one nobody uses. Only images, at most 8 MB each; addresses on private networks are refused.",
+		"route": "import",
+		"permission": "content:edit_any",
+		"destructive": false,
+		"inputSchema": {
+			"$schema": "http://json-schema.org/draft-07/schema#",
+			"type": "object",
+			"properties": {
+				"images": {
+					"minItems": 1,
+					"maxItems": 20,
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"url": {
+								"type": "string",
+								"description": "http(s) address of the image."
+							},
+							"alt": {
+								"description": "Alternative text for the image.",
+								"type": "string",
+								"maxLength": 500
+							},
+							"filename": {
+								"type": "string",
+								"maxLength": 120
+							}
+						},
+						"required": [
+							"url"
+						],
+						"additionalProperties": false
+					}
+				}
+			},
+			"required": [
+				"images"
+			],
+			"additionalProperties": false
+		},
+		"outputSchema": {
+			"$schema": "http://json-schema.org/draft-07/schema#",
+			"type": "object",
+			"properties": {},
+			"additionalProperties": {}
+		}
+	}
+]

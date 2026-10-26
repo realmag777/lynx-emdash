@@ -1,0 +1,5136 @@
+{
+	"$schema": "https://emdashcms.com/seed.schema.json",
+	"version": "1",
+	"meta": {
+		"name": "LYNX preset: Real estate",
+		"description": "Property listings for sale and rent: price, area, rooms, floor, year built, distance to the sea, energy rating and reference code, with property type, location and amenities taxonomies.",
+		"author": "realmag777"
+	},
+	"collections": [
+		{
+			"slug": "properties",
+			"label": "Properties",
+			"labelSingular": "Property",
+			"description": "Real-estate listings (LYNX preset)",
+			"supports": [
+				"drafts",
+				"search"
+			],
+			"fields": [
+				{
+					"slug": "title",
+					"label": "Title",
+					"type": "string",
+					"required": true,
+					"indexed": true,
+					"searchable": true
+				},
+				{
+					"slug": "price",
+					"label": "Price",
+					"type": "number",
+					"indexed": true,
+					"translatable": false,
+					"validation": {
+						"min": 0
+					}
+				},
+				{
+					"slug": "deal_type",
+					"label": "Deal",
+					"type": "select",
+					"indexed": true,
+					"translatable": false,
+					"validation": {
+						"options": [
+							"Sale",
+							"Rent"
+						]
+					}
+				},
+				{
+					"slug": "area_m2",
+					"label": "Area (m²)",
+					"type": "number",
+					"indexed": true,
+					"translatable": false,
+					"validation": {
+						"min": 0
+					}
+				},
+				{
+					"slug": "plot_m2",
+					"label": "Plot (m²)",
+					"type": "number",
+					"indexed": true,
+					"translatable": false,
+					"validation": {
+						"min": 0
+					}
+				},
+				{
+					"slug": "rooms",
+					"label": "Rooms",
+					"type": "integer",
+					"indexed": true,
+					"translatable": false,
+					"validation": {
+						"min": 0,
+						"max": 50
+					}
+				},
+				{
+					"slug": "bedrooms",
+					"label": "Bedrooms",
+					"type": "integer",
+					"indexed": true,
+					"translatable": false,
+					"validation": {
+						"min": 0,
+						"max": 30
+					}
+				},
+				{
+					"slug": "bathrooms",
+					"label": "Bathrooms",
+					"type": "integer",
+					"indexed": true,
+					"translatable": false,
+					"validation": {
+						"min": 0,
+						"max": 30
+					}
+				},
+				{
+					"slug": "floor",
+					"label": "Floor",
+					"type": "integer",
+					"indexed": true,
+					"translatable": false,
+					"validation": {
+						"min": -3,
+						"max": 200
+					}
+				},
+				{
+					"slug": "floors_total",
+					"label": "Floors in building",
+					"type": "integer",
+					"indexed": true,
+					"translatable": false,
+					"validation": {
+						"min": 1,
+						"max": 200
+					}
+				},
+				{
+					"slug": "year_built",
+					"label": "Year built",
+					"type": "integer",
+					"indexed": true,
+					"translatable": false,
+					"validation": {
+						"min": 1500,
+						"max": 2030
+					}
+				},
+				{
+					"slug": "distance_to_sea_m",
+					"label": "Distance to sea (m)",
+					"type": "integer",
+					"indexed": true,
+					"translatable": false,
+					"validation": {
+						"min": 0
+					}
+				},
+				{
+					"slug": "energy_rating",
+					"label": "Energy rating",
+					"type": "select",
+					"indexed": true,
+					"translatable": false,
+					"validation": {
+						"options": [
+							"A",
+							"B",
+							"C",
+							"D",
+							"E",
+							"F",
+							"G"
+						]
+					}
+				},
+				{
+					"slug": "available_from",
+					"label": "Available from",
+					"type": "datetime",
+					"indexed": true,
+					"translatable": false
+				},
+				{
+					"slug": "ref_code",
+					"label": "Reference",
+					"type": "string",
+					"indexed": true,
+					"unique": true,
+					"translatable": false,
+					"validation": {
+						"pattern": "^LX-[A-Z]{2}-\\d{4,6}$"
+					}
+				},
+				{
+					"slug": "lat",
+					"label": "Latitude",
+					"type": "number",
+					"translatable": false,
+					"validation": {
+						"min": -90,
+						"max": 90
+					}
+				},
+				{
+					"slug": "lng",
+					"label": "Longitude",
+					"type": "number",
+					"translatable": false,
+					"validation": {
+						"min": -180,
+						"max": 180
+					}
+				},
+				{
+					"slug": "cover",
+					"label": "Cover photo",
+					"type": "image"
+				},
+				{
+					"slug": "gallery",
+					"label": "Gallery",
+					"type": "repeater",
+					"validation": {
+						"subFields": [
+							{
+								"slug": "image",
+								"label": "Image",
+								"type": "image",
+								"required": true
+							}
+						],
+						"maxItems": 40
+					}
+				},
+				{
+					"slug": "description",
+					"label": "Description",
+					"type": "portableText",
+					"searchable": true
+				}
+			]
+		}
+	],
+	"taxonomies": [
+		{
+			"name": "property_type",
+			"label": "Property types",
+			"labelSingular": "Property type",
+			"hierarchical": false,
+			"collections": [
+				"properties"
+			],
+			"terms": [
+				{
+					"slug": "flat",
+					"label": "Flat"
+				},
+				{
+					"slug": "penthouse",
+					"label": "Penthouse"
+				},
+				{
+					"slug": "studio",
+					"label": "Studio"
+				},
+				{
+					"slug": "house",
+					"label": "House"
+				},
+				{
+					"slug": "townhouse",
+					"label": "Townhouse"
+				},
+				{
+					"slug": "villa",
+					"label": "Villa"
+				},
+				{
+					"slug": "finca",
+					"label": "Finca"
+				}
+			]
+		},
+		{
+			"name": "location",
+			"label": "Locations",
+			"labelSingular": "Location",
+			"hierarchical": true,
+			"collections": [
+				"properties"
+			],
+			"terms": [
+				{
+					"slug": "andalucia",
+					"label": "Andalucía"
+				},
+				{
+					"slug": "malaga",
+					"label": "Málaga",
+					"parent": "andalucia"
+				},
+				{
+					"slug": "malaga-centro",
+					"label": "Centro",
+					"parent": "malaga"
+				},
+				{
+					"slug": "malaga-el-palo",
+					"label": "El Palo",
+					"parent": "malaga"
+				},
+				{
+					"slug": "malaga-teatinos",
+					"label": "Teatinos",
+					"parent": "malaga"
+				},
+				{
+					"slug": "marbella",
+					"label": "Marbella",
+					"parent": "andalucia"
+				},
+				{
+					"slug": "marbella-golden-mile",
+					"label": "Golden Mile",
+					"parent": "marbella"
+				},
+				{
+					"slug": "marbella-nueva-andalucia",
+					"label": "Nueva Andalucía",
+					"parent": "marbella"
+				},
+				{
+					"slug": "marbella-puerto-banus",
+					"label": "Puerto Banús",
+					"parent": "marbella"
+				},
+				{
+					"slug": "estepona",
+					"label": "Estepona",
+					"parent": "andalucia"
+				},
+				{
+					"slug": "estepona-centro",
+					"label": "Centro",
+					"parent": "estepona"
+				},
+				{
+					"slug": "estepona-el-padron",
+					"label": "El Padrón",
+					"parent": "estepona"
+				},
+				{
+					"slug": "valenciana",
+					"label": "Comunidad Valenciana"
+				},
+				{
+					"slug": "valencia",
+					"label": "Valencia",
+					"parent": "valenciana"
+				},
+				{
+					"slug": "valencia-ruzafa",
+					"label": "Ruzafa",
+					"parent": "valencia"
+				},
+				{
+					"slug": "valencia-cabanyal",
+					"label": "El Cabanyal",
+					"parent": "valencia"
+				},
+				{
+					"slug": "valencia-benimaclet",
+					"label": "Benimaclet",
+					"parent": "valencia"
+				},
+				{
+					"slug": "alicante",
+					"label": "Alicante",
+					"parent": "valenciana"
+				},
+				{
+					"slug": "alicante-centro",
+					"label": "Centro",
+					"parent": "alicante"
+				},
+				{
+					"slug": "alicante-san-juan-playa",
+					"label": "San Juan Playa",
+					"parent": "alicante"
+				},
+				{
+					"slug": "altea",
+					"label": "Altea",
+					"parent": "valenciana"
+				},
+				{
+					"slug": "altea-casco-antiguo",
+					"label": "Casco Antiguo",
+					"parent": "altea"
+				},
+				{
+					"slug": "altea-mascarat",
+					"label": "Mascarat",
+					"parent": "altea"
+				},
+				{
+					"slug": "benidorm",
+					"label": "Benidorm",
+					"parent": "valenciana"
+				},
+				{
+					"slug": "benidorm-levante",
+					"label": "Levante",
+					"parent": "benidorm"
+				},
+				{
+					"slug": "benidorm-poniente",
+					"label": "Poniente",
+					"parent": "benidorm"
+				}
+			]
+		},
+		{
+			"name": "amenities",
+			"label": "Amenities",
+			"labelSingular": "Amenity",
+			"hierarchical": false,
+			"collections": [
+				"properties"
+			],
+			"terms": [
+				{
+					"slug": "pool",
+					"label": "Pool"
+				},
+				{
+					"slug": "parking",
+					"label": "Parking"
+				},
+				{
+					"slug": "terrace",
+					"label": "Terrace"
+				},
+				{
+					"slug": "balcony",
+					"label": "Balcony"
+				},
+				{
+					"slug": "sea-view",
+					"label": "Sea view"
+				},
+				{
+					"slug": "garden",
+					"label": "Garden"
+				},
+				{
+					"slug": "lift",
+					"label": "Lift"
+				},
+				{
+					"slug": "air-conditioning",
+					"label": "Air conditioning"
+				},
+				{
+					"slug": "furnished",
+					"label": "Furnished"
+				},
+				{
+					"slug": "gym",
+					"label": "Gym"
+				},
+				{
+					"slug": "concierge",
+					"label": "Concierge"
+				}
+			]
+		}
+	],
+	"content": {
+		"properties": [
+			{
+				"id": "prop-01",
+				"slug": "flat-with-2-bedrooms-in-centro-malaga-1",
+				"status": "published",
+				"data": {
+					"title": "Flat with 2 bedrooms in Centro, Málaga",
+					"price": 385000,
+					"deal_type": "Sale",
+					"area_m2": 92,
+					"plot_m2": null,
+					"rooms": 3,
+					"bedrooms": 2,
+					"bathrooms": 2,
+					"floor": 4,
+					"floors_total": 7,
+					"year_built": 2004,
+					"distance_to_sea_m": 900,
+					"energy_rating": "C",
+					"ref_code": "LX-ES-1001",
+					"available_from": "2026-10-03T10:00:00.000Z",
+					"lat": 36.72982,
+					"lng": -4.40528,
+					"description": [
+						{
+							"_type": "block",
+							"_key": "prop-01-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-01-b0s0",
+									"text": "Flat for sale in Centro, Málaga: 92 m² with 2 bedrooms, 0.9 km from the sea.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-01-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-01-b1s0",
+									"text": "Built in 2004. Close to shops, schools and public transport.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-01-b2",
+							"style": "normal",
+							"markDefs": [
+								{
+									"_type": "link",
+									"_key": "prop-01-b2l0",
+									"href": "https://example.com/floor-plans"
+								}
+							],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-01-b2s0",
+									"text": "Book a viewing or ask for the ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "prop-01-b2s1",
+									"text": "floor plan",
+									"marks": [
+										"prop-01-b2l0"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "prop-01-b2s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/properties/prop-06.jpg",
+							"alt": "Contemporary apartment building with balconies and palm trees",
+							"filename": "prop-06.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-06.jpg",
+									"alt": "Contemporary apartment building with balconies and palm trees",
+									"filename": "prop-06.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-02.jpg",
+									"alt": "Bright living room with large windows and a balcony",
+									"filename": "prop-02.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-03.jpg",
+									"alt": "Modern fitted kitchen with an island",
+									"filename": "prop-03.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-04.jpg",
+									"alt": "Master bedroom with calm neutral decor",
+									"filename": "prop-04.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-05.jpg",
+									"alt": "Bathroom with a walk-in shower and marble tiles",
+									"filename": "prop-05.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-07.jpg",
+									"alt": "Terrace with outdoor furniture overlooking the sea",
+									"filename": "prop-07.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"property_type": [
+						"flat"
+					],
+					"location": [
+						"malaga-centro"
+					],
+					"amenities": [
+						"lift",
+						"air-conditioning",
+						"terrace"
+					]
+				}
+			},
+			{
+				"id": "prop-02",
+				"slug": "flat-with-2-bedrooms-in-teatinos-malaga-rent-2",
+				"status": "published",
+				"data": {
+					"title": "Flat with 2 bedrooms in Teatinos, Málaga (rent)",
+					"price": 1450,
+					"deal_type": "Rent",
+					"area_m2": 85,
+					"plot_m2": null,
+					"rooms": 3,
+					"bedrooms": 2,
+					"bathrooms": 1,
+					"floor": 2,
+					"floors_total": 6,
+					"year_built": 2012,
+					"distance_to_sea_m": 3800,
+					"energy_rating": "B",
+					"ref_code": "LX-ES-1002",
+					"available_from": "2026-10-14T11:00:00.000Z",
+					"lat": 36.73409,
+					"lng": -4.43288,
+					"description": [
+						{
+							"_type": "block",
+							"_key": "prop-02-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-02-b0s0",
+									"text": "Flat for rent in Teatinos, Málaga: 85 m² with 2 bedrooms, 3.8 km from the sea.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-02-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-02-b1s0",
+									"text": "Built in 2012. Communal or private pool. Close to shops, schools and public transport.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-02-b2",
+							"style": "normal",
+							"markDefs": [
+								{
+									"_type": "link",
+									"_key": "prop-02-b2l0",
+									"href": "https://example.com/floor-plans"
+								}
+							],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-02-b2s0",
+									"text": "Book a viewing or ask for the ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "prop-02-b2s1",
+									"text": "floor plan",
+									"marks": [
+										"prop-02-b2l0"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "prop-02-b2s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/properties/prop-06.jpg",
+							"alt": "Contemporary apartment building with balconies and palm trees",
+							"filename": "prop-06.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-06.jpg",
+									"alt": "Contemporary apartment building with balconies and palm trees",
+									"filename": "prop-06.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-02.jpg",
+									"alt": "Bright living room with large windows and a balcony",
+									"filename": "prop-02.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-03.jpg",
+									"alt": "Modern fitted kitchen with an island",
+									"filename": "prop-03.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-04.jpg",
+									"alt": "Master bedroom with calm neutral decor",
+									"filename": "prop-04.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-05.jpg",
+									"alt": "Bathroom with a walk-in shower and marble tiles",
+									"filename": "prop-05.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"property_type": [
+						"flat"
+					],
+					"location": [
+						"malaga-teatinos"
+					],
+					"amenities": [
+						"lift",
+						"parking",
+						"pool",
+						"air-conditioning"
+					]
+				}
+			},
+			{
+				"id": "prop-03",
+				"slug": "penthouse-with-3-bedrooms-in-el-palo-malaga-3",
+				"status": "published",
+				"data": {
+					"title": "Penthouse with 3 bedrooms in El Palo, Málaga",
+					"price": 695000,
+					"deal_type": "Sale",
+					"area_m2": 118,
+					"plot_m2": null,
+					"rooms": 4,
+					"bedrooms": 3,
+					"bathrooms": 2,
+					"floor": 6,
+					"floors_total": 6,
+					"year_built": 2018,
+					"distance_to_sea_m": 250,
+					"energy_rating": "A",
+					"ref_code": "LX-ES-1003",
+					"available_from": "2026-10-25T12:00:00.000Z",
+					"lat": 36.73704,
+					"lng": -4.435,
+					"description": [
+						{
+							"_type": "block",
+							"_key": "prop-03-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-03-b0s0",
+									"text": "Penthouse for sale in El Palo, Málaga: 118 m² with 3 bedrooms, just ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "prop-03-b0s1",
+									"text": "250 m from the beach",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "prop-03-b0s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-03-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-03-b1s0",
+									"text": "Built in 2018. Wide sea views from the main rooms. Close to shops, schools and public transport.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-03-b2",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-03-b2s0",
+									"text": "Viewings available seven days a week.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/properties/prop-10.jpg",
+							"alt": "Penthouse roof terrace with a city view at dusk",
+							"filename": "prop-10.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-10.jpg",
+									"alt": "Penthouse roof terrace with a city view at dusk",
+									"filename": "prop-10.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-02.jpg",
+									"alt": "Bright living room with large windows and a balcony",
+									"filename": "prop-02.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-03.jpg",
+									"alt": "Modern fitted kitchen with an island",
+									"filename": "prop-03.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-04.jpg",
+									"alt": "Master bedroom with calm neutral decor",
+									"filename": "prop-04.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-05.jpg",
+									"alt": "Bathroom with a walk-in shower and marble tiles",
+									"filename": "prop-05.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-07.jpg",
+									"alt": "Terrace with outdoor furniture overlooking the sea",
+									"filename": "prop-07.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"property_type": [
+						"penthouse"
+					],
+					"location": [
+						"malaga-el-palo"
+					],
+					"amenities": [
+						"sea-view",
+						"terrace",
+						"lift",
+						"parking",
+						"air-conditioning"
+					]
+				}
+			},
+			{
+				"id": "prop-04",
+				"slug": "studio-in-centro-malaga-rent-4",
+				"status": "published",
+				"data": {
+					"title": "Studio in Centro, Málaga (rent)",
+					"price": 980,
+					"deal_type": "Rent",
+					"area_m2": 38,
+					"plot_m2": null,
+					"rooms": 1,
+					"bedrooms": 0,
+					"bathrooms": 1,
+					"floor": 3,
+					"floors_total": 5,
+					"year_built": 1978,
+					"distance_to_sea_m": 1100,
+					"energy_rating": "E",
+					"ref_code": "LX-ES-1004",
+					"available_from": "2026-11-05T10:00:00.000Z",
+					"lat": 36.73386,
+					"lng": -4.4129,
+					"description": [
+						{
+							"_type": "block",
+							"_key": "prop-04-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-04-b0s0",
+									"text": "Studio for rent in Centro, Málaga: 38 m² with an open-plan layout, 1.1 km from the sea.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-04-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-04-b1s0",
+									"text": "Built in 1978 and renovated to a high standard. Close to shops, schools and public transport.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-04-b2",
+							"style": "normal",
+							"markDefs": [
+								{
+									"_type": "link",
+									"_key": "prop-04-b2l0",
+									"href": "https://example.com/floor-plans"
+								}
+							],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-04-b2s0",
+									"text": "Book a viewing or ask for the ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "prop-04-b2s1",
+									"text": "floor plan",
+									"marks": [
+										"prop-04-b2l0"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "prop-04-b2s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/properties/prop-09.jpg",
+							"alt": "Compact tidy studio apartment",
+							"filename": "prop-09.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-09.jpg",
+									"alt": "Compact tidy studio apartment",
+									"filename": "prop-09.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-05.jpg",
+									"alt": "Bathroom with a walk-in shower and marble tiles",
+									"filename": "prop-05.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"property_type": [
+						"studio"
+					],
+					"location": [
+						"malaga-centro"
+					],
+					"amenities": [
+						"air-conditioning",
+						"furnished"
+					]
+				}
+			},
+			{
+				"id": "prop-05",
+				"slug": "villa-with-5-bedrooms-in-golden-mile-marbella-5",
+				"status": "published",
+				"data": {
+					"title": "Villa with 5 bedrooms in Golden Mile, Marbella",
+					"price": 3450000,
+					"deal_type": "Sale",
+					"area_m2": 520,
+					"plot_m2": 1450,
+					"rooms": 6,
+					"bedrooms": 5,
+					"bathrooms": 6,
+					"floor": null,
+					"floors_total": 2,
+					"year_built": 2016,
+					"distance_to_sea_m": 400,
+					"energy_rating": "A",
+					"ref_code": "LX-ES-1005",
+					"available_from": "2026-11-16T11:00:00.000Z",
+					"lat": 36.52752,
+					"lng": -4.89221,
+					"description": [
+						{
+							"_type": "block",
+							"_key": "prop-05-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-05-b0s0",
+									"text": "Villa for sale in Golden Mile, Marbella: 520 m² with 5 bedrooms on a 1,450 m² plot, 0.4 km from the sea.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-05-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-05-b1s0",
+									"text": "Built in 2016. Wide sea views from the main rooms. Communal or private pool. Close to shops, schools and public transport.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-05-b2",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-05-b2s0",
+									"text": "Viewings available seven days a week.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/properties/prop-01.jpg",
+							"alt": "Modern white villa with an infinity pool and sea view",
+							"filename": "prop-01.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-01.jpg",
+									"alt": "Modern white villa with an infinity pool and sea view",
+									"filename": "prop-01.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-02.jpg",
+									"alt": "Bright living room with large windows and a balcony",
+									"filename": "prop-02.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-03.jpg",
+									"alt": "Modern fitted kitchen with an island",
+									"filename": "prop-03.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-04.jpg",
+									"alt": "Master bedroom with calm neutral decor",
+									"filename": "prop-04.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-05.jpg",
+									"alt": "Bathroom with a walk-in shower and marble tiles",
+									"filename": "prop-05.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-07.jpg",
+									"alt": "Terrace with outdoor furniture overlooking the sea",
+									"filename": "prop-07.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"property_type": [
+						"villa"
+					],
+					"location": [
+						"marbella-golden-mile"
+					],
+					"amenities": [
+						"pool",
+						"sea-view",
+						"garden",
+						"parking",
+						"air-conditioning",
+						"gym"
+					]
+				}
+			},
+			{
+				"id": "prop-06",
+				"slug": "villa-with-4-bedrooms-in-nueva-andalucia-marbella-6",
+				"status": "published",
+				"data": {
+					"title": "Villa with 4 bedrooms in Nueva Andalucía, Marbella",
+					"price": 1895000,
+					"deal_type": "Sale",
+					"area_m2": 380,
+					"plot_m2": 1100,
+					"rooms": 5,
+					"bedrooms": 4,
+					"bathrooms": 4,
+					"floor": null,
+					"floors_total": 2,
+					"year_built": 2009,
+					"distance_to_sea_m": 3200,
+					"energy_rating": "B",
+					"ref_code": "LX-ES-1006",
+					"available_from": "2026-11-27T12:00:00.000Z",
+					"lat": 36.5155,
+					"lng": -4.87175,
+					"description": [
+						{
+							"_type": "block",
+							"_key": "prop-06-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-06-b0s0",
+									"text": "Villa for sale in Nueva Andalucía, Marbella: 380 m² with 4 bedrooms on a 1,100 m² plot, 3.2 km from the sea.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-06-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-06-b1s0",
+									"text": "Built in 2009. Communal or private pool. Close to shops, schools and public transport.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-06-b2",
+							"style": "normal",
+							"markDefs": [
+								{
+									"_type": "link",
+									"_key": "prop-06-b2l0",
+									"href": "https://example.com/floor-plans"
+								}
+							],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-06-b2s0",
+									"text": "Book a viewing or ask for the ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "prop-06-b2s1",
+									"text": "floor plan",
+									"marks": [
+										"prop-06-b2l0"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "prop-06-b2s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/properties/prop-01.jpg",
+							"alt": "Modern white villa with an infinity pool and sea view",
+							"filename": "prop-01.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-01.jpg",
+									"alt": "Modern white villa with an infinity pool and sea view",
+									"filename": "prop-01.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-02.jpg",
+									"alt": "Bright living room with large windows and a balcony",
+									"filename": "prop-02.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-03.jpg",
+									"alt": "Modern fitted kitchen with an island",
+									"filename": "prop-03.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-04.jpg",
+									"alt": "Master bedroom with calm neutral decor",
+									"filename": "prop-04.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-05.jpg",
+									"alt": "Bathroom with a walk-in shower and marble tiles",
+									"filename": "prop-05.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-12.jpg",
+									"alt": "Private garden with lawn, pool and loungers",
+									"filename": "prop-12.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"property_type": [
+						"villa"
+					],
+					"location": [
+						"marbella-nueva-andalucia"
+					],
+					"amenities": [
+						"pool",
+						"garden",
+						"parking",
+						"air-conditioning"
+					]
+				}
+			},
+			{
+				"id": "prop-07",
+				"slug": "flat-with-2-bedrooms-in-puerto-banus-marbella-7",
+				"status": "published",
+				"data": {
+					"title": "Flat with 2 bedrooms in Puerto Banús, Marbella",
+					"price": 540000,
+					"deal_type": "Sale",
+					"area_m2": 110,
+					"plot_m2": null,
+					"rooms": 3,
+					"bedrooms": 2,
+					"bathrooms": 2,
+					"floor": 1,
+					"floors_total": 4,
+					"year_built": 2006,
+					"distance_to_sea_m": 150,
+					"energy_rating": "C",
+					"ref_code": "LX-ES-1007",
+					"available_from": "2026-12-08T10:00:00.000Z",
+					"lat": 36.49996,
+					"lng": -4.88499,
+					"description": [
+						{
+							"_type": "block",
+							"_key": "prop-07-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-07-b0s0",
+									"text": "Flat for sale in Puerto Banús, Marbella: 110 m² with 2 bedrooms, just ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "prop-07-b0s1",
+									"text": "150 m from the beach",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "prop-07-b0s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-07-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-07-b1s0",
+									"text": "Built in 2006. Wide sea views from the main rooms. Communal or private pool. Close to shops, schools and public transport.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-07-b2",
+							"style": "normal",
+							"markDefs": [
+								{
+									"_type": "link",
+									"_key": "prop-07-b2l0",
+									"href": "https://example.com/floor-plans"
+								}
+							],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-07-b2s0",
+									"text": "Book a viewing or ask for the ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "prop-07-b2s1",
+									"text": "floor plan",
+									"marks": [
+										"prop-07-b2l0"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "prop-07-b2s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/properties/prop-06.jpg",
+							"alt": "Contemporary apartment building with balconies and palm trees",
+							"filename": "prop-06.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-06.jpg",
+									"alt": "Contemporary apartment building with balconies and palm trees",
+									"filename": "prop-06.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-02.jpg",
+									"alt": "Bright living room with large windows and a balcony",
+									"filename": "prop-02.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-03.jpg",
+									"alt": "Modern fitted kitchen with an island",
+									"filename": "prop-03.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-04.jpg",
+									"alt": "Master bedroom with calm neutral decor",
+									"filename": "prop-04.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-05.jpg",
+									"alt": "Bathroom with a walk-in shower and marble tiles",
+									"filename": "prop-05.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-07.jpg",
+									"alt": "Terrace with outdoor furniture overlooking the sea",
+									"filename": "prop-07.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"property_type": [
+						"flat"
+					],
+					"location": [
+						"marbella-puerto-banus"
+					],
+					"amenities": [
+						"pool",
+						"sea-view",
+						"terrace",
+						"parking",
+						"concierge"
+					]
+				}
+			},
+			{
+				"id": "prop-08",
+				"slug": "townhouse-with-3-bedrooms-in-nueva-andalucia-marbella-8",
+				"status": "published",
+				"data": {
+					"title": "Townhouse with 3 bedrooms in Nueva Andalucía, Marbella",
+					"price": 675000,
+					"deal_type": "Sale",
+					"area_m2": 195,
+					"plot_m2": 120,
+					"rooms": 4,
+					"bedrooms": 3,
+					"bathrooms": 3,
+					"floor": null,
+					"floors_total": 3,
+					"year_built": 2001,
+					"distance_to_sea_m": 3500,
+					"energy_rating": "D",
+					"ref_code": "LX-ES-1008",
+					"available_from": "2026-12-19T11:00:00.000Z",
+					"lat": 36.52564,
+					"lng": -4.88331,
+					"description": [
+						{
+							"_type": "block",
+							"_key": "prop-08-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-08-b0s0",
+									"text": "Townhouse for sale in Nueva Andalucía, Marbella: 195 m² with 3 bedrooms on a 120 m² plot, 3.5 km from the sea.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-08-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-08-b1s0",
+									"text": "Built in 2001. Communal or private pool. Close to shops, schools and public transport.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-08-b2",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-08-b2s0",
+									"text": "Viewings available seven days a week.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/properties/prop-08.jpg",
+							"alt": "Row of whitewashed Andalusian townhouses",
+							"filename": "prop-08.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-08.jpg",
+									"alt": "Row of whitewashed Andalusian townhouses",
+									"filename": "prop-08.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-02.jpg",
+									"alt": "Bright living room with large windows and a balcony",
+									"filename": "prop-02.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-03.jpg",
+									"alt": "Modern fitted kitchen with an island",
+									"filename": "prop-03.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-04.jpg",
+									"alt": "Master bedroom with calm neutral decor",
+									"filename": "prop-04.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-05.jpg",
+									"alt": "Bathroom with a walk-in shower and marble tiles",
+									"filename": "prop-05.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-07.jpg",
+									"alt": "Terrace with outdoor furniture overlooking the sea",
+									"filename": "prop-07.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"property_type": [
+						"townhouse"
+					],
+					"location": [
+						"marbella-nueva-andalucia"
+					],
+					"amenities": [
+						"pool",
+						"terrace",
+						"parking"
+					]
+				}
+			},
+			{
+				"id": "prop-09",
+				"slug": "flat-with-2-bedrooms-in-centro-estepona-rent-9",
+				"status": "published",
+				"data": {
+					"title": "Flat with 2 bedrooms in Centro, Estepona (rent)",
+					"price": 1250,
+					"deal_type": "Rent",
+					"area_m2": 78,
+					"plot_m2": null,
+					"rooms": 3,
+					"bedrooms": 2,
+					"bathrooms": 2,
+					"floor": 2,
+					"floors_total": 5,
+					"year_built": 2010,
+					"distance_to_sea_m": 350,
+					"energy_rating": "C",
+					"ref_code": "LX-ES-1009",
+					"available_from": "2026-10-11T12:00:00.000Z",
+					"lat": 36.42184,
+					"lng": -5.16065,
+					"description": [
+						{
+							"_type": "block",
+							"_key": "prop-09-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-09-b0s0",
+									"text": "Flat for rent in Centro, Estepona: 78 m² with 2 bedrooms, 0.3 km from the sea.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-09-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-09-b1s0",
+									"text": "Built in 2010. Wide sea views from the main rooms. Communal or private pool. Close to shops, schools and public transport.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-09-b2",
+							"style": "normal",
+							"markDefs": [
+								{
+									"_type": "link",
+									"_key": "prop-09-b2l0",
+									"href": "https://example.com/floor-plans"
+								}
+							],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-09-b2s0",
+									"text": "Book a viewing or ask for the ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "prop-09-b2s1",
+									"text": "floor plan",
+									"marks": [
+										"prop-09-b2l0"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "prop-09-b2s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/properties/prop-06.jpg",
+							"alt": "Contemporary apartment building with balconies and palm trees",
+							"filename": "prop-06.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-06.jpg",
+									"alt": "Contemporary apartment building with balconies and palm trees",
+									"filename": "prop-06.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-02.jpg",
+									"alt": "Bright living room with large windows and a balcony",
+									"filename": "prop-02.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-03.jpg",
+									"alt": "Modern fitted kitchen with an island",
+									"filename": "prop-03.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-04.jpg",
+									"alt": "Master bedroom with calm neutral decor",
+									"filename": "prop-04.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-05.jpg",
+									"alt": "Bathroom with a walk-in shower and marble tiles",
+									"filename": "prop-05.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-07.jpg",
+									"alt": "Terrace with outdoor furniture overlooking the sea",
+									"filename": "prop-07.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"property_type": [
+						"flat"
+					],
+					"location": [
+						"estepona-centro"
+					],
+					"amenities": [
+						"lift",
+						"pool",
+						"sea-view",
+						"air-conditioning"
+					]
+				}
+			},
+			{
+				"id": "prop-10",
+				"slug": "penthouse-with-2-bedrooms-in-el-padron-estepona-10",
+				"status": "draft",
+				"data": {
+					"title": "Penthouse with 2 bedrooms in El Padrón, Estepona",
+					"price": 459000,
+					"deal_type": "Sale",
+					"area_m2": 104,
+					"plot_m2": null,
+					"rooms": 3,
+					"bedrooms": 2,
+					"bathrooms": 2,
+					"floor": 4,
+					"floors_total": 4,
+					"year_built": 2021,
+					"distance_to_sea_m": 600,
+					"energy_rating": "A",
+					"ref_code": "LX-ES-1010",
+					"available_from": "2026-10-22T10:00:00.000Z",
+					"lat": 36.42797,
+					"lng": -5.15021,
+					"description": [
+						{
+							"_type": "block",
+							"_key": "prop-10-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-10-b0s0",
+									"text": "Penthouse for sale in El Padrón, Estepona: 104 m² with 2 bedrooms, 0.6 km from the sea.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-10-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-10-b1s0",
+									"text": "Built in 2021. Wide sea views from the main rooms. Communal or private pool. Close to shops, schools and public transport.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-10-b2",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-10-b2s0",
+									"text": "Viewings available seven days a week.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/properties/prop-10.jpg",
+							"alt": "Penthouse roof terrace with a city view at dusk",
+							"filename": "prop-10.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-10.jpg",
+									"alt": "Penthouse roof terrace with a city view at dusk",
+									"filename": "prop-10.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-02.jpg",
+									"alt": "Bright living room with large windows and a balcony",
+									"filename": "prop-02.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-03.jpg",
+									"alt": "Modern fitted kitchen with an island",
+									"filename": "prop-03.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-04.jpg",
+									"alt": "Master bedroom with calm neutral decor",
+									"filename": "prop-04.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-05.jpg",
+									"alt": "Bathroom with a walk-in shower and marble tiles",
+									"filename": "prop-05.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-07.jpg",
+									"alt": "Terrace with outdoor furniture overlooking the sea",
+									"filename": "prop-07.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"property_type": [
+						"penthouse"
+					],
+					"location": [
+						"estepona-el-padron"
+					],
+					"amenities": [
+						"sea-view",
+						"terrace",
+						"pool",
+						"parking"
+					]
+				}
+			},
+			{
+				"id": "prop-11",
+				"slug": "house-with-4-bedrooms-in-el-padron-estepona-11",
+				"status": "published",
+				"data": {
+					"title": "House with 4 bedrooms in El Padrón, Estepona",
+					"price": 1150000,
+					"deal_type": "Sale",
+					"area_m2": 290,
+					"plot_m2": 800,
+					"rooms": 5,
+					"bedrooms": 4,
+					"bathrooms": 3,
+					"floor": null,
+					"floors_total": 2,
+					"year_built": 1998,
+					"distance_to_sea_m": 1200,
+					"energy_rating": "E",
+					"ref_code": "LX-ES-1011",
+					"available_from": "2026-11-02T11:00:00.000Z",
+					"lat": 36.43253,
+					"lng": -5.15061,
+					"description": [
+						{
+							"_type": "block",
+							"_key": "prop-11-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-11-b0s0",
+									"text": "House for sale in El Padrón, Estepona: 290 m² with 4 bedrooms on a 800 m² plot, 1.2 km from the sea.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-11-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-11-b1s0",
+									"text": "Built in 1998. Wide sea views from the main rooms. Communal or private pool. Close to shops, schools and public transport.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-11-b2",
+							"style": "normal",
+							"markDefs": [
+								{
+									"_type": "link",
+									"_key": "prop-11-b2l0",
+									"href": "https://example.com/floor-plans"
+								}
+							],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-11-b2s0",
+									"text": "Book a viewing or ask for the ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "prop-11-b2s1",
+									"text": "floor plan",
+									"marks": [
+										"prop-11-b2l0"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "prop-11-b2s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/properties/prop-12.jpg",
+							"alt": "Private garden with lawn, pool and loungers",
+							"filename": "prop-12.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-12.jpg",
+									"alt": "Private garden with lawn, pool and loungers",
+									"filename": "prop-12.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-02.jpg",
+									"alt": "Bright living room with large windows and a balcony",
+									"filename": "prop-02.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-03.jpg",
+									"alt": "Modern fitted kitchen with an island",
+									"filename": "prop-03.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-04.jpg",
+									"alt": "Master bedroom with calm neutral decor",
+									"filename": "prop-04.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-05.jpg",
+									"alt": "Bathroom with a walk-in shower and marble tiles",
+									"filename": "prop-05.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-07.jpg",
+									"alt": "Terrace with outdoor furniture overlooking the sea",
+									"filename": "prop-07.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"property_type": [
+						"house"
+					],
+					"location": [
+						"estepona-el-padron"
+					],
+					"amenities": [
+						"pool",
+						"garden",
+						"parking",
+						"sea-view"
+					]
+				}
+			},
+			{
+				"id": "prop-12",
+				"slug": "flat-with-3-bedrooms-in-ruzafa-valencia-12",
+				"status": "published",
+				"data": {
+					"title": "Flat with 3 bedrooms in Ruzafa, Valencia",
+					"price": 329000,
+					"deal_type": "Sale",
+					"area_m2": 96,
+					"plot_m2": null,
+					"rooms": 4,
+					"bedrooms": 3,
+					"bathrooms": 2,
+					"floor": 3,
+					"floors_total": 6,
+					"year_built": 1965,
+					"distance_to_sea_m": 4200,
+					"energy_rating": "E",
+					"ref_code": "LX-ES-1012",
+					"available_from": "2026-11-13T12:00:00.000Z",
+					"lat": 39.46414,
+					"lng": -0.35722,
+					"description": [
+						{
+							"_type": "block",
+							"_key": "prop-12-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-12-b0s0",
+									"text": "Flat for sale in Ruzafa, Valencia: 96 m² with 3 bedrooms, 4.2 km from the sea.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-12-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-12-b1s0",
+									"text": "Built in 1965 and renovated to a high standard. Close to shops, schools and public transport.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-12-b2",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-12-b2s0",
+									"text": "Viewings available seven days a week.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/properties/prop-06.jpg",
+							"alt": "Contemporary apartment building with balconies and palm trees",
+							"filename": "prop-06.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-06.jpg",
+									"alt": "Contemporary apartment building with balconies and palm trees",
+									"filename": "prop-06.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-02.jpg",
+									"alt": "Bright living room with large windows and a balcony",
+									"filename": "prop-02.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-03.jpg",
+									"alt": "Modern fitted kitchen with an island",
+									"filename": "prop-03.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-04.jpg",
+									"alt": "Master bedroom with calm neutral decor",
+									"filename": "prop-04.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-05.jpg",
+									"alt": "Bathroom with a walk-in shower and marble tiles",
+									"filename": "prop-05.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"property_type": [
+						"flat"
+					],
+					"location": [
+						"valencia-ruzafa"
+					],
+					"amenities": [
+						"lift",
+						"air-conditioning",
+						"balcony"
+					]
+				}
+			},
+			{
+				"id": "prop-13",
+				"slug": "flat-with-2-bedrooms-in-ruzafa-valencia-rent-13",
+				"status": "published",
+				"data": {
+					"title": "Flat with 2 bedrooms in Ruzafa, Valencia (rent)",
+					"price": 1350,
+					"deal_type": "Rent",
+					"area_m2": 80,
+					"plot_m2": null,
+					"rooms": 3,
+					"bedrooms": 2,
+					"bathrooms": 1,
+					"floor": 1,
+					"floors_total": 5,
+					"year_built": 1972,
+					"distance_to_sea_m": 4300,
+					"energy_rating": "F",
+					"ref_code": "LX-ES-1013",
+					"available_from": "2026-11-24T10:00:00.000Z",
+					"lat": 39.47984,
+					"lng": -0.38276,
+					"description": [
+						{
+							"_type": "block",
+							"_key": "prop-13-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-13-b0s0",
+									"text": "Flat for rent in Ruzafa, Valencia: 80 m² with 2 bedrooms, 4.3 km from the sea.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-13-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-13-b1s0",
+									"text": "Built in 1972 and renovated to a high standard. Close to shops, schools and public transport.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-13-b2",
+							"style": "normal",
+							"markDefs": [
+								{
+									"_type": "link",
+									"_key": "prop-13-b2l0",
+									"href": "https://example.com/floor-plans"
+								}
+							],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-13-b2s0",
+									"text": "Book a viewing or ask for the ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "prop-13-b2s1",
+									"text": "floor plan",
+									"marks": [
+										"prop-13-b2l0"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "prop-13-b2s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/properties/prop-06.jpg",
+							"alt": "Contemporary apartment building with balconies and palm trees",
+							"filename": "prop-06.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-06.jpg",
+									"alt": "Contemporary apartment building with balconies and palm trees",
+									"filename": "prop-06.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-02.jpg",
+									"alt": "Bright living room with large windows and a balcony",
+									"filename": "prop-02.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-03.jpg",
+									"alt": "Modern fitted kitchen with an island",
+									"filename": "prop-03.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-04.jpg",
+									"alt": "Master bedroom with calm neutral decor",
+									"filename": "prop-04.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-05.jpg",
+									"alt": "Bathroom with a walk-in shower and marble tiles",
+									"filename": "prop-05.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"property_type": [
+						"flat"
+					],
+					"location": [
+						"valencia-ruzafa"
+					],
+					"amenities": [
+						"balcony",
+						"furnished"
+					]
+				}
+			},
+			{
+				"id": "prop-14",
+				"slug": "flat-with-2-bedrooms-in-el-cabanyal-valencia-14",
+				"status": "published",
+				"data": {
+					"title": "Flat with 2 bedrooms in El Cabanyal, Valencia",
+					"price": 289000,
+					"deal_type": "Sale",
+					"area_m2": 74,
+					"plot_m2": null,
+					"rooms": 3,
+					"bedrooms": 2,
+					"bathrooms": 1,
+					"floor": 2,
+					"floors_total": 3,
+					"year_built": 1930,
+					"distance_to_sea_m": 300,
+					"energy_rating": "G",
+					"ref_code": "LX-ES-1014",
+					"available_from": "2026-12-05T11:00:00.000Z",
+					"lat": 39.47221,
+					"lng": -0.37517,
+					"description": [
+						{
+							"_type": "block",
+							"_key": "prop-14-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-14-b0s0",
+									"text": "Flat for sale in El Cabanyal, Valencia: 74 m² with 2 bedrooms, just ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "prop-14-b0s1",
+									"text": "300 m from the beach",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "prop-14-b0s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-14-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-14-b1s0",
+									"text": "Built in 1930 and renovated to a high standard. Wide sea views from the main rooms. Close to shops, schools and public transport.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-14-b2",
+							"style": "normal",
+							"markDefs": [
+								{
+									"_type": "link",
+									"_key": "prop-14-b2l0",
+									"href": "https://example.com/floor-plans"
+								}
+							],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-14-b2s0",
+									"text": "Book a viewing or ask for the ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "prop-14-b2s1",
+									"text": "floor plan",
+									"marks": [
+										"prop-14-b2l0"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "prop-14-b2s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/properties/prop-06.jpg",
+							"alt": "Contemporary apartment building with balconies and palm trees",
+							"filename": "prop-06.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-06.jpg",
+									"alt": "Contemporary apartment building with balconies and palm trees",
+									"filename": "prop-06.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-02.jpg",
+									"alt": "Bright living room with large windows and a balcony",
+									"filename": "prop-02.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-03.jpg",
+									"alt": "Modern fitted kitchen with an island",
+									"filename": "prop-03.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-04.jpg",
+									"alt": "Master bedroom with calm neutral decor",
+									"filename": "prop-04.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-05.jpg",
+									"alt": "Bathroom with a walk-in shower and marble tiles",
+									"filename": "prop-05.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-07.jpg",
+									"alt": "Terrace with outdoor furniture overlooking the sea",
+									"filename": "prop-07.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"property_type": [
+						"flat"
+					],
+					"location": [
+						"valencia-cabanyal"
+					],
+					"amenities": [
+						"balcony",
+						"sea-view"
+					]
+				}
+			},
+			{
+				"id": "prop-15",
+				"slug": "studio-in-benimaclet-valencia-rent-15",
+				"status": "published",
+				"data": {
+					"title": "Studio in Benimaclet, Valencia (rent)",
+					"price": 750,
+					"deal_type": "Rent",
+					"area_m2": 34,
+					"plot_m2": null,
+					"rooms": 1,
+					"bedrooms": 0,
+					"bathrooms": 1,
+					"floor": 1,
+					"floors_total": 4,
+					"year_built": 1985,
+					"distance_to_sea_m": 5100,
+					"energy_rating": "E",
+					"ref_code": "LX-ES-1015",
+					"available_from": "2026-12-16T12:00:00.000Z",
+					"lat": 39.46786,
+					"lng": -0.38733,
+					"description": [
+						{
+							"_type": "block",
+							"_key": "prop-15-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-15-b0s0",
+									"text": "Studio for rent in Benimaclet, Valencia: 34 m² with an open-plan layout, 5.1 km from the sea.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-15-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-15-b1s0",
+									"text": "Built in 1985 and renovated to a high standard. Close to shops, schools and public transport.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-15-b2",
+							"style": "normal",
+							"markDefs": [
+								{
+									"_type": "link",
+									"_key": "prop-15-b2l0",
+									"href": "https://example.com/floor-plans"
+								}
+							],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-15-b2s0",
+									"text": "Book a viewing or ask for the ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "prop-15-b2s1",
+									"text": "floor plan",
+									"marks": [
+										"prop-15-b2l0"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "prop-15-b2s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/properties/prop-09.jpg",
+							"alt": "Compact tidy studio apartment",
+							"filename": "prop-09.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-09.jpg",
+									"alt": "Compact tidy studio apartment",
+									"filename": "prop-09.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-05.jpg",
+									"alt": "Bathroom with a walk-in shower and marble tiles",
+									"filename": "prop-05.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"property_type": [
+						"studio"
+					],
+					"location": [
+						"valencia-benimaclet"
+					],
+					"amenities": [
+						"furnished",
+						"air-conditioning"
+					]
+				}
+			},
+			{
+				"id": "prop-16",
+				"slug": "penthouse-with-3-bedrooms-in-benimaclet-valencia-16",
+				"status": "published",
+				"data": {
+					"title": "Penthouse with 3 bedrooms in Benimaclet, Valencia",
+					"price": 415000,
+					"deal_type": "Sale",
+					"area_m2": 112,
+					"plot_m2": null,
+					"rooms": 4,
+					"bedrooms": 3,
+					"bathrooms": 2,
+					"floor": 7,
+					"floors_total": 7,
+					"year_built": 2008,
+					"distance_to_sea_m": 5000,
+					"energy_rating": "C",
+					"ref_code": "LX-ES-1016",
+					"available_from": "2026-10-08T10:00:00.000Z",
+					"lat": 39.48698,
+					"lng": -0.36033,
+					"description": [
+						{
+							"_type": "block",
+							"_key": "prop-16-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-16-b0s0",
+									"text": "Penthouse for sale in Benimaclet, Valencia: 112 m² with 3 bedrooms, 5.0 km from the sea.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-16-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-16-b1s0",
+									"text": "Built in 2008. Close to shops, schools and public transport.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-16-b2",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-16-b2s0",
+									"text": "Viewings available seven days a week.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/properties/prop-10.jpg",
+							"alt": "Penthouse roof terrace with a city view at dusk",
+							"filename": "prop-10.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-10.jpg",
+									"alt": "Penthouse roof terrace with a city view at dusk",
+									"filename": "prop-10.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-02.jpg",
+									"alt": "Bright living room with large windows and a balcony",
+									"filename": "prop-02.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-03.jpg",
+									"alt": "Modern fitted kitchen with an island",
+									"filename": "prop-03.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-04.jpg",
+									"alt": "Master bedroom with calm neutral decor",
+									"filename": "prop-04.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-05.jpg",
+									"alt": "Bathroom with a walk-in shower and marble tiles",
+									"filename": "prop-05.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-07.jpg",
+									"alt": "Terrace with outdoor furniture overlooking the sea",
+									"filename": "prop-07.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"property_type": [
+						"penthouse"
+					],
+					"location": [
+						"valencia-benimaclet"
+					],
+					"amenities": [
+						"terrace",
+						"lift",
+						"parking",
+						"air-conditioning"
+					]
+				}
+			},
+			{
+				"id": "prop-17",
+				"slug": "flat-with-3-bedrooms-in-centro-alicante-17",
+				"status": "published",
+				"data": {
+					"title": "Flat with 3 bedrooms in Centro, Alicante",
+					"price": 215000,
+					"deal_type": "Sale",
+					"area_m2": 88,
+					"plot_m2": null,
+					"rooms": 4,
+					"bedrooms": 3,
+					"bathrooms": 2,
+					"floor": 5,
+					"floors_total": 9,
+					"year_built": 1990,
+					"distance_to_sea_m": 700,
+					"energy_rating": "D",
+					"ref_code": "LX-ES-1017",
+					"available_from": "2026-10-19T11:00:00.000Z",
+					"lat": 38.34328,
+					"lng": -0.50044,
+					"description": [
+						{
+							"_type": "block",
+							"_key": "prop-17-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-17-b0s0",
+									"text": "Flat for sale in Centro, Alicante: 88 m² with 3 bedrooms, 0.7 km from the sea.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-17-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-17-b1s0",
+									"text": "Built in 1990. Close to shops, schools and public transport.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-17-b2",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-17-b2s0",
+									"text": "Viewings available seven days a week.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/properties/prop-06.jpg",
+							"alt": "Contemporary apartment building with balconies and palm trees",
+							"filename": "prop-06.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-06.jpg",
+									"alt": "Contemporary apartment building with balconies and palm trees",
+									"filename": "prop-06.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-02.jpg",
+									"alt": "Bright living room with large windows and a balcony",
+									"filename": "prop-02.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-03.jpg",
+									"alt": "Modern fitted kitchen with an island",
+									"filename": "prop-03.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-04.jpg",
+									"alt": "Master bedroom with calm neutral decor",
+									"filename": "prop-04.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-05.jpg",
+									"alt": "Bathroom with a walk-in shower and marble tiles",
+									"filename": "prop-05.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"property_type": [
+						"flat"
+					],
+					"location": [
+						"alicante-centro"
+					],
+					"amenities": [
+						"lift",
+						"balcony",
+						"air-conditioning"
+					]
+				}
+			},
+			{
+				"id": "prop-18",
+				"slug": "flat-with-2-bedrooms-in-san-juan-playa-alicante-rent-18",
+				"status": "published",
+				"data": {
+					"title": "Flat with 2 bedrooms in San Juan Playa, Alicante (rent)",
+					"price": 1100,
+					"deal_type": "Rent",
+					"area_m2": 90,
+					"plot_m2": null,
+					"rooms": 3,
+					"bedrooms": 2,
+					"bathrooms": 2,
+					"floor": 3,
+					"floors_total": 8,
+					"year_built": 2003,
+					"distance_to_sea_m": 120,
+					"energy_rating": "C",
+					"ref_code": "LX-ES-1018",
+					"available_from": "2026-10-30T12:00:00.000Z",
+					"lat": 38.35916,
+					"lng": -0.48877,
+					"description": [
+						{
+							"_type": "block",
+							"_key": "prop-18-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-18-b0s0",
+									"text": "Flat for rent in San Juan Playa, Alicante: 90 m² with 2 bedrooms, just ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "prop-18-b0s1",
+									"text": "120 m from the beach",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "prop-18-b0s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-18-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-18-b1s0",
+									"text": "Built in 2003. Wide sea views from the main rooms. Communal or private pool. Close to shops, schools and public transport.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-18-b2",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-18-b2s0",
+									"text": "Viewings available seven days a week.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/properties/prop-06.jpg",
+							"alt": "Contemporary apartment building with balconies and palm trees",
+							"filename": "prop-06.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-06.jpg",
+									"alt": "Contemporary apartment building with balconies and palm trees",
+									"filename": "prop-06.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-02.jpg",
+									"alt": "Bright living room with large windows and a balcony",
+									"filename": "prop-02.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-03.jpg",
+									"alt": "Modern fitted kitchen with an island",
+									"filename": "prop-03.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-04.jpg",
+									"alt": "Master bedroom with calm neutral decor",
+									"filename": "prop-04.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-05.jpg",
+									"alt": "Bathroom with a walk-in shower and marble tiles",
+									"filename": "prop-05.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-07.jpg",
+									"alt": "Terrace with outdoor furniture overlooking the sea",
+									"filename": "prop-07.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"property_type": [
+						"flat"
+					],
+					"location": [
+						"alicante-san-juan-playa"
+					],
+					"amenities": [
+						"pool",
+						"sea-view",
+						"parking",
+						"lift"
+					]
+				}
+			},
+			{
+				"id": "prop-19",
+				"slug": "townhouse-with-3-bedrooms-in-san-juan-playa-alicante-19",
+				"status": "published",
+				"data": {
+					"title": "Townhouse with 3 bedrooms in San Juan Playa, Alicante",
+					"price": 398000,
+					"deal_type": "Sale",
+					"area_m2": 165,
+					"plot_m2": 90,
+					"rooms": 4,
+					"bedrooms": 3,
+					"bathrooms": 2,
+					"floor": null,
+					"floors_total": 3,
+					"year_built": 1999,
+					"distance_to_sea_m": 450,
+					"energy_rating": "D",
+					"ref_code": "LX-ES-1019",
+					"available_from": "2026-11-10T10:00:00.000Z",
+					"lat": 38.36098,
+					"lng": -0.46928,
+					"description": [
+						{
+							"_type": "block",
+							"_key": "prop-19-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-19-b0s0",
+									"text": "Townhouse for sale in San Juan Playa, Alicante: 165 m² with 3 bedrooms on a 90 m² plot, 0.5 km from the sea.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-19-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-19-b1s0",
+									"text": "Built in 1999. Close to shops, schools and public transport.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-19-b2",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-19-b2s0",
+									"text": "Viewings available seven days a week.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/properties/prop-08.jpg",
+							"alt": "Row of whitewashed Andalusian townhouses",
+							"filename": "prop-08.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-08.jpg",
+									"alt": "Row of whitewashed Andalusian townhouses",
+									"filename": "prop-08.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-02.jpg",
+									"alt": "Bright living room with large windows and a balcony",
+									"filename": "prop-02.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-03.jpg",
+									"alt": "Modern fitted kitchen with an island",
+									"filename": "prop-03.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-04.jpg",
+									"alt": "Master bedroom with calm neutral decor",
+									"filename": "prop-04.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-05.jpg",
+									"alt": "Bathroom with a walk-in shower and marble tiles",
+									"filename": "prop-05.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-07.jpg",
+									"alt": "Terrace with outdoor furniture overlooking the sea",
+									"filename": "prop-07.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"property_type": [
+						"townhouse"
+					],
+					"location": [
+						"alicante-san-juan-playa"
+					],
+					"amenities": [
+						"terrace",
+						"parking",
+						"garden"
+					]
+				}
+			},
+			{
+				"id": "prop-20",
+				"slug": "villa-with-4-bedrooms-in-mascarat-altea-20",
+				"status": "draft",
+				"data": {
+					"title": "Villa with 4 bedrooms in Mascarat, Altea",
+					"price": 1290000,
+					"deal_type": "Sale",
+					"area_m2": 310,
+					"plot_m2": 900,
+					"rooms": 5,
+					"bedrooms": 4,
+					"bathrooms": 4,
+					"floor": null,
+					"floors_total": 2,
+					"year_built": 2015,
+					"distance_to_sea_m": 200,
+					"energy_rating": "A",
+					"ref_code": "LX-ES-1020",
+					"available_from": "2026-11-21T11:00:00.000Z",
+					"lat": 38.59107,
+					"lng": -0.05305,
+					"description": [
+						{
+							"_type": "block",
+							"_key": "prop-20-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-20-b0s0",
+									"text": "Villa for sale in Mascarat, Altea: 310 m² with 4 bedrooms on a 900 m² plot, just ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "prop-20-b0s1",
+									"text": "200 m from the beach",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "prop-20-b0s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-20-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-20-b1s0",
+									"text": "Built in 2015. Wide sea views from the main rooms. Communal or private pool. Close to shops, schools and public transport.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-20-b2",
+							"style": "normal",
+							"markDefs": [
+								{
+									"_type": "link",
+									"_key": "prop-20-b2l0",
+									"href": "https://example.com/floor-plans"
+								}
+							],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-20-b2s0",
+									"text": "Book a viewing or ask for the ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "prop-20-b2s1",
+									"text": "floor plan",
+									"marks": [
+										"prop-20-b2l0"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "prop-20-b2s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/properties/prop-01.jpg",
+							"alt": "Modern white villa with an infinity pool and sea view",
+							"filename": "prop-01.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-01.jpg",
+									"alt": "Modern white villa with an infinity pool and sea view",
+									"filename": "prop-01.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-02.jpg",
+									"alt": "Bright living room with large windows and a balcony",
+									"filename": "prop-02.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-03.jpg",
+									"alt": "Modern fitted kitchen with an island",
+									"filename": "prop-03.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-04.jpg",
+									"alt": "Master bedroom with calm neutral decor",
+									"filename": "prop-04.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-05.jpg",
+									"alt": "Bathroom with a walk-in shower and marble tiles",
+									"filename": "prop-05.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-07.jpg",
+									"alt": "Terrace with outdoor furniture overlooking the sea",
+									"filename": "prop-07.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"property_type": [
+						"villa"
+					],
+					"location": [
+						"altea-mascarat"
+					],
+					"amenities": [
+						"pool",
+						"sea-view",
+						"garden",
+						"parking",
+						"air-conditioning"
+					]
+				}
+			},
+			{
+				"id": "prop-21",
+				"slug": "house-with-3-bedrooms-in-casco-antiguo-altea-rent-21",
+				"status": "published",
+				"data": {
+					"title": "House with 3 bedrooms in Casco Antiguo, Altea (rent)",
+					"price": 2400,
+					"deal_type": "Rent",
+					"area_m2": 140,
+					"plot_m2": 60,
+					"rooms": 4,
+					"bedrooms": 3,
+					"bathrooms": 2,
+					"floor": null,
+					"floors_total": 3,
+					"year_built": 1920,
+					"distance_to_sea_m": 700,
+					"energy_rating": "F",
+					"ref_code": "LX-ES-1021",
+					"available_from": "2026-12-02T12:00:00.000Z",
+					"lat": 38.6174,
+					"lng": -0.05543,
+					"description": [
+						{
+							"_type": "block",
+							"_key": "prop-21-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-21-b0s0",
+									"text": "House for rent in Casco Antiguo, Altea: 140 m² with 3 bedrooms on a 60 m² plot, 0.7 km from the sea.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-21-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-21-b1s0",
+									"text": "Built in 1920 and renovated to a high standard. Wide sea views from the main rooms. Close to shops, schools and public transport.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-21-b2",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-21-b2s0",
+									"text": "Viewings available seven days a week.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/properties/prop-12.jpg",
+							"alt": "Private garden with lawn, pool and loungers",
+							"filename": "prop-12.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-12.jpg",
+									"alt": "Private garden with lawn, pool and loungers",
+									"filename": "prop-12.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-02.jpg",
+									"alt": "Bright living room with large windows and a balcony",
+									"filename": "prop-02.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-03.jpg",
+									"alt": "Modern fitted kitchen with an island",
+									"filename": "prop-03.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-04.jpg",
+									"alt": "Master bedroom with calm neutral decor",
+									"filename": "prop-04.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-05.jpg",
+									"alt": "Bathroom with a walk-in shower and marble tiles",
+									"filename": "prop-05.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-07.jpg",
+									"alt": "Terrace with outdoor furniture overlooking the sea",
+									"filename": "prop-07.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"property_type": [
+						"house"
+					],
+					"location": [
+						"altea-casco-antiguo"
+					],
+					"amenities": [
+						"terrace",
+						"sea-view"
+					]
+				}
+			},
+			{
+				"id": "prop-22",
+				"slug": "finca-with-4-bedrooms-in-casco-antiguo-altea-22",
+				"status": "published",
+				"data": {
+					"title": "Finca with 4 bedrooms in Casco Antiguo, Altea",
+					"price": 845000,
+					"deal_type": "Sale",
+					"area_m2": 260,
+					"plot_m2": 12000,
+					"rooms": 5,
+					"bedrooms": 4,
+					"bathrooms": 3,
+					"floor": null,
+					"floors_total": 2,
+					"year_built": 1890,
+					"distance_to_sea_m": 2500,
+					"energy_rating": "F",
+					"ref_code": "LX-ES-1022",
+					"available_from": "2026-12-13T10:00:00.000Z",
+					"lat": 38.58021,
+					"lng": -0.05202,
+					"description": [
+						{
+							"_type": "block",
+							"_key": "prop-22-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-22-b0s0",
+									"text": "Finca for sale in Casco Antiguo, Altea: 260 m² with 4 bedrooms on a 12,000 m² plot, 2.5 km from the sea.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-22-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-22-b1s0",
+									"text": "Built in 1890 and renovated to a high standard. Communal or private pool. Close to shops, schools and public transport.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-22-b2",
+							"style": "normal",
+							"markDefs": [
+								{
+									"_type": "link",
+									"_key": "prop-22-b2l0",
+									"href": "https://example.com/floor-plans"
+								}
+							],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-22-b2s0",
+									"text": "Book a viewing or ask for the ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "prop-22-b2s1",
+									"text": "floor plan",
+									"marks": [
+										"prop-22-b2l0"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "prop-22-b2s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/properties/prop-11.jpg",
+							"alt": "Rustic country house among olive trees",
+							"filename": "prop-11.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-11.jpg",
+									"alt": "Rustic country house among olive trees",
+									"filename": "prop-11.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-02.jpg",
+									"alt": "Bright living room with large windows and a balcony",
+									"filename": "prop-02.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-03.jpg",
+									"alt": "Modern fitted kitchen with an island",
+									"filename": "prop-03.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-04.jpg",
+									"alt": "Master bedroom with calm neutral decor",
+									"filename": "prop-04.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-05.jpg",
+									"alt": "Bathroom with a walk-in shower and marble tiles",
+									"filename": "prop-05.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-12.jpg",
+									"alt": "Private garden with lawn, pool and loungers",
+									"filename": "prop-12.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"property_type": [
+						"finca"
+					],
+					"location": [
+						"altea-casco-antiguo"
+					],
+					"amenities": [
+						"pool",
+						"garden",
+						"parking"
+					]
+				}
+			},
+			{
+				"id": "prop-23",
+				"slug": "flat-with-1-bedroom-in-levante-benidorm-23",
+				"status": "published",
+				"data": {
+					"title": "Flat with 1 bedroom in Levante, Benidorm",
+					"price": 279000,
+					"deal_type": "Sale",
+					"area_m2": 70,
+					"plot_m2": null,
+					"rooms": 2,
+					"bedrooms": 1,
+					"bathrooms": 1,
+					"floor": 14,
+					"floors_total": 22,
+					"year_built": 1996,
+					"distance_to_sea_m": 100,
+					"energy_rating": "D",
+					"ref_code": "LX-ES-1023",
+					"available_from": "2026-10-05T11:00:00.000Z",
+					"lat": 38.53343,
+					"lng": -0.11917,
+					"description": [
+						{
+							"_type": "block",
+							"_key": "prop-23-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-23-b0s0",
+									"text": "Flat for sale in Levante, Benidorm: 70 m² with 1 bedroom, just ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "prop-23-b0s1",
+									"text": "100 m from the beach",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "prop-23-b0s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-23-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-23-b1s0",
+									"text": "Built in 1996. Wide sea views from the main rooms. Communal or private pool. Close to shops, schools and public transport.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-23-b2",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-23-b2s0",
+									"text": "Viewings available seven days a week.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/properties/prop-06.jpg",
+							"alt": "Contemporary apartment building with balconies and palm trees",
+							"filename": "prop-06.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-06.jpg",
+									"alt": "Contemporary apartment building with balconies and palm trees",
+									"filename": "prop-06.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-02.jpg",
+									"alt": "Bright living room with large windows and a balcony",
+									"filename": "prop-02.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-03.jpg",
+									"alt": "Modern fitted kitchen with an island",
+									"filename": "prop-03.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-04.jpg",
+									"alt": "Master bedroom with calm neutral decor",
+									"filename": "prop-04.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-05.jpg",
+									"alt": "Bathroom with a walk-in shower and marble tiles",
+									"filename": "prop-05.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-07.jpg",
+									"alt": "Terrace with outdoor furniture overlooking the sea",
+									"filename": "prop-07.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"property_type": [
+						"flat"
+					],
+					"location": [
+						"benidorm-levante"
+					],
+					"amenities": [
+						"sea-view",
+						"pool",
+						"lift",
+						"terrace"
+					]
+				}
+			},
+			{
+				"id": "prop-24",
+				"slug": "flat-with-1-bedroom-in-poniente-benidorm-rent-24",
+				"status": "published",
+				"data": {
+					"title": "Flat with 1 bedroom in Poniente, Benidorm (rent)",
+					"price": 1050,
+					"deal_type": "Rent",
+					"area_m2": 65,
+					"plot_m2": null,
+					"rooms": 2,
+					"bedrooms": 1,
+					"bathrooms": 1,
+					"floor": 9,
+					"floors_total": 18,
+					"year_built": 2009,
+					"distance_to_sea_m": 150,
+					"energy_rating": "C",
+					"ref_code": "LX-ES-1024",
+					"available_from": "2026-10-16T12:00:00.000Z",
+					"lat": 38.52341,
+					"lng": -0.10416,
+					"description": [
+						{
+							"_type": "block",
+							"_key": "prop-24-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-24-b0s0",
+									"text": "Flat for rent in Poniente, Benidorm: 65 m² with 1 bedroom, just ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "prop-24-b0s1",
+									"text": "150 m from the beach",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "prop-24-b0s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-24-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-24-b1s0",
+									"text": "Built in 2009. Wide sea views from the main rooms. Communal or private pool. Close to shops, schools and public transport.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-24-b2",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-24-b2s0",
+									"text": "Viewings available seven days a week.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/properties/prop-06.jpg",
+							"alt": "Contemporary apartment building with balconies and palm trees",
+							"filename": "prop-06.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-06.jpg",
+									"alt": "Contemporary apartment building with balconies and palm trees",
+									"filename": "prop-06.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-02.jpg",
+									"alt": "Bright living room with large windows and a balcony",
+									"filename": "prop-02.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-03.jpg",
+									"alt": "Modern fitted kitchen with an island",
+									"filename": "prop-03.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-04.jpg",
+									"alt": "Master bedroom with calm neutral decor",
+									"filename": "prop-04.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-05.jpg",
+									"alt": "Bathroom with a walk-in shower and marble tiles",
+									"filename": "prop-05.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-07.jpg",
+									"alt": "Terrace with outdoor furniture overlooking the sea",
+									"filename": "prop-07.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"property_type": [
+						"flat"
+					],
+					"location": [
+						"benidorm-poniente"
+					],
+					"amenities": [
+						"sea-view",
+						"pool",
+						"lift",
+						"parking"
+					]
+				}
+			},
+			{
+				"id": "prop-25",
+				"slug": "penthouse-with-3-bedrooms-in-levante-benidorm-rent-25",
+				"status": "published",
+				"data": {
+					"title": "Penthouse with 3 bedrooms in Levante, Benidorm (rent)",
+					"price": 2900,
+					"deal_type": "Rent",
+					"area_m2": 150,
+					"plot_m2": null,
+					"rooms": 4,
+					"bedrooms": 3,
+					"bathrooms": 3,
+					"floor": 24,
+					"floors_total": 24,
+					"year_built": 2019,
+					"distance_to_sea_m": 200,
+					"energy_rating": "A",
+					"ref_code": "LX-ES-1025",
+					"available_from": "2026-10-27T10:00:00.000Z",
+					"lat": 38.54433,
+					"lng": -0.12283,
+					"description": [
+						{
+							"_type": "block",
+							"_key": "prop-25-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-25-b0s0",
+									"text": "Penthouse for rent in Levante, Benidorm: 150 m² with 3 bedrooms, just ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "prop-25-b0s1",
+									"text": "200 m from the beach",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "prop-25-b0s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-25-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-25-b1s0",
+									"text": "Built in 2019. Wide sea views from the main rooms. Communal or private pool. Close to shops, schools and public transport.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-25-b2",
+							"style": "normal",
+							"markDefs": [
+								{
+									"_type": "link",
+									"_key": "prop-25-b2l0",
+									"href": "https://example.com/floor-plans"
+								}
+							],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-25-b2s0",
+									"text": "Book a viewing or ask for the ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "prop-25-b2s1",
+									"text": "floor plan",
+									"marks": [
+										"prop-25-b2l0"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "prop-25-b2s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/properties/prop-10.jpg",
+							"alt": "Penthouse roof terrace with a city view at dusk",
+							"filename": "prop-10.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-10.jpg",
+									"alt": "Penthouse roof terrace with a city view at dusk",
+									"filename": "prop-10.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-02.jpg",
+									"alt": "Bright living room with large windows and a balcony",
+									"filename": "prop-02.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-03.jpg",
+									"alt": "Modern fitted kitchen with an island",
+									"filename": "prop-03.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-04.jpg",
+									"alt": "Master bedroom with calm neutral decor",
+									"filename": "prop-04.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-05.jpg",
+									"alt": "Bathroom with a walk-in shower and marble tiles",
+									"filename": "prop-05.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-07.jpg",
+									"alt": "Terrace with outdoor furniture overlooking the sea",
+									"filename": "prop-07.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"property_type": [
+						"penthouse"
+					],
+					"location": [
+						"benidorm-levante"
+					],
+					"amenities": [
+						"sea-view",
+						"terrace",
+						"pool",
+						"lift",
+						"parking",
+						"concierge"
+					]
+				}
+			},
+			{
+				"id": "prop-26",
+				"slug": "studio-in-levante-benidorm-26",
+				"status": "published",
+				"data": {
+					"title": "Studio in Levante, Benidorm",
+					"price": 139000,
+					"deal_type": "Sale",
+					"area_m2": 40,
+					"plot_m2": null,
+					"rooms": 1,
+					"bedrooms": 0,
+					"bathrooms": 1,
+					"floor": 6,
+					"floors_total": 15,
+					"year_built": 1978,
+					"distance_to_sea_m": 250,
+					"energy_rating": "E",
+					"ref_code": "LX-ES-1026",
+					"available_from": "2026-11-07T11:00:00.000Z",
+					"lat": 38.54114,
+					"lng": -0.10558,
+					"description": [
+						{
+							"_type": "block",
+							"_key": "prop-26-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-26-b0s0",
+									"text": "Studio for sale in Levante, Benidorm: 40 m² with an open-plan layout, just ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "prop-26-b0s1",
+									"text": "250 m from the beach",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "prop-26-b0s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-26-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-26-b1s0",
+									"text": "Built in 1978 and renovated to a high standard. Communal or private pool. Close to shops, schools and public transport.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-26-b2",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-26-b2s0",
+									"text": "Viewings available seven days a week.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/properties/prop-09.jpg",
+							"alt": "Compact tidy studio apartment",
+							"filename": "prop-09.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-09.jpg",
+									"alt": "Compact tidy studio apartment",
+									"filename": "prop-09.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-05.jpg",
+									"alt": "Bathroom with a walk-in shower and marble tiles",
+									"filename": "prop-05.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"property_type": [
+						"studio"
+					],
+					"location": [
+						"benidorm-levante"
+					],
+					"amenities": [
+						"pool",
+						"lift"
+					]
+				}
+			},
+			{
+				"id": "prop-27",
+				"slug": "townhouse-with-3-bedrooms-in-el-palo-malaga-rent-27",
+				"status": "published",
+				"data": {
+					"title": "Townhouse with 3 bedrooms in El Palo, Málaga (rent)",
+					"price": 1900,
+					"deal_type": "Rent",
+					"area_m2": 130,
+					"plot_m2": 40,
+					"rooms": 4,
+					"bedrooms": 3,
+					"bathrooms": 2,
+					"floor": null,
+					"floors_total": 3,
+					"year_built": 1985,
+					"distance_to_sea_m": 300,
+					"energy_rating": "E",
+					"ref_code": "LX-ES-1027",
+					"available_from": "2026-11-18T12:00:00.000Z",
+					"lat": 36.72967,
+					"lng": -4.4165,
+					"description": [
+						{
+							"_type": "block",
+							"_key": "prop-27-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-27-b0s0",
+									"text": "Townhouse for rent in El Palo, Málaga: 130 m² with 3 bedrooms on a 40 m² plot, just ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "prop-27-b0s1",
+									"text": "300 m from the beach",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "prop-27-b0s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-27-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-27-b1s0",
+									"text": "Built in 1985 and renovated to a high standard. Wide sea views from the main rooms. Close to shops, schools and public transport.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-27-b2",
+							"style": "normal",
+							"markDefs": [
+								{
+									"_type": "link",
+									"_key": "prop-27-b2l0",
+									"href": "https://example.com/floor-plans"
+								}
+							],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-27-b2s0",
+									"text": "Book a viewing or ask for the ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "prop-27-b2s1",
+									"text": "floor plan",
+									"marks": [
+										"prop-27-b2l0"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "prop-27-b2s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/properties/prop-08.jpg",
+							"alt": "Row of whitewashed Andalusian townhouses",
+							"filename": "prop-08.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-08.jpg",
+									"alt": "Row of whitewashed Andalusian townhouses",
+									"filename": "prop-08.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-02.jpg",
+									"alt": "Bright living room with large windows and a balcony",
+									"filename": "prop-02.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-03.jpg",
+									"alt": "Modern fitted kitchen with an island",
+									"filename": "prop-03.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-04.jpg",
+									"alt": "Master bedroom with calm neutral decor",
+									"filename": "prop-04.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-05.jpg",
+									"alt": "Bathroom with a walk-in shower and marble tiles",
+									"filename": "prop-05.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-07.jpg",
+									"alt": "Terrace with outdoor furniture overlooking the sea",
+									"filename": "prop-07.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"property_type": [
+						"townhouse"
+					],
+					"location": [
+						"malaga-el-palo"
+					],
+					"amenities": [
+						"terrace",
+						"sea-view"
+					]
+				}
+			},
+			{
+				"id": "prop-28",
+				"slug": "finca-with-5-bedrooms-in-el-padron-estepona-28",
+				"status": "published",
+				"data": {
+					"title": "Finca with 5 bedrooms in El Padrón, Estepona",
+					"price": 1450000,
+					"deal_type": "Sale",
+					"area_m2": 340,
+					"plot_m2": 25000,
+					"rooms": 6,
+					"bedrooms": 5,
+					"bathrooms": 4,
+					"floor": null,
+					"floors_total": 2,
+					"year_built": 1975,
+					"distance_to_sea_m": 6000,
+					"energy_rating": "D",
+					"ref_code": "LX-ES-1028",
+					"available_from": "2026-11-29T10:00:00.000Z",
+					"lat": 36.43077,
+					"lng": -5.16141,
+					"description": [
+						{
+							"_type": "block",
+							"_key": "prop-28-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-28-b0s0",
+									"text": "Finca for sale in El Padrón, Estepona: 340 m² with 5 bedrooms on a 25,000 m² plot, 6.0 km from the sea.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-28-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-28-b1s0",
+									"text": "Built in 1975 and renovated to a high standard. Communal or private pool. Close to shops, schools and public transport.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-28-b2",
+							"style": "normal",
+							"markDefs": [
+								{
+									"_type": "link",
+									"_key": "prop-28-b2l0",
+									"href": "https://example.com/floor-plans"
+								}
+							],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-28-b2s0",
+									"text": "Book a viewing or ask for the ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "prop-28-b2s1",
+									"text": "floor plan",
+									"marks": [
+										"prop-28-b2l0"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "prop-28-b2s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/properties/prop-11.jpg",
+							"alt": "Rustic country house among olive trees",
+							"filename": "prop-11.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-11.jpg",
+									"alt": "Rustic country house among olive trees",
+									"filename": "prop-11.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-02.jpg",
+									"alt": "Bright living room with large windows and a balcony",
+									"filename": "prop-02.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-03.jpg",
+									"alt": "Modern fitted kitchen with an island",
+									"filename": "prop-03.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-04.jpg",
+									"alt": "Master bedroom with calm neutral decor",
+									"filename": "prop-04.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-05.jpg",
+									"alt": "Bathroom with a walk-in shower and marble tiles",
+									"filename": "prop-05.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-12.jpg",
+									"alt": "Private garden with lawn, pool and loungers",
+									"filename": "prop-12.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"property_type": [
+						"finca"
+					],
+					"location": [
+						"estepona-el-padron"
+					],
+					"amenities": [
+						"pool",
+						"garden",
+						"parking",
+						"gym"
+					]
+				}
+			},
+			{
+				"id": "prop-29",
+				"slug": "house-with-4-bedrooms-in-benimaclet-valencia-29",
+				"status": "published",
+				"data": {
+					"title": "House with 4 bedrooms in Benimaclet, Valencia",
+					"price": 520000,
+					"deal_type": "Sale",
+					"area_m2": 180,
+					"plot_m2": 250,
+					"rooms": 5,
+					"bedrooms": 4,
+					"bathrooms": 2,
+					"floor": null,
+					"floors_total": 2,
+					"year_built": 1955,
+					"distance_to_sea_m": 5200,
+					"energy_rating": "F",
+					"ref_code": "LX-ES-1029",
+					"available_from": "2026-12-10T11:00:00.000Z",
+					"lat": 39.46535,
+					"lng": -0.37738,
+					"description": [
+						{
+							"_type": "block",
+							"_key": "prop-29-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-29-b0s0",
+									"text": "House for sale in Benimaclet, Valencia: 180 m² with 4 bedrooms on a 250 m² plot, 5.2 km from the sea.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-29-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-29-b1s0",
+									"text": "Built in 1955 and renovated to a high standard. Close to shops, schools and public transport.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-29-b2",
+							"style": "normal",
+							"markDefs": [
+								{
+									"_type": "link",
+									"_key": "prop-29-b2l0",
+									"href": "https://example.com/floor-plans"
+								}
+							],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-29-b2s0",
+									"text": "Book a viewing or ask for the ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "prop-29-b2s1",
+									"text": "floor plan",
+									"marks": [
+										"prop-29-b2l0"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "prop-29-b2s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/properties/prop-12.jpg",
+							"alt": "Private garden with lawn, pool and loungers",
+							"filename": "prop-12.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-12.jpg",
+									"alt": "Private garden with lawn, pool and loungers",
+									"filename": "prop-12.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-02.jpg",
+									"alt": "Bright living room with large windows and a balcony",
+									"filename": "prop-02.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-03.jpg",
+									"alt": "Modern fitted kitchen with an island",
+									"filename": "prop-03.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-04.jpg",
+									"alt": "Master bedroom with calm neutral decor",
+									"filename": "prop-04.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-05.jpg",
+									"alt": "Bathroom with a walk-in shower and marble tiles",
+									"filename": "prop-05.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"property_type": [
+						"house"
+					],
+					"location": [
+						"valencia-benimaclet"
+					],
+					"amenities": [
+						"garden",
+						"parking"
+					]
+				}
+			},
+			{
+				"id": "prop-30",
+				"slug": "villa-with-5-bedrooms-in-golden-mile-marbella-rent-30",
+				"status": "draft",
+				"data": {
+					"title": "Villa with 5 bedrooms in Golden Mile, Marbella (rent)",
+					"price": 9500,
+					"deal_type": "Rent",
+					"area_m2": 420,
+					"plot_m2": 1200,
+					"rooms": 6,
+					"bedrooms": 5,
+					"bathrooms": 5,
+					"floor": null,
+					"floors_total": 2,
+					"year_built": 2012,
+					"distance_to_sea_m": 500,
+					"energy_rating": "B",
+					"ref_code": "LX-ES-1030",
+					"available_from": "2026-12-21T12:00:00.000Z",
+					"lat": 36.51211,
+					"lng": -4.90218,
+					"description": [
+						{
+							"_type": "block",
+							"_key": "prop-30-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-30-b0s0",
+									"text": "Villa for rent in Golden Mile, Marbella: 420 m² with 5 bedrooms on a 1,200 m² plot, 0.5 km from the sea.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-30-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-30-b1s0",
+									"text": "Built in 2012. Wide sea views from the main rooms. Communal or private pool. Close to shops, schools and public transport.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "prop-30-b2",
+							"style": "normal",
+							"markDefs": [
+								{
+									"_type": "link",
+									"_key": "prop-30-b2l0",
+									"href": "https://example.com/floor-plans"
+								}
+							],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "prop-30-b2s0",
+									"text": "Book a viewing or ask for the ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "prop-30-b2s1",
+									"text": "floor plan",
+									"marks": [
+										"prop-30-b2l0"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "prop-30-b2s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/properties/prop-01.jpg",
+							"alt": "Modern white villa with an infinity pool and sea view",
+							"filename": "prop-01.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-01.jpg",
+									"alt": "Modern white villa with an infinity pool and sea view",
+									"filename": "prop-01.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-02.jpg",
+									"alt": "Bright living room with large windows and a balcony",
+									"filename": "prop-02.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-03.jpg",
+									"alt": "Modern fitted kitchen with an island",
+									"filename": "prop-03.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-04.jpg",
+									"alt": "Master bedroom with calm neutral decor",
+									"filename": "prop-04.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-05.jpg",
+									"alt": "Bathroom with a walk-in shower and marble tiles",
+									"filename": "prop-05.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/properties/prop-07.jpg",
+									"alt": "Terrace with outdoor furniture overlooking the sea",
+									"filename": "prop-07.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"property_type": [
+						"villa"
+					],
+					"location": [
+						"marbella-golden-mile"
+					],
+					"amenities": [
+						"pool",
+						"sea-view",
+						"garden",
+						"parking",
+						"air-conditioning",
+						"concierge"
+					]
+				}
+			}
+		]
+	}
+}

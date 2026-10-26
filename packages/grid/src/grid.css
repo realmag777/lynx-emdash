@@ -1,0 +1,2191 @@
+/*
+ * LYNX Grid styles. Every class is prefixed .lynx-; colours come from the Kumo tokens of the
+ * EmDash admin, so light and dark themes ([data-mode="dark"]) follow automatically.
+ * Structure after Botoscope's table library (design/botoscope/ui-patterns.md §8).
+ */
+
+.lynx-root {
+	--lx-bg: var(--color-kumo-base, #fff);
+	--lx-canvas: var(--color-kumo-canvas, #f7f7f8);
+	--lx-elevated: var(--color-kumo-elevated, #fff);
+	--lx-recessed: var(--color-kumo-recessed, #f4f4f5);
+	/* Zebra: a light step of the recessed surface, so it stays subtle in both themes. */
+	--lx-zebra: color-mix(in srgb, var(--lx-recessed) 40%, var(--lx-bg));
+	--lx-tint: var(--color-kumo-tint, #f1f5f9);
+	--lx-control: var(--color-kumo-control, #fff);
+	--lx-fill: var(--color-kumo-fill, #eef0f3);
+	--lx-hover: var(--color-kumo-fill-hover, #eaf2fb);
+	--lx-line: var(--color-kumo-line, #e3e5e8);
+	--lx-hairline: var(--color-kumo-hairline, #eceef1);
+	--lx-brand: var(--color-kumo-brand, #2563eb);
+	--lx-brand-hover: var(--color-kumo-brand-hover, #1d4ed8);
+	--lx-focus: var(--color-kumo-focus, #3b82f6);
+	/* Scrim behind side panels (the admin's overlay token is a surface colour, not a scrim). */
+	--lx-overlay: rgb(15 23 42 / 0.38);
+	--lx-shadow: var(--color-kumo-shadow-drop, rgb(0 0 0 / 0.12));
+	--lx-warning-tint: var(--color-kumo-warning-tint, #fff4d6);
+	--lx-danger-tint: var(--color-kumo-danger-tint, #fde8e8);
+	--lx-success-tint: var(--color-kumo-success-tint, #e3f7ea);
+	--lx-info-tint: var(--color-kumo-info-tint, #e5f0ff);
+	--lx-warning: var(--color-kumo-warning, #d97706);
+	--lx-danger: var(--color-kumo-danger, #dc2626);
+	--lx-success: var(--color-kumo-success, #16a34a);
+	--lx-info: var(--color-kumo-info, #2563eb);
+	--lx-text: var(--text-color-kumo-default, #1f2328);
+	--lx-strong: var(--text-color-kumo-strong, #0b0d10);
+	--lx-subtle: var(--text-color-kumo-subtle, #5b6470);
+	--lx-inactive: var(--text-color-kumo-inactive, #9aa1ab);
+	--lx-on-brand: var(--text-color-kumo-inverse, #fff);
+	--lx-link: var(--text-color-kumo-link, var(--lx-brand));
+	--lx-text-danger: var(--text-color-kumo-danger, #b91c1c);
+	--lx-text-success: var(--text-color-kumo-success, #15803d);
+	--lx-text-warning: var(--text-color-kumo-warning, #b45309);
+	--lx-text-info: var(--text-color-kumo-info, #1d4ed8);
+	--lx-dirty: var(--lx-warning-tint);
+	--lx-radius: 8px;
+	--lx-ease: cubic-bezier(0.22, 1, 0.36, 1);
+	color: var(--lx-text);
+	font-size: 14px;
+	line-height: 1.4;
+}
+
+.lynx-root *,
+.lynx-root *::before,
+.lynx-root *::after {
+	box-sizing: border-box;
+}
+
+.lynx-sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+}
+.lynx-grow {
+	flex: 1 1 auto;
+}
+.lynx-strong {
+	font-weight: 600;
+	color: var(--lx-strong);
+}
+.lynx-hint {
+	color: var(--lx-subtle);
+	font-size: 13px;
+}
+.lynx-text-danger {
+	color: var(--lx-text-danger);
+}
+.lynx-center {
+	display: flex;
+	justify-content: center;
+	padding: 48px 0;
+}
+.lynx-row {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+}
+
+/* ---------- page ---------- */
+
+.lynx-page {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	padding-bottom: 72px;
+}
+.lynx-h1 {
+	margin: 0;
+	font-size: 22px;
+	font-weight: 650;
+	color: var(--lx-strong);
+}
+.lynx-h2 {
+	margin: 0;
+	font-size: 17px;
+	font-weight: 600;
+	color: var(--lx-strong);
+}
+.lynx-h3 {
+	margin: 0 0 8px;
+	font-size: 13px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: var(--lx-subtle);
+}
+.lynx-top {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	flex-wrap: wrap;
+}
+.lynx-top__title,
+.lynx-top__actions {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	flex-wrap: wrap;
+}
+.lynx-toolbar {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	flex-wrap: wrap;
+}
+
+/* ---------- controls ---------- */
+
+.lynx-btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	height: 34px;
+	padding: 0 12px;
+	border: 1px solid var(--lx-line);
+	border-radius: var(--lx-radius);
+	background: var(--lx-control);
+	color: var(--lx-text);
+	font: inherit;
+	font-weight: 500;
+	white-space: nowrap;
+	text-decoration: none;
+	cursor: pointer;
+	transition:
+		background 0.15s,
+		border-color 0.15s;
+}
+.lynx-btn:hover:not(:disabled) {
+	background: var(--lx-hover);
+}
+.lynx-btn:focus-visible,
+.lynx-icon-btn:focus-visible,
+.lynx-hbtn:focus-visible,
+.lynx-menu__item:focus-visible,
+.lynx-cardvalue:focus-visible,
+.lynx-card--choice:focus-visible {
+	outline: 2px solid var(--lx-focus);
+	outline-offset: 1px;
+}
+.lynx-btn:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+.lynx-btn--primary {
+	background: var(--lx-brand);
+	border-color: var(--lx-brand);
+	color: var(--lx-on-brand);
+}
+.lynx-btn--primary:hover:not(:disabled) {
+	background: var(--lx-brand-hover);
+}
+.lynx-btn--sm {
+	height: 28px;
+	padding: 0 10px;
+	font-size: 13px;
+}
+.lynx-icon-btn {
+	display: inline-grid;
+	place-items: center;
+	width: 28px;
+	height: 28px;
+	padding: 0;
+	border: 0;
+	border-radius: 6px;
+	background: transparent;
+	color: var(--lx-subtle);
+	cursor: pointer;
+}
+.lynx-icon-btn:hover:not(:disabled) {
+	background: var(--lx-hover);
+	color: var(--lx-strong);
+}
+.lynx-icon-btn:disabled {
+	opacity: 0.4;
+	cursor: not-allowed;
+}
+.lynx-icon-btn.is-on {
+	color: var(--lx-brand);
+}
+.lynx-icon-btn--xs {
+	width: 18px;
+	height: 18px;
+	border-radius: 4px;
+}
+.lynx-icon-btn--ok {
+	color: var(--lx-text-success);
+}
+.lynx-input,
+.lynx-select {
+	height: 34px;
+	min-width: 0;
+	padding: 0 10px;
+	border: 1px solid var(--lx-line);
+	border-radius: var(--lx-radius);
+	background: var(--lx-control);
+	color: var(--lx-text);
+	font: inherit;
+}
+textarea.lynx-input {
+	height: auto;
+	padding: 8px 10px;
+	resize: vertical;
+}
+.lynx-input:focus,
+.lynx-select:focus {
+	outline: 2px solid var(--lx-focus);
+	outline-offset: -1px;
+}
+.lynx-input--sm,
+.lynx-select--sm {
+	height: 28px;
+	font-size: 13px;
+}
+.lynx-checkbox {
+	width: 16px;
+	height: 16px;
+	margin: 0;
+	accent-color: var(--lx-brand);
+	cursor: pointer;
+}
+.lynx-check {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	cursor: pointer;
+}
+.lynx-check input {
+	accent-color: var(--lx-brand);
+}
+.lynx-search {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	height: 34px;
+	min-width: 240px;
+	padding: 0 10px;
+	border: 1px solid var(--lx-line);
+	border-radius: var(--lx-radius);
+	background: var(--lx-control);
+	color: var(--lx-subtle);
+}
+.lynx-search:focus-within {
+	outline: 2px solid var(--lx-focus);
+	outline-offset: -1px;
+}
+.lynx-search input {
+	flex: 1;
+	min-width: 0;
+	border: 0;
+	outline: 0;
+	background: transparent;
+	color: var(--lx-text);
+	font: inherit;
+}
+.lynx-search--sm {
+	height: 30px;
+	min-width: 0;
+	width: 100%;
+}
+.lynx-status {
+	display: inline-flex;
+	gap: 4px;
+	align-items: center;
+}
+.lynx-chips {
+	display: flex;
+	gap: 4px;
+	overflow: hidden;
+}
+.lynx-chip {
+	flex: none;
+	padding: 1px 8px;
+	border-radius: 10px;
+	background: var(--lx-info-tint);
+	color: var(--lx-text-info);
+	font-size: 12px;
+	white-space: nowrap;
+}
+.lynx-switch {
+	display: inline-block;
+	position: relative;
+	width: 30px;
+	height: 16px;
+	border-radius: 8px;
+	background: var(--lx-line);
+	transition: background 0.2s;
+	vertical-align: middle;
+}
+.lynx-switch::after {
+	content: "";
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	background: #fff;
+	box-shadow: 0 1px 2px rgb(0 0 0 / 0.25);
+	transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.lynx-switch.is-on {
+	background: var(--lx-brand);
+}
+.lynx-switch.is-on::after {
+	transform: translateX(14px);
+}
+.lynx-thumb {
+	display: block;
+	height: calc(var(--lynx-row-h, 44px) - 10px);
+	aspect-ratio: 4 / 3;
+	object-fit: cover;
+	border-radius: 4px;
+	background: var(--lx-recessed);
+}
+.lynx-thumbs {
+	display: inline-flex;
+	gap: 4px;
+	align-items: center;
+}
+.lynx-thumb--sm {
+	aspect-ratio: 1;
+}
+.lynx-num {
+	font-variant-numeric: tabular-nums;
+}
+.lynx-unit {
+	color: var(--lx-subtle);
+	font-size: 12px;
+}
+.lynx-spinner {
+	display: inline-block;
+	width: 28px;
+	height: 28px;
+	border: 3px solid var(--lx-line);
+	border-top-color: var(--lx-brand);
+	border-radius: 50%;
+	animation: lynx-spin 0.8s linear infinite;
+}
+.lynx-spinner--sm {
+	width: 14px;
+	height: 14px;
+	border-width: 2px;
+}
+@keyframes lynx-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+.lynx-menu {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.lynx-menu__row {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	padding: 2px 4px;
+	border-radius: 6px;
+}
+.lynx-menu__row:hover {
+	background: var(--lx-hover);
+}
+.lynx-menu__item {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	width: 100%;
+	padding: 7px 8px;
+	border: 0;
+	border-radius: 6px;
+	background: none;
+	color: var(--lx-text);
+	font: inherit;
+	text-align: left;
+	cursor: pointer;
+}
+.lynx-menu__item:hover {
+	background: var(--lx-hover);
+}
+.lynx-menu__note {
+	display: flex;
+	gap: 6px;
+	align-items: center;
+	padding: 8px;
+	color: var(--lx-subtle);
+	font-size: 12px;
+	max-width: 280px;
+}
+.lynx-colmenu {
+	min-width: 260px;
+}
+
+/* ---------- selection bar, pagination ---------- */
+
+.lynx-selbar {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	flex-wrap: wrap;
+	padding: 8px 12px;
+	border-radius: var(--lx-radius);
+	background: var(--lx-info-tint);
+	color: var(--lx-text);
+}
+.lynx-pager {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 12px;
+	flex-wrap: wrap;
+}
+.lynx-pager__range {
+	color: var(--lx-subtle);
+	font-size: 13px;
+	font-variant-numeric: tabular-nums;
+	margin-right: auto;
+}
+.lynx-pager__list {
+	display: flex;
+	gap: 4px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	align-items: center;
+}
+.lynx-pager__dots {
+	color: var(--lx-subtle);
+	padding: 0 2px;
+}
+
+[data-mode="dark"] .lynx-root,
+.lynx-root[data-mode="dark"] {
+	--lx-dirty: color-mix(in srgb, var(--lx-warning) 16%, var(--lx-bg));
+}
+
+/* ---------- the grid ---------- */
+
+/* As tall as its page: the page scrolls, not the table (2026-10-05). Sideways it scrolls
+   with the floating bar below (.lynx-hbar) or a sideways swipe; its own scrollbar is hidden. */
+.lynx-grid {
+	position: relative;
+	overflow-x: auto;
+	overflow-y: hidden;
+	scrollbar-width: none;
+	border: 1px solid var(--lx-line);
+	border-radius: var(--lx-radius);
+	background: var(--lx-bg);
+	outline: none;
+}
+.lynx-grid::-webkit-scrollbar {
+	display: none;
+}
+.lynx-hbar {
+	position: sticky;
+	bottom: 0;
+	z-index: 7;
+	padding: 6px 2px 8px;
+	background: color-mix(in srgb, var(--lx-bg) 94%, transparent);
+	backdrop-filter: blur(4px);
+	border-top: 1px solid var(--lx-hairline);
+}
+.lynx-hbar__track {
+	position: relative;
+	height: 12px;
+	border-radius: 999px;
+	background: color-mix(in srgb, var(--lx-strong) 8%, transparent);
+	box-shadow: inset 0 0 0 1px var(--lx-hairline);
+	cursor: pointer;
+	touch-action: none;
+}
+.lynx-hbar__thumb {
+	position: absolute;
+	top: 1px;
+	bottom: 1px;
+	left: 0;
+	border-radius: 999px;
+	background: color-mix(in srgb, var(--lx-strong) 38%, transparent);
+	cursor: grab;
+	touch-action: none;
+}
+.lynx-hbar__thumb:hover {
+	background: color-mix(in srgb, var(--lx-strong) 52%, transparent);
+}
+.lynx-hbar__thumb:active {
+	cursor: grabbing;
+	background: color-mix(in srgb, var(--lx-strong) 62%, transparent);
+}
+.lynx-gridwrap {
+	position: relative;
+}
+.lynx-gridwrap::after {
+	content: "";
+	position: absolute;
+	top: 1px;
+	right: 1px;
+	bottom: 1px;
+	width: 28px;
+	border-radius: 0 var(--lx-radius) var(--lx-radius) 0;
+	background: linear-gradient(to right, transparent, color-mix(in srgb, var(--lx-strong) 14%, transparent));
+	pointer-events: none;
+	opacity: 0;
+	transition: opacity 0.2s;
+	z-index: 6;
+}
+.lynx-gridwrap.has-more::after {
+	opacity: 1;
+}
+.lynx-grid:focus-visible {
+	box-shadow: 0 0 0 2px var(--lx-focus);
+}
+.lynx-grid__inner {
+	position: relative;
+	min-width: 100%;
+}
+/* Follows the page down (Grid.tsx moves it with a transform while the table is on screen). */
+.lynx-grid__head {
+	position: relative;
+	z-index: 3;
+	will-change: transform;
+	display: flex;
+	height: var(--lynx-row-h);
+	background: var(--lx-tint);
+	border-bottom: 1px solid var(--lx-line);
+}
+.lynx-grid__body {
+	position: relative;
+}
+.lynx-grid__row {
+	position: absolute;
+	left: 0;
+	right: 0;
+	display: flex;
+	background: var(--lx-bg);
+}
+.lynx-grid__row.is-odd {
+	background: var(--lx-zebra);
+}
+.lynx-grid__row:hover {
+	background: var(--lx-hover);
+}
+.lynx-grid__row.is-selected {
+	background: var(--lx-info-tint);
+}
+.lynx-grid__row.is-saved .lynx-grid__cell:not(.lynx-grid__cell--check) {
+	animation: lynx-saved 1.6s ease-out;
+}
+@keyframes lynx-saved {
+	0%,
+	30% {
+		background: var(--lx-success-tint);
+	}
+	100% {
+		background: transparent;
+	}
+}
+.lynx-grid__cell {
+	position: relative;
+	flex: none;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	height: 100%;
+	padding: 0 10px;
+	border-right: 1px solid var(--lx-hairline);
+	border-bottom: 1px solid var(--lx-hairline);
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	background: inherit;
+	cursor: default;
+}
+.lynx-grid__cell > span:first-child:not(.lynx-status):not(.lynx-switch):not(.lynx-chips) {
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.lynx-grid__row .lynx-grid__cell {
+	cursor: cell;
+}
+.lynx-grid__cell.is-pinned {
+	position: sticky;
+	z-index: 1;
+}
+.lynx-grid__head .lynx-grid__cell.is-pinned {
+	z-index: 4;
+	background: var(--lx-tint);
+}
+.lynx-grid__row .lynx-grid__cell.is-pinned {
+	background: var(--lx-bg);
+}
+.lynx-grid__row.is-odd .lynx-grid__cell.is-pinned {
+	background: var(--lx-zebra);
+}
+.lynx-grid__row:hover .lynx-grid__cell.is-pinned {
+	background: var(--lx-hover);
+}
+.lynx-grid__row.is-selected .lynx-grid__cell.is-pinned {
+	background: var(--lx-info-tint);
+}
+.lynx-grid__cell.is-pinned:last-of-type,
+.lynx-grid__cell.is-pinned + .lynx-grid__cell:not(.is-pinned) {
+	box-shadow: inset 1px 0 0 var(--lx-line);
+}
+.lynx-grid__cell--check {
+	justify-content: flex-start;
+	gap: 4px;
+	padding: 0 8px;
+}
+.lynx-open {
+	opacity: 0;
+	width: 24px;
+	height: 24px;
+}
+.lynx-grid__row:hover .lynx-open,
+.lynx-open:focus-visible {
+	opacity: 1;
+}
+.lynx-align-end {
+	justify-content: flex-end;
+	text-align: right;
+}
+.lynx-align-center {
+	justify-content: center;
+}
+.lynx-grid__cell.is-dirty {
+	background: var(--lx-dirty);
+	box-shadow: inset 2px 0 0 color-mix(in srgb, var(--lx-warning) 70%, transparent);
+}
+.lynx-grid__cell.is-failed {
+	background: var(--lx-danger-tint);
+	box-shadow: inset 0 0 0 1px var(--lx-danger);
+}
+/* Saved in the draft, not on the site yet: a corner mark (the tooltip says what the site shows). */
+.lynx-grid__cell.is-drafted::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	right: 0;
+	border-style: solid;
+	border-width: 0 9px 9px 0;
+	border-color: transparent var(--lx-warning) transparent transparent;
+	pointer-events: none;
+}
+.lynx-grid__cell.is-readonly {
+	color: var(--lx-subtle);
+}
+.lynx-grid__cell.is-active {
+	box-shadow: inset 0 0 0 2px var(--lx-focus);
+	z-index: 2;
+}
+.lynx-grid__cell.is-editing {
+	overflow: visible;
+	z-index: 5;
+	padding: 0;
+	box-shadow: inset 0 0 0 2px var(--lx-focus);
+	background: var(--lx-control);
+}
+.lynx-cell__empty {
+	color: var(--lx-inactive);
+}
+.lynx-lock {
+	margin-left: auto;
+	color: var(--lx-inactive);
+	flex: none;
+}
+.lynx-grid__loader {
+	position: sticky;
+	left: 0;
+	bottom: 0;
+	display: flex;
+	justify-content: center;
+	padding: 16px;
+	pointer-events: none;
+}
+.lynx-grid.is-loading .lynx-grid__body {
+	opacity: 0.55;
+	transition: opacity 0.2s;
+}
+
+/* header cells */
+.lynx-grid__hcell {
+	font-size: 13px;
+	font-weight: 600;
+	color: var(--lx-subtle);
+	border-bottom: 0;
+	padding-right: 6px;
+}
+.lynx-hbtn {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	min-width: 0;
+	padding: 0;
+	border: 0;
+	background: none;
+	color: inherit;
+	font: inherit;
+	cursor: pointer;
+}
+.lynx-hbtn:hover,
+.lynx-hbtn.is-sorted {
+	color: var(--lx-strong);
+}
+.lynx-hlabel {
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.lynx-hmove {
+	display: inline-flex;
+	gap: 1px;
+	margin-left: auto;
+	opacity: 0;
+	transition: opacity 0.15s;
+}
+.lynx-grid__hcell:hover .lynx-hmove,
+.lynx-hmove:focus-within {
+	opacity: 1;
+}
+.lynx-resize {
+	position: absolute;
+	top: 0;
+	right: -3px;
+	width: 7px;
+	height: 100%;
+	cursor: col-resize;
+	z-index: 2;
+	touch-action: none;
+}
+.lynx-resize:hover,
+.lynx-resize:active {
+	background: var(--lx-brand);
+	opacity: 0.4;
+}
+
+/* ---------- in-cell editors ---------- */
+
+.lynx-editor {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+.lynx-editor__input {
+	width: 100%;
+	height: 100%;
+	padding: 0 10px;
+	border: 0;
+	outline: 0;
+	background: var(--lx-control);
+	color: var(--lx-text);
+	font: inherit;
+}
+.lynx-editor__input.is-num {
+	text-align: right;
+	font-variant-numeric: tabular-nums;
+}
+.lynx-editor--pop {
+	position: absolute;
+	top: -1px;
+	left: -1px;
+	z-index: 20;
+	width: max(100%, 300px);
+	height: auto;
+	padding: 8px;
+	border: 2px solid var(--lx-focus);
+	border-radius: var(--lx-radius);
+	background: var(--lx-elevated);
+	box-shadow: 0 12px 32px var(--lx-shadow);
+	white-space: normal;
+	cursor: default;
+}
+.is-flip .lynx-editor--pop {
+	top: auto;
+	bottom: -1px;
+}
+.lynx-editor__textarea {
+	display: block;
+	width: 100%;
+	min-height: 110px;
+	padding: 6px 8px;
+	border: 1px solid var(--lx-line);
+	border-radius: 6px;
+	background: var(--lx-control);
+	color: var(--lx-text);
+	font: inherit;
+	resize: vertical;
+}
+.lynx-editor__actions {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 6px;
+	margin-top: 8px;
+}
+.lynx-editor__actions .lynx-hint {
+	margin-right: auto;
+	font-size: 12px;
+}
+.lynx-editor__problem {
+	position: absolute;
+	top: 50%;
+	left: calc(100% + 4px);
+	z-index: 21;
+	max-width: 280px;
+	padding: 2px 7px;
+	border-radius: 4px;
+	background: var(--lx-danger);
+	color: #fff;
+	font-size: 11.5px;
+	line-height: 18px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	transform: translateY(-50%);
+	box-shadow: 0 2px 8px var(--lx-shadow);
+}
+.is-tail .lynx-editor__problem {
+	left: auto;
+	right: calc(100% + 4px);
+}
+.lynx-editor--pop .lynx-editor__problem {
+	position: static;
+	margin-top: 8px;
+}
+.lynx-editor--list .lynx-checklist {
+	max-height: 220px;
+	margin-top: 6px;
+}
+/* Slider editor (numbers with a short range). */
+.lynx-slider__head {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 8px;
+	color: var(--lx-subtle);
+	font-size: 12.5px;
+}
+.lynx-slider__value {
+	color: var(--lx-text);
+	font-size: 20px;
+	font-weight: 600;
+	font-variant-numeric: tabular-nums;
+}
+.lynx-slider {
+	display: block;
+	width: 100%;
+	margin: 10px 0 2px;
+	accent-color: var(--lx-focus);
+	cursor: pointer;
+}
+.lynx-slider__ends {
+	display: flex;
+	justify-content: space-between;
+	color: var(--lx-subtle);
+	font-size: 11.5px;
+	font-variant-numeric: tabular-nums;
+}
+.lynx-editor--media {
+	width: 340px;
+}
+.lynx-editor__preview {
+	display: block;
+	width: 100%;
+	max-height: 180px;
+	object-fit: contain;
+	border-radius: 6px;
+	background: var(--lx-recessed);
+	margin-bottom: 8px;
+}
+.lynx-checklist {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	overflow: auto;
+}
+.lynx-checklist li {
+	padding: 3px 8px;
+	border-radius: 4px;
+}
+.lynx-checklist li:hover {
+	background: var(--lx-hover);
+}
+.lynx-checklist--inline {
+	max-height: 200px;
+	padding: 4px;
+	border: 1px solid var(--lx-line);
+	border-radius: var(--lx-radius);
+	background: var(--lx-control);
+	grid-column: 1 / -1;
+}
+
+/* ---------- side panel (Botoscope slide-in) ---------- */
+
+.lynx-slide {
+	position: fixed;
+	inset: 0;
+	/* Below Kumo popups (z-40/z-50: selects, menus, dialogs, tooltips) so they open over the panel. */
+	z-index: 35;
+	pointer-events: none;
+}
+.lynx-slide.is-open {
+	pointer-events: auto;
+}
+body.lynx-has-panel > [data-base-ui-portal] {
+	position: relative;
+	z-index: 36;
+}
+.lynx-slide__scrim {
+	position: absolute;
+	inset: 0;
+	background: var(--lx-overlay);
+	opacity: 0;
+	transition: opacity 0.35s ease;
+}
+.lynx-slide.is-open .lynx-slide__scrim {
+	opacity: 1;
+}
+.lynx-slide__panel {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	display: flex;
+	flex-direction: column;
+	background: var(--lx-elevated);
+	box-shadow: -12px 0 40px var(--lx-shadow);
+	transform: translateX(104%);
+	transition: transform 0.35s ease;
+	outline: none;
+}
+.lynx-slide.is-open .lynx-slide__panel {
+	transform: none;
+}
+.lynx-slide__panel--lg {
+	width: min(97vw, 980px);
+}
+.lynx-slide__panel--md {
+	width: min(97vw, 620px);
+}
+/* Three quarters of the window (History: 2026-10-01); the whole width on a phone. */
+.lynx-history__bar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
+	margin-bottom: 10px;
+}
+.lynx-slide__panel--wide {
+	width: 75vw;
+}
+.lynx-slide__close {
+	position: absolute;
+	top: 18px;
+	left: -18px;
+	display: grid;
+	place-items: center;
+	width: 36px;
+	height: 36px;
+	border: 1px solid var(--lx-line);
+	border-radius: 50%;
+	background: var(--lx-elevated);
+	color: var(--lx-strong);
+	box-shadow: 0 2px 8px var(--lx-shadow);
+	cursor: pointer;
+}
+.lynx-slide__close:hover {
+	background: var(--lx-hover);
+}
+.lynx-slide__close:focus-visible {
+	outline: 2px solid var(--lx-focus);
+}
+.lynx-slide__head {
+	padding: 20px 28px 12px;
+	border-bottom: 1px solid var(--lx-line);
+	background: var(--lx-tint);
+}
+.lynx-slide__title {
+	margin: 0;
+	font-size: 18px;
+	font-weight: 650;
+	color: var(--lx-strong);
+}
+.lynx-slide__subtitle {
+	margin-top: 4px;
+	color: var(--lx-subtle);
+	font-size: 13px;
+}
+.lynx-slide__body {
+	flex: 1 1 auto;
+	overflow: auto;
+	padding: 16px 28px 24px;
+}
+.lynx-slide__foot {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 12px 28px;
+	border-top: 1px solid var(--lx-line);
+	background: var(--lx-bg);
+	flex-wrap: wrap;
+}
+.lynx-section {
+	padding: 12px 0;
+	border-bottom: 1px solid var(--lx-hairline);
+}
+.lynx-section:last-child {
+	border-bottom: 0;
+}
+.lynx-cond {
+	display: grid;
+	grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1.2fr) 28px;
+	gap: 8px;
+	align-items: center;
+	margin-bottom: 8px;
+}
+.lynx-cond--terms {
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 28px;
+}
+.lynx-termpick {
+	grid-column: 1 / -1;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+.lynx-colmenu__all {
+	padding-bottom: 6px;
+	margin-bottom: 4px;
+	border-bottom: 1px solid var(--lx-hairline);
+}
+
+/* bulk operations */
+.lynx-ops {
+	margin: 0 0 8px;
+	padding: 0;
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.lynx-op {
+	display: flex;
+	gap: 10px;
+	padding: 12px;
+	border: 1px solid var(--lx-line);
+	border-radius: var(--lx-radius);
+	background: var(--lx-bg);
+}
+.lynx-op__n {
+	display: grid;
+	place-items: center;
+	flex: none;
+	width: 24px;
+	height: 24px;
+	border-radius: 50%;
+	background: var(--lx-tint);
+	color: var(--lx-subtle);
+	font-size: 12px;
+	font-weight: 700;
+}
+.lynx-op__main {
+	flex: 1;
+	min-width: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+.lynx-op__line {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 28px;
+	gap: 8px;
+}
+.lynx-op__params {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	align-items: center;
+}
+.lynx-op__params > .lynx-input:not(.lynx-input--narrow),
+.lynx-op__params > .lynx-select {
+	flex: 1 1 180px;
+}
+.lynx-op__params > .lynx-checklist--inline {
+	flex: 1 1 100%;
+}
+.lynx-flags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 14px;
+	flex: 1 1 100%;
+	font-size: 13px;
+}
+.lynx-summary {
+	margin: 0 0 8px;
+}
+.lynx-table-wrap {
+	overflow: auto;
+	border: 1px solid var(--lx-line);
+	border-radius: var(--lx-radius);
+}
+.lynx-table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 13px;
+}
+.lynx-table th {
+	position: sticky;
+	top: 0;
+	padding: 8px 10px;
+	background: var(--lx-tint);
+	color: var(--lx-subtle);
+	font-weight: 600;
+	text-align: left;
+}
+.lynx-table td {
+	padding: 8px 10px;
+	border-top: 1px solid var(--lx-hairline);
+	vertical-align: top;
+}
+.lynx-table tr.is-failed td {
+	background: var(--lx-danger-tint);
+}
+.lynx-table tr.is-muted td {
+	color: var(--lx-subtle);
+}
+.lynx-table td:first-child {
+	width: 34%;
+}
+.lynx-diff {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 6px;
+	margin-bottom: 4px;
+}
+.lynx-diff__field {
+	font-weight: 600;
+	color: var(--lx-subtle);
+}
+.lynx-diff__before {
+	text-decoration: line-through;
+	color: var(--lx-text-danger);
+	background: var(--lx-danger-tint);
+	padding: 0 4px;
+	border-radius: 3px;
+	overflow-wrap: anywhere;
+}
+.lynx-diff__after {
+	color: var(--lx-text-success);
+	background: var(--lx-success-tint);
+	padding: 0 4px;
+	border-radius: 3px;
+	overflow-wrap: anywhere;
+}
+
+/* jobs */
+.lynx-job {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+.lynx-job__head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
+}
+.lynx-result {
+	font-size: 13px;
+	color: var(--lx-text-success);
+}
+.lynx-result.has-problems {
+	color: var(--lx-text-warning);
+}
+.lynx-failures {
+	margin: 0;
+	padding-left: 18px;
+	font-size: 12px;
+	color: var(--lx-text-danger);
+}
+.lynx-history {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.lynx-history__item {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 6px;
+	padding: 12px 0;
+	border-bottom: 1px solid var(--lx-hairline);
+}
+.lynx-history__top {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 8px;
+	width: 100%;
+}
+.lynx-history__meta {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 6px;
+	color: var(--lx-subtle);
+	font-size: 12px;
+}
+
+/* preset wizard cards */
+.lynx-cards {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 10px;
+	margin-bottom: 12px;
+}
+.lynx-card--choice {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 6px;
+	padding: 14px;
+	border: 1px solid var(--lx-line);
+	border-radius: var(--lx-radius);
+	background: var(--lx-bg);
+	color: var(--lx-text);
+	font: inherit;
+	text-align: left;
+	cursor: pointer;
+}
+.lynx-card--choice.is-on {
+	border-color: var(--lx-brand);
+	box-shadow: 0 0 0 1px var(--lx-brand);
+	background: var(--lx-tint);
+}
+
+/* ---------- save bar ---------- */
+
+.lynx-savebar {
+	position: sticky;
+	bottom: 12px;
+	z-index: 30;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	flex-wrap: wrap;
+	padding: 10px 14px;
+	border: 1px solid var(--lx-line);
+	border-radius: var(--lx-radius);
+	background: var(--lx-elevated);
+	box-shadow: 0 8px 28px var(--lx-shadow);
+	border-left: 4px solid var(--lx-warning);
+}
+.lynx-savebar__progress {
+	flex: 1;
+}
+
+.lynx-keys {
+	margin: 0;
+	color: var(--lx-subtle);
+	font-size: 12px;
+}
+.lynx-root kbd {
+	padding: 0 5px;
+	border: 1px solid var(--lx-line);
+	border-bottom-width: 2px;
+	border-radius: 4px;
+	background: var(--lx-bg);
+	font: inherit;
+	font-size: 11px;
+}
+
+/* ---------- phones: rows become cards (Botoscope, ≤ 768 px) ---------- */
+
+.lynx-cardlist {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.lynx-rowcard {
+	border: 1px solid var(--lx-line);
+	border-radius: var(--lx-radius);
+	background: var(--lx-bg);
+	overflow: hidden;
+}
+.lynx-rowcard.is-selected {
+	border-color: var(--lx-brand);
+	box-shadow: 0 0 0 1px var(--lx-brand);
+}
+.lynx-rowcard__head {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 10px 12px;
+	background: var(--lx-tint);
+}
+.lynx-rowcard__title {
+	flex: 1;
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.lynx-rowcard__fields {
+	margin: 0;
+	padding: 4px 12px 8px;
+}
+.lynx-rowcard__field {
+	display: grid;
+	grid-template-columns: 38% 1fr;
+	gap: 8px;
+	align-items: center;
+	min-height: 36px;
+	border-bottom: 1px solid var(--lx-hairline);
+}
+.lynx-rowcard__field:last-child {
+	border-bottom: 0;
+}
+.lynx-rowcard__field dt {
+	color: var(--lx-subtle);
+	font-size: 13px;
+}
+.lynx-rowcard__field dd {
+	position: relative;
+	margin: 0;
+	min-width: 0;
+}
+.lynx-rowcard__field.is-dirty dd {
+	background: var(--lx-dirty);
+}
+.lynx-rowcard__field.is-failed dd {
+	background: var(--lx-danger-tint);
+}
+.lynx-cardvalue {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	min-height: 34px;
+	padding: 0 6px;
+	border: 0;
+	background: none;
+	color: var(--lx-text);
+	font: inherit;
+	text-align: left;
+	overflow: hidden;
+	cursor: pointer;
+}
+.lynx-cardvalue:disabled {
+	color: var(--lx-subtle);
+	cursor: default;
+}
+.lynx-rowcard__field .lynx-editor {
+	height: 34px;
+	border: 2px solid var(--lx-focus);
+	border-radius: 6px;
+}
+.lynx-rowcard__field .lynx-editor--pop {
+	position: relative;
+	width: 100%;
+	height: auto;
+	border: 2px solid var(--lx-focus);
+}
+
+@media (max-width: 768px) {
+	.lynx-hide-sm {
+		display: none;
+	}
+	.lynx-search {
+		min-width: 0;
+		flex: 1 1 100%;
+	}
+	.lynx-slide__panel--lg,
+	.lynx-slide__panel--md,
+	.lynx-slide__panel--wide {
+		width: 100vw;
+	}
+	/* The admin caps every [role="dialog"] at 100vw - 2rem on phones; side panels take it all. */
+	.lynx-slide .lynx-slide__panel {
+		max-width: none;
+	}
+	.lynx-slide__close {
+		left: auto;
+		right: 12px;
+		top: 14px;
+	}
+	.lynx-slide__head,
+	.lynx-slide__body,
+	.lynx-slide__foot {
+		padding-left: 16px;
+		padding-right: 16px;
+	}
+	.lynx-slide__head {
+		padding-right: 60px;
+	}
+	.lynx-cond,
+	.lynx-cond--terms {
+		grid-template-columns: 1fr 1fr;
+	}
+	.lynx-pager__range {
+		flex: 1 1 100%;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.lynx-slide__panel,
+	.lynx-slide__scrim,
+	.lynx-switch::after {
+		transition: none;
+		animation: none;
+	}
+}
+
+/* ---------- around Kumo controls (layout only) ---------- */
+
+.lynx-qsearch {
+	position: relative;
+	min-width: 240px;
+}
+.lynx-qsearch input {
+	padding-inline-start: 30px;
+}
+.lynx-qsearch__icon {
+	position: absolute;
+	top: 50%;
+	inset-inline-start: 10px;
+	transform: translateY(-50%);
+	color: var(--lx-subtle);
+	pointer-events: none;
+}
+.lynx-pop {
+	min-width: 280px;
+	max-height: min(70vh, 540px);
+	overflow: auto;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+.lynx-pop__title {
+	margin: 0;
+	font-size: 13px;
+	font-weight: 600;
+	color: var(--lx-subtle);
+}
+.lynx-menu__item {
+	justify-content: flex-start;
+}
+.lynx-narrow {
+	width: 120px;
+}
+.lynx-warnings {
+	display: grid;
+	gap: 8px;
+	margin: 8px 0;
+}
+.lynx-richtext {
+	min-height: 50vh;
+}
+.lynx-pager__current {
+	font-weight: 700;
+}
+.lynx-slide__foot [role="combobox"],
+.lynx-savebar [role="combobox"] {
+	min-width: 170px;
+}
+@media (max-width: 768px) {
+	.lynx-qsearch {
+		min-width: 0;
+		flex: 1 1 100%;
+	}
+}
+/* Kumo selects size to their content; in panel rows they fill their grid cell. */
+.lynx-op__line [role="combobox"],
+.lynx-cond [role="combobox"] {
+	width: 100%;
+}
+.lynx-qsearch > :not(.lynx-qsearch__icon) {
+	width: 100%;
+}
+
+/* The shortcuts dialog renders in a Kumo portal, outside .lynx-root: Kumo tokens directly. */
+.lynx-shortcuts {
+	width: 100%;
+	margin-top: 16px;
+	border-collapse: collapse;
+	font-size: 13px;
+}
+.lynx-shortcuts th,
+.lynx-shortcuts td {
+	padding: 6px 8px;
+	border-top: 1px solid var(--color-kumo-hairline, #eceef1);
+	text-align: left;
+	vertical-align: top;
+}
+.lynx-shortcuts th {
+	width: 40%;
+	font-weight: 500;
+	white-space: nowrap;
+}
+.lynx-shortcuts kbd {
+	padding: 0 5px;
+	border: 1px solid var(--color-kumo-line, #e3e5e8);
+	border-bottom-width: 2px;
+	border-radius: 4px;
+	font: inherit;
+	font-size: 12px;
+}
+/* WCAG AA: Kumo's inactive segmented tabs are 4.0:1 on their track; use the default text colour. */
+.lynx-slide [role="tab"][aria-selected="false"] {
+	color: var(--text-color-kumo-default);
+}
+
+/* bulk-edit preview: informational notes (the result does not depend on them) */
+.lynx-notes {
+	display: grid;
+	gap: 4px;
+	margin: 10px 0 0;
+	padding: 0 0 0 16px;
+	color: var(--lx-subtle);
+	font-size: 12px;
+	line-height: 1.45;
+}
+
+/* number formats (Columns menu) */
+.lynx-formats {
+	min-width: 300px;
+}
+.lynx-formats__row + .lynx-formats__row {
+	border-top: 1px solid var(--lx-hairline);
+}
+.lynx-formats__row {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 6px;
+	padding: 4px 0;
+}
+.lynx-formats__name {
+	flex: 1 1 100%;
+	font-size: 13px;
+	font-weight: 600;
+	color: var(--lx-strong);
+}
+.lynx-formats__sample {
+	margin-left: auto;
+	color: var(--lx-subtle);
+	font-size: 12px;
+	font-variant-numeric: tabular-nums;
+}
+
+/* history: jobs made by an AI agent carry an explicit chip */
+.lynx-agent-chip {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+}
+
+/* version guard (plain markup: it also renders when React or Kumo are the problem) */
+.lynx-guard {
+	margin: 0 0 16px;
+	padding: 14px 16px;
+	border: 1px solid color-mix(in srgb, var(--lx-warning) 60%, transparent);
+	border-radius: var(--lx-radius);
+	background: color-mix(in srgb, var(--lx-warning) 12%, var(--lx-bg));
+	color: var(--lx-text);
+	font-size: 14px;
+	line-height: 1.5;
+}
+.lynx-guard p {
+	margin: 6px 0;
+}
+.lynx-guard__title {
+	font-weight: 700;
+	color: var(--lx-strong);
+}
+.lynx-guard__list {
+	margin: 6px 0;
+	padding-left: 18px;
+}
+.lynx-guard__cmd {
+	margin: 6px 0;
+	padding: 8px 10px;
+	overflow-x: auto;
+	border-radius: 6px;
+	background: var(--lx-bg);
+	font-size: 13px;
+	user-select: all;
+}
+.lynx-guard__note {
+	color: var(--lx-subtle);
+	font-size: 12px;
+}
+
+/* photo panel: gallery and image fields (GalleryPanel) */
+.lynx-gallery {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+	gap: 10px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.lynx-gallery__item {
+	position: relative;
+	aspect-ratio: 3 / 2;
+	border-radius: 10px;
+	overflow: hidden;
+	background: var(--lx-recessed);
+	border: 1px solid var(--lx-line);
+	cursor: grab;
+}
+.lynx-gallery__item.is-dragging {
+	opacity: 0.4;
+	outline: 2px dashed var(--lx-focus);
+}
+.lynx-gallery__item img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	pointer-events: none;
+}
+.lynx-gallery__n {
+	position: absolute;
+	top: 6px;
+	left: 6px;
+	min-width: 22px;
+	padding: 1px 7px;
+	border-radius: 999px;
+	background: rgb(0 0 0 / 0.6);
+	color: #fff;
+	font-size: 12px;
+	font-weight: 600;
+	text-align: center;
+}
+.lynx-gallery__tools {
+	position: absolute;
+	right: 6px;
+	bottom: 6px;
+	display: flex;
+	gap: 4px;
+}
+.lynx-gallery__tools .lynx-icon-btn {
+	background: rgb(255 255 255 / 0.92);
+	color: #1f2328;
+	border-radius: 6px;
+}
+.lynx-gallery__tools .lynx-icon-btn:disabled {
+	opacity: 0.45;
+}
+.lynx-gallery__add,
+.lynx-gallery__url {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+	margin-bottom: 10px;
+}
+.lynx-gallery__url > :first-child {
+	flex: 1 1 260px;
+}
+.lynx-library {
+	margin-top: 6px;
+	padding: 10px;
+	border: 1px solid var(--lx-line);
+	border-radius: var(--lx-radius);
+	background: var(--lx-canvas);
+}
+.lynx-library__grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+	gap: 8px;
+	margin: 0 0 8px;
+	padding: 0;
+	list-style: none;
+	max-height: 360px;
+	overflow: auto;
+}
+.lynx-library__pick {
+	display: block;
+	width: 100%;
+	aspect-ratio: 3 / 2;
+	padding: 0;
+	border: 2px solid transparent;
+	border-radius: 8px;
+	overflow: hidden;
+	background: var(--lx-recessed);
+	cursor: pointer;
+}
+.lynx-library__pick:hover,
+.lynx-library__pick:focus-visible {
+	border-color: var(--lx-focus);
+}
+.lynx-library__pick img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.lynx-gallery__hint {
+	margin: 10px 0 0;
+}
+
+/* date cells: Calendar23 (vendor/calendar23.css) in the cell popover */
+.lynx-editor--date {
+	width: auto;
+	min-width: 330px;
+}
+.lynx-calendar {
+	width: 300px;
+	color: #333;
+}
+.lynx-calendar::after {
+	content: "";
+	display: block;
+	clear: both;
+}
+.lynx-calendar .calendar23-time {
+	display: inline-block;
+	margin-right: 10px;
+}
+.lynx-calendar a.calendar23-save {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 44px;
+	height: 34px;
+	padding: 0 10px;
+	border-radius: 6px;
+	background: var(--lx-brand);
+	text-decoration: none;
+	vertical-align: middle;
+}
+.lynx-calendar a.calendar23-save:hover {
+	background: var(--lx-brand-hover);
+}
+[data-mode="dark"] .lynx-calendar .calendar23-month,
+[data-mode="dark"] .lynx-calendar .calendar23-month div {
+	background: var(--lx-elevated);
+	color: var(--lx-text);
+}
+[data-mode="dark"] .lynx-calendar .calendar23-day {
+	box-shadow: inset 0 0 0 1px var(--lx-line);
+}
+[data-mode="dark"] .lynx-calendar .calendar23-day.calendar23-weekend {
+	background: var(--lx-recessed);
+}
+[data-mode="dark"] .lynx-calendar .calendar23-day.calendar23-today {
+	background: color-mix(in srgb, #39c5d0 30%, var(--lx-elevated)) !important;
+}
+[data-mode="dark"] .lynx-calendar .calendar23-dummy-day {
+	background: var(--lx-bg) !important;
+	color: var(--lx-inactive);
+}
+[data-mode="dark"] .lynx-calendar input.calendar23-time[type="time"] {
+	background: var(--lx-control);
+	color: var(--lx-text);
+	color-scheme: dark;
+}
+.lynx-calendar .calendar23-month {
+	display: flow-root; /* the day cells float: contain them so the popover grows with the calendar */
+}
+.lynx-editor--pop.lynx-editor--date {
+	z-index: 30;
+}
+
+/* date dialog: Calendar23 centred over the page, field and entry in the header */
+.lynx-datemodal {
+	position: fixed;
+	inset: 0;
+	z-index: 60;
+	display: grid;
+	place-items: center;
+	padding: 16px;
+}
+.lynx-datemodal__scrim {
+	position: absolute;
+	inset: 0;
+	background: var(--lx-overlay);
+}
+.lynx-datemodal__box {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	width: min(380px, 100%);
+	max-height: calc(100vh - 32px);
+	overflow: auto;
+	border-radius: 14px;
+	background: var(--lx-elevated);
+	color: var(--lx-text);
+	box-shadow: 0 24px 60px rgb(0 0 0 / 0.3);
+	outline: none;
+}
+.lynx-datemodal__head {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 12px;
+	padding: 16px 18px 10px;
+	border-bottom: 1px solid var(--lx-hairline);
+}
+.lynx-datemodal__title {
+	font-size: 17px;
+	font-weight: 700;
+	color: var(--lx-strong);
+}
+.lynx-datemodal__entry {
+	margin-top: 2px;
+	font-size: 13px;
+	color: var(--lx-subtle);
+}
+.lynx-datemodal__body {
+	display: flex;
+	justify-content: center;
+	padding: 14px 18px 4px;
+}
+.lynx-datemodal__foot {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+	padding: 10px 18px 16px;
+}
+.lynx-datemodal__foot .lynx-hint {
+	flex: 1 1 100%;
+	font-size: 12px;
+}
+.lynx-datemodal__problem {
+	margin: 0 18px 16px;
+	padding: 8px 10px;
+	border-radius: 8px;
+	background: var(--lx-danger-tint);
+	color: var(--lx-text-danger);
+	font-size: 13px;
+}
+.lynx-editor__pending {
+	padding: 0 10px;
+	color: var(--lx-subtle);
+}
+.lynx-datemodal:not(.is-armed) .lynx-datemodal__box,
+.lynx-datemodal:not(.is-armed) .lynx-datemodal__scrim {
+	pointer-events: none;
+}
+
+/* media library in the photo panel: search, page size, pages, details card */
+.lynx-library__bar {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+	margin-bottom: 10px;
+}
+.lynx-library__search {
+	flex: 1 1 260px;
+}
+.lynx-library__grid {
+	max-height: none;
+	grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+}
+.lynx-library__grid.is-loading {
+	opacity: 0.55;
+}
+.lynx-library__tile {
+	position: relative;
+	display: grid;
+	gap: 4px;
+}
+.lynx-library__tile.is-selected .lynx-library__pick {
+	border-color: var(--lx-brand);
+	box-shadow: 0 0 0 2px color-mix(in srgb, var(--lx-brand) 35%, transparent);
+}
+.lynx-gallery__copies {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
+	margin-top: 10px;
+	padding: 8px 10px;
+	border-radius: var(--lx-radius);
+	background: var(--lx-warning-tint);
+	color: var(--lx-text-warning);
+	font-size: 13px;
+}
+.lynx-library__add {
+	position: absolute;
+	top: 6px;
+	right: 6px;
+	display: grid;
+	place-items: center;
+	width: 26px;
+	height: 26px;
+	border: 0;
+	border-radius: 50%;
+	background: var(--lx-brand);
+	color: #fff;
+	cursor: pointer;
+	box-shadow: 0 2px 6px rgb(0 0 0 / 0.25);
+	opacity: 0;
+	transition: opacity 0.15s;
+}
+.lynx-library__tile:hover .lynx-library__add,
+.lynx-library__add:focus-visible {
+	opacity: 1;
+}
+.lynx-library__name {
+	overflow: hidden;
+	color: var(--lx-subtle);
+	font-size: 12px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.lynx-library__pages {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	gap: 4px;
+	margin: 6px 0 4px;
+}
+.lynx-library__page {
+	min-width: 32px;
+	height: 32px;
+	padding: 0 8px;
+	border: 1px solid var(--lx-line);
+	border-radius: 8px;
+	background: var(--lx-control);
+	color: var(--lx-text);
+	font: inherit;
+	font-size: 13px;
+	cursor: pointer;
+}
+.lynx-library__page:hover {
+	background: var(--lx-hover);
+}
+.lynx-library__page.is-current {
+	border-color: var(--lx-brand);
+	background: var(--lx-brand);
+	color: var(--lx-on-brand);
+	font-weight: 600;
+}
+.lynx-mediacard {
+	display: grid;
+	grid-template-columns: minmax(160px, 240px) 1fr;
+	gap: 14px;
+	margin-top: 12px;
+	padding: 12px;
+	border: 1px solid var(--lx-line);
+	border-radius: var(--lx-radius);
+	background: var(--lx-elevated);
+}
+.lynx-mediacard__img {
+	width: 100%;
+	aspect-ratio: 3 / 2;
+	object-fit: cover;
+	border-radius: 8px;
+	background: var(--lx-recessed);
+}
+.lynx-mediacard__form {
+	display: grid;
+	gap: 8px;
+	align-content: start;
+}
+.lynx-mediacard__field {
+	display: grid;
+	gap: 4px;
+	font-size: 13px;
+	font-weight: 600;
+	color: var(--lx-strong);
+}
+.lynx-mediacard__actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+@media (max-width: 640px) {
+	.lynx-mediacard {
+		grid-template-columns: 1fr;
+	}
+}
+.lynx-gallery__open {
+	display: block;
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	border: 0;
+	background: none;
+	cursor: pointer;
+}
+
+/* ---------- field settings and indexes (2026-10-01) ---------- */
+
+/* The gear of a column header: after the move arrows, always there, quiet until hovered. */
+.lynx-hgear {
+	order: 3;
+	display: inline-grid;
+	place-items: center;
+	flex: none;
+	width: 20px;
+	height: 20px;
+	margin-left: 2px;
+	padding: 0;
+	border: 0;
+	border-radius: 5px;
+	background: transparent;
+	color: var(--lx-inactive);
+	cursor: pointer;
+}
+.lynx-hgear:hover,
+.lynx-hgear[data-popup-open],
+.lynx-hgear:focus-visible {
+	background: var(--lx-hover);
+	color: var(--lx-strong);
+}
+.lynx-hgear:focus-visible {
+	outline: 2px solid var(--lx-focus);
+	outline-offset: 1px;
+}
+/* A slow sort points at this gear. */
+.lynx-hgear.is-attention {
+	color: var(--lx-danger);
+	box-shadow: 0 0 0 2px color-mix(in srgb, var(--lx-danger) 45%, transparent);
+	animation: lynx-pulse 1.4s ease-in-out infinite;
+}
+@keyframes lynx-pulse {
+	50% {
+		box-shadow: 0 0 0 5px color-mix(in srgb, var(--lx-danger) 15%, transparent);
+	}
+}
+.lynx-fieldmenu {
+	width: 300px;
+}
+
+.lynx-index {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	font-size: 13px;
+}
+.lynx-index--compact {
+	align-items: flex-end;
+	min-width: 200px;
+	text-align: right;
+}
+.lynx-index__state {
+	color: var(--lx-subtle);
+	font-size: 12px;
+}
+.lynx-index__state.is-on {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	color: var(--lx-text-success);
+}
+.lynx-index__progress {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	width: 100%;
+	min-width: 180px;
+}
+/* Indeterminate bar: EmDash gives no progress while it builds the index. */
+.lynx-index__bar {
+	position: relative;
+	height: 6px;
+	overflow: hidden;
+	border-radius: 3px;
+	background: var(--lx-fill);
+}
+.lynx-index__bar span {
+	position: absolute;
+	inset: 0 auto 0 0;
+	width: 40%;
+	border-radius: 3px;
+	background: var(--lx-brand);
+	animation: lynx-indexing 1.1s ease-in-out infinite;
+}
+@keyframes lynx-indexing {
+	0% {
+		transform: translateX(-100%);
+	}
+	100% {
+		transform: translateX(260%);
+	}
+}
+
+.lynx-settings {
+	margin-top: 14px;
+}
+.lynx-hlabel.is-nosort {
+	cursor: help;
+	text-decoration: underline dotted var(--lx-inactive);
+	text-underline-offset: 3px;
+}
+.lynx-settings__fields {
+	margin: 12px 0 0;
+	padding: 0;
+	list-style: none;
+}
+.lynx-settings__field {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 16px;
+	padding: 10px 0;
+	border-top: 1px solid var(--lx-hairline);
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+	.lynx-hgear.is-attention,
+	.lynx-index__bar span {
+		animation-duration: 3s;
+	}
+}
+.lynx-grid__head.is-stuck {
+	box-shadow: 0 2px 6px color-mix(in srgb, var(--lx-strong) 16%, transparent);
+}
+
+/* New entry panel (2026-10-05) */
+.lynx-newform {
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+}
+.lynx-newform__row {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+.lynx-newform__label {
+	font-weight: 600;
+	font-size: 13px;
+	color: var(--lx-strong);
+	display: flex;
+	gap: 6px;
+	align-items: baseline;
+}
+.lynx-newform__row.is-failed .lynx-input,
+.lynx-newform__row.is-failed input {
+	border-color: var(--lx-danger);
+}
+.lynx-newform__problem {
+	font-size: 12px;
+}
+
+.lynx-credit {
+	margin: 0;
+	text-align: right;
+	font-size: 12px;
+	color: var(--lx-subtle);
+}
+.lynx-credit a {
+	color: inherit;
+	text-decoration: underline;
+	text-underline-offset: 2px;
+}
+.lynx-credit a:hover {
+	color: var(--lx-link);
+}

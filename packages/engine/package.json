@@ -1,0 +1,21 @@
+{
+	"name": "@realmag777/lynx-engine",
+	"version": "0.1.0",
+	"private": true,
+	"description": "LYNX bulk-edit engine: field model, operations, planner, validation, chunking, rollback. Pure TypeScript, no EmDash imports.",
+	"license": "MIT",
+	"author": "Rostislav Sofronov (realmag777) (https://realmag777.com)",
+	"homepage": "https://realmag777.com",
+	"type": "module",
+	"exports": {
+		".": "./src/index.ts"
+	},
+	"scripts": {
+		"test": "vitest run",
+		"typecheck": "tsc -p tsconfig.json"
+	},
+	"devDependencies": {
+		"typescript": "^5.9.0",
+		"vitest": "^4.1.0"
+	}
+}

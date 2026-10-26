@@ -1,0 +1,83 @@
+{
+	"$schema": "./node_modules/@emdash-cms/plugin-cli/schemas/emdash-plugin.schema.json",
+
+	"slug": "lynx",
+	// Placeholder until publication (2026-09-29).
+	"publisher": "did:plc:aaaaaaaaaaaaaaaaaaaaaaaa",
+
+	"name": "LYNX",
+	"license": "MIT",
+	"author": { "name": "realmag777", "url": "https://realmag777.com" },
+	"security": { "email": "realmag777@gmail.com" },
+	"description": "Content manager and bulk editor for structured catalogues, with AI-agent (MCP) tools: find, preview, apply, roll back.",
+	"keywords": ["bulk edit", "content manager", "mcp", "catalogue", "real estate"],
+
+	// Registry page (Markdown files, each at most 2000 characters) and card artwork.
+	"sections": {
+		"description": { "file": "docs/description.md" },
+		"installation": { "file": "docs/installation.md" },
+		"faq": { "file": "docs/faq.md" },
+		"changelog": { "file": "docs/changelog.md" },
+		"security": { "file": "docs/security.md" }
+	},
+	"release": {
+		"artifacts": {
+			"icon": { "file": "assets/icon.png" },
+			"banner": { "file": "assets/banner.png" },
+			"screenshots": [
+				{ "file": "assets/screenshots/01-grid.png" },
+				{ "file": "assets/screenshots/02-bulk-preview.png" },
+				{ "file": "assets/screenshots/03-history.png" },
+				{ "file": "assets/screenshots/04-filter.png" },
+				{ "file": "assets/screenshots/05-cell-editor.png" },
+				{ "file": "assets/screenshots/06-rich-text.png" },
+				{ "file": "assets/screenshots/07-dark.png" },
+				{ "file": "assets/screenshots/08-agent-access.png" }
+			]
+		}
+	},
+
+	// Only what is used. content:publish covers publish mode and the cache-refresh re-publish;
+	// taxonomies:write covers term assignment; content:restore undoes a trash job. No network:
+	// images by URL live in the companion plugin lynx-media (packages/media).
+	"capabilities": ["schema:read", "content:read", "content:write", "content:publish", "content:restore", "taxonomies:write"],
+	"allowedHosts": [],
+
+	"storage": {
+		// One document per job; the claim is an atomic updateIf on it.
+		"jobs": { "indexes": ["state", "windowNo", "createdAt", ["state", "createdAt"], "userId"] },
+		// Frozen selections: one head document plus id pages.
+		"selections": { "indexes": ["createdAt", "expiresAt", "state"] },
+		"pages": { "indexes": ["owner", ["owner", "n"]] },
+		// History: entry records (before/after), invalid/failed/conflict records, step receipts.
+		"history": { "indexes": ["jobKey", ["jobKey", "kind"], ["jobKey", "kind", "windowNo"], "entryId", "at"] },
+		"memory": { "indexes": ["updatedAt"] }
+	},
+
+	"admin": {
+		"pages": [{ "path": "/overview", "label": "LYNX", "icon": "list" }],
+		"settingsSchema": {
+			"stepSize": {
+				"type": "select",
+				"label": "Job step size",
+				"description": "Safe keeps every job step within Cloudflare's 10 host calls per plugin invocation. Fast is for hosts without that limit (Node.js, or LYNX loaded in-process). Auto picks fast when LYNX runs in-process.",
+				"options": [
+					{ "value": "auto", "label": "Auto" },
+					{ "value": "safe", "label": "Safe (Cloudflare)" },
+					{ "value": "fast", "label": "Fast (no sandbox limits)" }
+				],
+				"default": "auto"
+			},
+			"cacheRefresh": {
+				"type": "select",
+				"label": "Refresh cached pages after edits (collections without revisions)",
+				"description": "Re-publishes edited, already published entries so cached pages show the new values. Keeps the publication date, but plugins that react to publishing run again.",
+				"options": [
+					{ "value": "republish", "label": "Re-publish (recommended with a page cache)" },
+					{ "value": "none", "label": "Do nothing" }
+				],
+				"default": "republish"
+			}
+		}
+	}
+}

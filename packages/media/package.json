@@ -1,0 +1,42 @@
+{
+	"name": "@realmag777/lynx-media",
+	"version": "0.1.0",
+	"private": true,
+	"description": "LYNX Media: sandboxed EmDash plugin that imports images by URL into the media library (companion of the LYNX core).",
+	"license": "MIT",
+	"author": "Rostislav Sofronov (realmag777) (https://realmag777.com)",
+	"homepage": "https://realmag777.com",
+	"type": "module",
+	"main": "dist/index.mjs",
+	"exports": {
+		".": {
+			"import": "./dist/index.mjs",
+			"types": "./dist/index.d.mts"
+		},
+		"./sandbox": "./dist/plugin.mjs"
+	},
+	"files": [
+		"dist",
+		"emdash-plugin.jsonc",
+		"mcp-tools.frozen.json"
+	],
+	"scripts": {
+		"validate": "emdash-plugin validate",
+		"build": "emdash-plugin build",
+		"dev": "emdash-plugin dev",
+		"typecheck": "tsc -p tsconfig.json",
+		"test": "emdash-plugin validate && vitest run && node tools/freeze.ts"
+	},
+	"peerDependencies": {
+		"emdash": "^1.0.1"
+	},
+	"devDependencies": {
+		"@emdash-cms/plugin-cli": "0.13.1",
+		"@emdash-cms/plugin-test": "^0.2.6",
+		"@types/node": "^24.0.0",
+		"emdash": "^1.0.1",
+		"typescript": "^5.9.0",
+		"vitest": "^4.1.0",
+		"zod": "4.5.4"
+	}
+}

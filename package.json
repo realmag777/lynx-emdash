@@ -1,0 +1,10 @@
+{
+	"name": "lynx-monorepo",
+	"private": true,
+	"type": "module",
+	"packageManager": "pnpm@11.9.0",
+	"scripts": {
+		"test": "pnpm -r --workspace-concurrency=1 run test",
+		"typecheck": "pnpm -r run typecheck"
+	}
+}

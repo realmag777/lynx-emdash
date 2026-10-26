@@ -1,0 +1,4982 @@
+{
+	"$schema": "https://emdashcms.com/seed.schema.json",
+	"version": "1",
+	"meta": {
+		"name": "LYNX preset: Cars",
+		"description": "Used and new car listings: price, year, mileage, engine, gearbox, VIN and more, with make → model, body type, fuel and location taxonomies.",
+		"author": "realmag777"
+	},
+	"collections": [
+		{
+			"slug": "cars",
+			"label": "Cars",
+			"labelSingular": "Car",
+			"description": "Vehicle listings (LYNX preset)",
+			"supports": [
+				"drafts",
+				"revisions",
+				"search"
+			],
+			"fields": [
+				{
+					"slug": "title",
+					"label": "Title",
+					"type": "string",
+					"required": true,
+					"indexed": true,
+					"searchable": true
+				},
+				{
+					"slug": "price",
+					"label": "Price",
+					"type": "number",
+					"indexed": true,
+					"translatable": false,
+					"validation": {
+						"min": 0
+					}
+				},
+				{
+					"slug": "year",
+					"label": "Year",
+					"type": "integer",
+					"indexed": true,
+					"translatable": false,
+					"validation": {
+						"min": 1950,
+						"max": 2030
+					}
+				},
+				{
+					"slug": "mileage_km",
+					"label": "Mileage (km)",
+					"type": "integer",
+					"indexed": true,
+					"translatable": false,
+					"validation": {
+						"min": 0
+					}
+				},
+				{
+					"slug": "engine_l",
+					"label": "Engine (L)",
+					"type": "number",
+					"indexed": true,
+					"translatable": false,
+					"validation": {
+						"min": 0,
+						"max": 10
+					}
+				},
+				{
+					"slug": "power_hp",
+					"label": "Power (hp)",
+					"type": "integer",
+					"indexed": true,
+					"translatable": false,
+					"validation": {
+						"min": 0,
+						"max": 2000
+					}
+				},
+				{
+					"slug": "transmission",
+					"label": "Transmission",
+					"type": "select",
+					"indexed": true,
+					"translatable": false,
+					"validation": {
+						"options": [
+							"Manual",
+							"Automatic"
+						]
+					}
+				},
+				{
+					"slug": "doors",
+					"label": "Doors",
+					"type": "integer",
+					"indexed": true,
+					"translatable": false,
+					"validation": {
+						"min": 2,
+						"max": 6
+					}
+				},
+				{
+					"slug": "seats",
+					"label": "Seats",
+					"type": "integer",
+					"indexed": true,
+					"translatable": false,
+					"validation": {
+						"min": 1,
+						"max": 9
+					}
+				},
+				{
+					"slug": "color",
+					"label": "Colour",
+					"type": "select",
+					"indexed": true,
+					"translatable": false,
+					"validation": {
+						"options": [
+							"Black",
+							"White",
+							"Silver",
+							"Grey",
+							"Blue",
+							"Red",
+							"Green",
+							"Orange",
+							"Brown",
+							"Yellow"
+						]
+					}
+				},
+				{
+					"slug": "vin",
+					"label": "VIN",
+					"type": "string",
+					"indexed": true,
+					"unique": true,
+					"translatable": false,
+					"validation": {
+						"pattern": "^[A-HJ-NPR-Z0-9]{17}$"
+					}
+				},
+				{
+					"slug": "condition",
+					"label": "Condition",
+					"type": "select",
+					"indexed": true,
+					"translatable": false,
+					"validation": {
+						"options": [
+							"New",
+							"Used"
+						]
+					}
+				},
+				{
+					"slug": "available_from",
+					"label": "Available from",
+					"type": "datetime",
+					"indexed": true,
+					"translatable": false
+				},
+				{
+					"slug": "cover",
+					"label": "Cover photo",
+					"type": "image"
+				},
+				{
+					"slug": "gallery",
+					"label": "Gallery",
+					"type": "repeater",
+					"validation": {
+						"subFields": [
+							{
+								"slug": "image",
+								"label": "Image",
+								"type": "image",
+								"required": true
+							}
+						],
+						"maxItems": 30
+					}
+				},
+				{
+					"slug": "description",
+					"label": "Description",
+					"type": "portableText",
+					"searchable": true
+				},
+				{
+					"slug": "features",
+					"label": "Features",
+					"type": "multiSelect",
+					"translatable": false,
+					"validation": {
+						"options": [
+							"Navigation",
+							"Heated seats",
+							"Parking camera",
+							"Parking sensors",
+							"Adaptive cruise control",
+							"Apple CarPlay",
+							"Leather seats",
+							"Panoramic roof",
+							"Tow bar",
+							"LED headlights",
+							"Keyless entry",
+							"Heat pump"
+						]
+					}
+				}
+			]
+		}
+	],
+	"taxonomies": [
+		{
+			"name": "make",
+			"label": "Makes",
+			"labelSingular": "Make",
+			"hierarchical": true,
+			"collections": [
+				"cars"
+			],
+			"terms": [
+				{
+					"slug": "bmw",
+					"label": "BMW"
+				},
+				{
+					"slug": "bmw-3-series",
+					"label": "3 Series",
+					"parent": "bmw"
+				},
+				{
+					"slug": "bmw-x3",
+					"label": "X3",
+					"parent": "bmw"
+				},
+				{
+					"slug": "bmw-1-series",
+					"label": "1 Series",
+					"parent": "bmw"
+				},
+				{
+					"slug": "mercedes-benz",
+					"label": "Mercedes-Benz"
+				},
+				{
+					"slug": "mercedes-benz-c-class",
+					"label": "C-Class",
+					"parent": "mercedes-benz"
+				},
+				{
+					"slug": "mercedes-benz-glc",
+					"label": "GLC",
+					"parent": "mercedes-benz"
+				},
+				{
+					"slug": "mercedes-benz-a-class",
+					"label": "A-Class",
+					"parent": "mercedes-benz"
+				},
+				{
+					"slug": "audi",
+					"label": "Audi"
+				},
+				{
+					"slug": "audi-a3",
+					"label": "A3",
+					"parent": "audi"
+				},
+				{
+					"slug": "audi-a4",
+					"label": "A4",
+					"parent": "audi"
+				},
+				{
+					"slug": "audi-q5",
+					"label": "Q5",
+					"parent": "audi"
+				},
+				{
+					"slug": "volkswagen",
+					"label": "Volkswagen"
+				},
+				{
+					"slug": "volkswagen-golf",
+					"label": "Golf",
+					"parent": "volkswagen"
+				},
+				{
+					"slug": "volkswagen-passat",
+					"label": "Passat",
+					"parent": "volkswagen"
+				},
+				{
+					"slug": "volkswagen-tiguan",
+					"label": "Tiguan",
+					"parent": "volkswagen"
+				},
+				{
+					"slug": "volkswagen-id-3",
+					"label": "ID.3",
+					"parent": "volkswagen"
+				},
+				{
+					"slug": "toyota",
+					"label": "Toyota"
+				},
+				{
+					"slug": "toyota-corolla",
+					"label": "Corolla",
+					"parent": "toyota"
+				},
+				{
+					"slug": "toyota-rav4",
+					"label": "RAV4",
+					"parent": "toyota"
+				},
+				{
+					"slug": "toyota-yaris",
+					"label": "Yaris",
+					"parent": "toyota"
+				},
+				{
+					"slug": "skoda",
+					"label": "Škoda"
+				},
+				{
+					"slug": "skoda-octavia",
+					"label": "Octavia",
+					"parent": "skoda"
+				},
+				{
+					"slug": "skoda-kodiaq",
+					"label": "Kodiaq",
+					"parent": "skoda"
+				},
+				{
+					"slug": "renault",
+					"label": "Renault"
+				},
+				{
+					"slug": "renault-clio",
+					"label": "Clio",
+					"parent": "renault"
+				},
+				{
+					"slug": "renault-captur",
+					"label": "Captur",
+					"parent": "renault"
+				},
+				{
+					"slug": "peugeot",
+					"label": "Peugeot"
+				},
+				{
+					"slug": "peugeot-308",
+					"label": "308",
+					"parent": "peugeot"
+				},
+				{
+					"slug": "peugeot-5008",
+					"label": "5008",
+					"parent": "peugeot"
+				},
+				{
+					"slug": "volvo",
+					"label": "Volvo"
+				},
+				{
+					"slug": "volvo-xc60",
+					"label": "XC60",
+					"parent": "volvo"
+				},
+				{
+					"slug": "volvo-v60",
+					"label": "V60",
+					"parent": "volvo"
+				},
+				{
+					"slug": "tesla",
+					"label": "Tesla"
+				},
+				{
+					"slug": "tesla-model-3",
+					"label": "Model 3",
+					"parent": "tesla"
+				},
+				{
+					"slug": "ford",
+					"label": "Ford"
+				},
+				{
+					"slug": "ford-focus",
+					"label": "Focus",
+					"parent": "ford"
+				},
+				{
+					"slug": "ford-kuga",
+					"label": "Kuga",
+					"parent": "ford"
+				},
+				{
+					"slug": "hyundai",
+					"label": "Hyundai"
+				},
+				{
+					"slug": "hyundai-tucson",
+					"label": "Tucson",
+					"parent": "hyundai"
+				},
+				{
+					"slug": "kia",
+					"label": "Kia"
+				},
+				{
+					"slug": "kia-sportage",
+					"label": "Sportage",
+					"parent": "kia"
+				}
+			]
+		},
+		{
+			"name": "body_type",
+			"label": "Body types",
+			"labelSingular": "Body type",
+			"hierarchical": false,
+			"collections": [
+				"cars"
+			],
+			"terms": [
+				{
+					"slug": "hatchback",
+					"label": "Hatchback"
+				},
+				{
+					"slug": "sedan",
+					"label": "Sedan"
+				},
+				{
+					"slug": "estate",
+					"label": "Estate"
+				},
+				{
+					"slug": "suv",
+					"label": "SUV"
+				},
+				{
+					"slug": "crossover",
+					"label": "Crossover"
+				},
+				{
+					"slug": "mpv",
+					"label": "MPV"
+				},
+				{
+					"slug": "city-car",
+					"label": "City car"
+				},
+				{
+					"slug": "coupe",
+					"label": "Coupé"
+				}
+			]
+		},
+		{
+			"name": "fuel",
+			"label": "Fuel types",
+			"labelSingular": "Fuel",
+			"hierarchical": false,
+			"collections": [
+				"cars"
+			],
+			"terms": [
+				{
+					"slug": "petrol",
+					"label": "Petrol"
+				},
+				{
+					"slug": "diesel",
+					"label": "Diesel"
+				},
+				{
+					"slug": "hybrid",
+					"label": "Hybrid"
+				},
+				{
+					"slug": "electric",
+					"label": "Electric"
+				}
+			]
+		},
+		{
+			"name": "location",
+			"label": "Locations",
+			"labelSingular": "Location",
+			"hierarchical": true,
+			"collections": [
+				"cars"
+			],
+			"terms": [
+				{
+					"slug": "andalucia",
+					"label": "Andalucía"
+				},
+				{
+					"slug": "malaga",
+					"label": "Málaga",
+					"parent": "andalucia"
+				},
+				{
+					"slug": "malaga-centro",
+					"label": "Centro",
+					"parent": "malaga"
+				},
+				{
+					"slug": "malaga-el-palo",
+					"label": "El Palo",
+					"parent": "malaga"
+				},
+				{
+					"slug": "malaga-teatinos",
+					"label": "Teatinos",
+					"parent": "malaga"
+				},
+				{
+					"slug": "marbella",
+					"label": "Marbella",
+					"parent": "andalucia"
+				},
+				{
+					"slug": "marbella-golden-mile",
+					"label": "Golden Mile",
+					"parent": "marbella"
+				},
+				{
+					"slug": "marbella-nueva-andalucia",
+					"label": "Nueva Andalucía",
+					"parent": "marbella"
+				},
+				{
+					"slug": "marbella-puerto-banus",
+					"label": "Puerto Banús",
+					"parent": "marbella"
+				},
+				{
+					"slug": "estepona",
+					"label": "Estepona",
+					"parent": "andalucia"
+				},
+				{
+					"slug": "estepona-centro",
+					"label": "Centro",
+					"parent": "estepona"
+				},
+				{
+					"slug": "estepona-el-padron",
+					"label": "El Padrón",
+					"parent": "estepona"
+				},
+				{
+					"slug": "valenciana",
+					"label": "Comunidad Valenciana"
+				},
+				{
+					"slug": "valencia",
+					"label": "Valencia",
+					"parent": "valenciana"
+				},
+				{
+					"slug": "valencia-ruzafa",
+					"label": "Ruzafa",
+					"parent": "valencia"
+				},
+				{
+					"slug": "valencia-cabanyal",
+					"label": "El Cabanyal",
+					"parent": "valencia"
+				},
+				{
+					"slug": "valencia-benimaclet",
+					"label": "Benimaclet",
+					"parent": "valencia"
+				},
+				{
+					"slug": "alicante",
+					"label": "Alicante",
+					"parent": "valenciana"
+				},
+				{
+					"slug": "alicante-centro",
+					"label": "Centro",
+					"parent": "alicante"
+				},
+				{
+					"slug": "alicante-san-juan-playa",
+					"label": "San Juan Playa",
+					"parent": "alicante"
+				},
+				{
+					"slug": "altea",
+					"label": "Altea",
+					"parent": "valenciana"
+				},
+				{
+					"slug": "altea-casco-antiguo",
+					"label": "Casco Antiguo",
+					"parent": "altea"
+				},
+				{
+					"slug": "altea-mascarat",
+					"label": "Mascarat",
+					"parent": "altea"
+				},
+				{
+					"slug": "benidorm",
+					"label": "Benidorm",
+					"parent": "valenciana"
+				},
+				{
+					"slug": "benidorm-levante",
+					"label": "Levante",
+					"parent": "benidorm"
+				},
+				{
+					"slug": "benidorm-poniente",
+					"label": "Poniente",
+					"parent": "benidorm"
+				}
+			]
+		}
+	],
+	"content": {
+		"cars": [
+			{
+				"id": "car-01",
+				"slug": "bmw-3-series-320d-touring-2019",
+				"status": "published",
+				"data": {
+					"title": "BMW 3 Series 320d Touring",
+					"price": 18900,
+					"year": 2019,
+					"mileage_km": 112400,
+					"engine_l": 2,
+					"power_hp": 190,
+					"transmission": "Automatic",
+					"doors": 5,
+					"seats": 5,
+					"color": "Blue",
+					"vin": "WBAL1KJWMWDYHX7WR",
+					"condition": "Used",
+					"available_from": "2026-10-05T09:00:00.000Z",
+					"features": [
+						"Apple CarPlay",
+						"Navigation",
+						"Parking camera"
+					],
+					"description": [
+						{
+							"_type": "block",
+							"_key": "car-01-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-01-b0s0",
+									"text": "BMW 3 Series 320d Touring from 2019 with 112,400 km, one owner and a ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-01-b0s1",
+									"text": "documented service history",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-01-b0s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-01-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-01-b1s0",
+									"text": "190 hp diesel engine with an automatic gearbox. ITV (MOT) passed, two keys, ready to drive away.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-01-b2",
+							"style": "normal",
+							"markDefs": [
+								{
+									"_type": "link",
+									"_key": "car-01-b2l0",
+									"href": "https://example.com/warranty"
+								}
+							],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-01-b2s0",
+									"text": "Financing available on request. See our ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-01-b2s1",
+									"text": "warranty terms",
+									"marks": [
+										"car-01-b2l0"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-01-b2s2",
+									"text": " for details.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/cars/car-04.jpg",
+							"alt": "Dark blue estate car on a driveway",
+							"filename": "car-04.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-04.jpg",
+									"alt": "Dark blue estate car on a driveway",
+									"filename": "car-04.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-09.jpg",
+									"alt": "Dashboard and steering wheel with digital instruments",
+									"filename": "car-09.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-10.jpg",
+									"alt": "Rear seats with light leather upholstery",
+									"filename": "car-10.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"make": [
+						"bmw",
+						"bmw-3-series"
+					],
+					"body_type": [
+						"estate"
+					],
+					"fuel": [
+						"diesel"
+					],
+					"location": [
+						"malaga"
+					]
+				}
+			},
+			{
+				"id": "car-02",
+				"slug": "bmw-3-series-330e-sedan-2021",
+				"status": "published",
+				"data": {
+					"title": "BMW 3 Series 330e Sedan",
+					"price": 31500,
+					"year": 2021,
+					"mileage_km": 64200,
+					"engine_l": 2,
+					"power_hp": 292,
+					"transmission": "Automatic",
+					"doors": 4,
+					"seats": 5,
+					"color": "Black",
+					"vin": "WBA0YFELUGPET05N9",
+					"condition": "Used",
+					"available_from": "2026-10-12T10:30:00.000Z",
+					"features": [
+						"Apple CarPlay",
+						"Leather seats",
+						"Parking sensors",
+						"Tow bar"
+					],
+					"description": [
+						{
+							"_type": "block",
+							"_key": "car-02-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-02-b0s0",
+									"text": "BMW 3 Series 330e Sedan from 2021 with 64,200 km, one owner and a ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-02-b0s1",
+									"text": "documented service history",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-02-b0s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-02-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-02-b1s0",
+									"text": "292 hp hybrid engine with an automatic gearbox. ITV (MOT) passed, two keys, ready to drive away.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-02-b2",
+							"style": "normal",
+							"markDefs": [
+								{
+									"_type": "link",
+									"_key": "car-02-b2l0",
+									"href": "https://example.com/warranty"
+								}
+							],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-02-b2s0",
+									"text": "Financing available on request. See our ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-02-b2s1",
+									"text": "warranty terms",
+									"marks": [
+										"car-02-b2l0"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-02-b2s2",
+									"text": " for details.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/cars/car-02.jpg",
+							"alt": "Black executive sedan on a city street",
+							"filename": "car-02.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-02.jpg",
+									"alt": "Black executive sedan on a city street",
+									"filename": "car-02.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-09.jpg",
+									"alt": "Dashboard and steering wheel with digital instruments",
+									"filename": "car-09.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-10.jpg",
+									"alt": "Rear seats with light leather upholstery",
+									"filename": "car-10.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"make": [
+						"bmw",
+						"bmw-3-series"
+					],
+					"body_type": [
+						"sedan"
+					],
+					"fuel": [
+						"hybrid"
+					],
+					"location": [
+						"marbella"
+					]
+				}
+			},
+			{
+				"id": "car-03",
+				"slug": "bmw-x3-xdrive20d-2020",
+				"status": "published",
+				"data": {
+					"title": "BMW X3 xDrive20d",
+					"price": 29900,
+					"year": 2020,
+					"mileage_km": 88900,
+					"engine_l": 2,
+					"power_hp": 190,
+					"transmission": "Automatic",
+					"doors": 5,
+					"seats": 5,
+					"color": "White",
+					"vin": "WBANFTYUG2FCV5TTC",
+					"condition": "Used",
+					"available_from": "2026-10-19T11:00:00.000Z",
+					"features": [
+						"Adaptive cruise control",
+						"Apple CarPlay",
+						"Heated seats",
+						"Leather seats",
+						"Navigation"
+					],
+					"description": [
+						{
+							"_type": "block",
+							"_key": "car-03-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-03-b0s0",
+									"text": "BMW X3 xDrive20d from 2020 with 88,900 km, two owners and a ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-03-b0s1",
+									"text": "documented service history",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-03-b0s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-03-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-03-b1s0",
+									"text": "190 hp diesel engine with an automatic gearbox. ITV (MOT) passed, two keys, ready to drive away.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-03-b2",
+							"style": "normal",
+							"markDefs": [
+								{
+									"_type": "link",
+									"_key": "car-03-b2l0",
+									"href": "https://example.com/warranty"
+								}
+							],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-03-b2s0",
+									"text": "Financing available on request. See our ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-03-b2s1",
+									"text": "warranty terms",
+									"marks": [
+										"car-03-b2l0"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-03-b2s2",
+									"text": " for details.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/cars/car-03.jpg",
+							"alt": "White mid-size SUV in a showroom",
+							"filename": "car-03.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-03.jpg",
+									"alt": "White mid-size SUV in a showroom",
+									"filename": "car-03.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-09.jpg",
+									"alt": "Dashboard and steering wheel with digital instruments",
+									"filename": "car-09.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-10.jpg",
+									"alt": "Rear seats with light leather upholstery",
+									"filename": "car-10.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"make": [
+						"bmw",
+						"bmw-x3"
+					],
+					"body_type": [
+						"suv"
+					],
+					"fuel": [
+						"diesel"
+					],
+					"location": [
+						"valencia"
+					]
+				}
+			},
+			{
+				"id": "car-04",
+				"slug": "bmw-1-series-118i-sport-2022",
+				"status": "published",
+				"data": {
+					"title": "BMW 1 Series 118i Sport",
+					"price": 24900,
+					"year": 2022,
+					"mileage_km": 31000,
+					"engine_l": 1.5,
+					"power_hp": 136,
+					"transmission": "Manual",
+					"doors": 5,
+					"seats": 5,
+					"color": "Silver",
+					"vin": "WBA2U0SMG2R6E2C3Y",
+					"condition": "Used",
+					"available_from": "2026-10-26T12:30:00.000Z",
+					"features": [
+						"Adaptive cruise control",
+						"Apple CarPlay"
+					],
+					"description": [
+						{
+							"_type": "block",
+							"_key": "car-04-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-04-b0s0",
+									"text": "BMW 1 Series 118i Sport from 2022 with 31,000 km, two owners and a ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-04-b0s1",
+									"text": "full main-dealer service history",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-04-b0s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-04-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-04-b1s0",
+									"text": "136 hp petrol engine with a manual gearbox. ITV (MOT) passed, two keys, ready to drive away.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-04-b2",
+							"style": "normal",
+							"markDefs": [
+								{
+									"_type": "link",
+									"_key": "car-04-b2l0",
+									"href": "https://example.com/warranty"
+								}
+							],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-04-b2s0",
+									"text": "Financing available on request. See our ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-04-b2s1",
+									"text": "warranty terms",
+									"marks": [
+										"car-04-b2l0"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-04-b2s2",
+									"text": " for details.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/cars/car-01.jpg",
+							"alt": "Silver compact hatchback on a dealership forecourt",
+							"filename": "car-01.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-01.jpg",
+									"alt": "Silver compact hatchback on a dealership forecourt",
+									"filename": "car-01.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-09.jpg",
+									"alt": "Dashboard and steering wheel with digital instruments",
+									"filename": "car-09.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-10.jpg",
+									"alt": "Rear seats with light leather upholstery",
+									"filename": "car-10.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"make": [
+						"bmw",
+						"bmw-1-series"
+					],
+					"body_type": [
+						"hatchback"
+					],
+					"fuel": [
+						"petrol"
+					],
+					"location": [
+						"alicante"
+					]
+				}
+			},
+			{
+				"id": "car-05",
+				"slug": "mercedes-benz-c-class-c-220-d-2020",
+				"status": "published",
+				"data": {
+					"title": "Mercedes-Benz C-Class C 220 d",
+					"price": 27400,
+					"year": 2020,
+					"mileage_km": 97300,
+					"engine_l": 2,
+					"power_hp": 200,
+					"transmission": "Automatic",
+					"doors": 4,
+					"seats": 5,
+					"color": "Black",
+					"vin": "WDDK836YN7TB4TDF9",
+					"condition": "Used",
+					"available_from": "2026-11-02T09:00:00.000Z",
+					"features": [
+						"Adaptive cruise control",
+						"Apple CarPlay",
+						"Heated seats",
+						"LED headlights",
+						"Navigation",
+						"Parking camera"
+					],
+					"description": [
+						{
+							"_type": "block",
+							"_key": "car-05-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-05-b0s0",
+									"text": "Mercedes-Benz C-Class C 220 d from 2020 with 97,300 km, one owner and a ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-05-b0s1",
+									"text": "full main-dealer service history",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-05-b0s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-05-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-05-b1s0",
+									"text": "200 hp diesel engine with an automatic gearbox. ITV (MOT) passed, two keys, ready to drive away.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-05-b2",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-05-b2s0",
+									"text": "Part exchange welcome. Viewing by appointment at our showroom.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/cars/car-02.jpg",
+							"alt": "Black executive sedan on a city street",
+							"filename": "car-02.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-02.jpg",
+									"alt": "Black executive sedan on a city street",
+									"filename": "car-02.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-09.jpg",
+									"alt": "Dashboard and steering wheel with digital instruments",
+									"filename": "car-09.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-10.jpg",
+									"alt": "Rear seats with light leather upholstery",
+									"filename": "car-10.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"make": [
+						"mercedes-benz",
+						"mercedes-benz-c-class"
+					],
+					"body_type": [
+						"sedan"
+					],
+					"fuel": [
+						"diesel"
+					],
+					"location": [
+						"malaga"
+					]
+				}
+			},
+			{
+				"id": "car-06",
+				"slug": "mercedes-benz-glc-300-e-4matic-2022",
+				"status": "published",
+				"data": {
+					"title": "Mercedes-Benz GLC 300 e 4MATIC",
+					"price": 45900,
+					"year": 2022,
+					"mileage_km": 41800,
+					"engine_l": 2,
+					"power_hp": 320,
+					"transmission": "Automatic",
+					"doors": 5,
+					"seats": 5,
+					"color": "White",
+					"vin": "WDDTWDU43ZA44DB2Y",
+					"condition": "Used",
+					"available_from": "2026-11-09T10:30:00.000Z",
+					"features": [
+						"Heated seats",
+						"LED headlights",
+						"Navigation",
+						"Panoramic roof",
+						"Tow bar"
+					],
+					"description": [
+						{
+							"_type": "block",
+							"_key": "car-06-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-06-b0s0",
+									"text": "Mercedes-Benz GLC 300 e 4MATIC from 2022 with 41,800 km, one owner and a ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-06-b0s1",
+									"text": "documented service history",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-06-b0s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-06-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-06-b1s0",
+									"text": "320 hp hybrid engine with an automatic gearbox. ITV (MOT) passed, two keys, ready to drive away.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-06-b2",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-06-b2s0",
+									"text": "Part exchange welcome. Viewing by appointment at our showroom.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/cars/car-11.jpg",
+							"alt": "Pearl white large SUV on a coastal road",
+							"filename": "car-11.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-11.jpg",
+									"alt": "Pearl white large SUV on a coastal road",
+									"filename": "car-11.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-09.jpg",
+									"alt": "Dashboard and steering wheel with digital instruments",
+									"filename": "car-09.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-10.jpg",
+									"alt": "Rear seats with light leather upholstery",
+									"filename": "car-10.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"make": [
+						"mercedes-benz",
+						"mercedes-benz-glc"
+					],
+					"body_type": [
+						"suv"
+					],
+					"fuel": [
+						"hybrid"
+					],
+					"location": [
+						"marbella"
+					]
+				}
+			},
+			{
+				"id": "car-07",
+				"slug": "mercedes-benz-a-class-a-180-2019",
+				"status": "published",
+				"data": {
+					"title": "Mercedes-Benz A-Class A 180",
+					"price": 19500,
+					"year": 2019,
+					"mileage_km": 73500,
+					"engine_l": 1.3,
+					"power_hp": 136,
+					"transmission": "Automatic",
+					"doors": 5,
+					"seats": 5,
+					"color": "Silver",
+					"vin": "WDDMV80MBMPB1070U",
+					"condition": "Used",
+					"available_from": "2026-11-16T11:00:00.000Z",
+					"features": [
+						"Apple CarPlay",
+						"Heated seats",
+						"Panoramic roof",
+						"Tow bar"
+					],
+					"description": [
+						{
+							"_type": "block",
+							"_key": "car-07-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-07-b0s0",
+									"text": "Mercedes-Benz A-Class A 180 from 2019 with 73,500 km, two owners and a ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-07-b0s1",
+									"text": "documented service history",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-07-b0s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-07-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-07-b1s0",
+									"text": "136 hp petrol engine with an automatic gearbox. ITV (MOT) passed, two keys, ready to drive away.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-07-b2",
+							"style": "normal",
+							"markDefs": [
+								{
+									"_type": "link",
+									"_key": "car-07-b2l0",
+									"href": "https://example.com/warranty"
+								}
+							],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-07-b2s0",
+									"text": "Financing available on request. See our ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-07-b2s1",
+									"text": "warranty terms",
+									"marks": [
+										"car-07-b2l0"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-07-b2s2",
+									"text": " for details.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/cars/car-01.jpg",
+							"alt": "Silver compact hatchback on a dealership forecourt",
+							"filename": "car-01.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-01.jpg",
+									"alt": "Silver compact hatchback on a dealership forecourt",
+									"filename": "car-01.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-09.jpg",
+									"alt": "Dashboard and steering wheel with digital instruments",
+									"filename": "car-09.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-10.jpg",
+									"alt": "Rear seats with light leather upholstery",
+									"filename": "car-10.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"make": [
+						"mercedes-benz",
+						"mercedes-benz-a-class"
+					],
+					"body_type": [
+						"hatchback"
+					],
+					"fuel": [
+						"petrol"
+					],
+					"location": [
+						"estepona"
+					]
+				}
+			},
+			{
+				"id": "car-08",
+				"slug": "audi-a3-sportback-35-tfsi-2021",
+				"status": "published",
+				"data": {
+					"title": "Audi A3 Sportback 35 TFSI",
+					"price": 25800,
+					"year": 2021,
+					"mileage_km": 45200,
+					"engine_l": 1.5,
+					"power_hp": 150,
+					"transmission": "Automatic",
+					"doors": 5,
+					"seats": 5,
+					"color": "Grey",
+					"vin": "WAUK38EYZWMXUGU2C",
+					"condition": "Used",
+					"available_from": "2026-10-09T12:30:00.000Z",
+					"features": [
+						"Heated seats",
+						"Parking camera",
+						"Parking sensors"
+					],
+					"description": [
+						{
+							"_type": "block",
+							"_key": "car-08-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-08-b0s0",
+									"text": "Audi A3 Sportback 35 TFSI from 2021 with 45,200 km, two owners and a ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-08-b0s1",
+									"text": "full main-dealer service history",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-08-b0s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-08-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-08-b1s0",
+									"text": "150 hp petrol engine with an automatic gearbox. ITV (MOT) passed, two keys, ready to drive away.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-08-b2",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-08-b2s0",
+									"text": "Part exchange welcome. Viewing by appointment at our showroom.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/cars/car-01.jpg",
+							"alt": "Silver compact hatchback on a dealership forecourt",
+							"filename": "car-01.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-01.jpg",
+									"alt": "Silver compact hatchback on a dealership forecourt",
+									"filename": "car-01.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-09.jpg",
+									"alt": "Dashboard and steering wheel with digital instruments",
+									"filename": "car-09.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-10.jpg",
+									"alt": "Rear seats with light leather upholstery",
+									"filename": "car-10.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"make": [
+						"audi",
+						"audi-a3"
+					],
+					"body_type": [
+						"hatchback"
+					],
+					"fuel": [
+						"petrol"
+					],
+					"location": [
+						"valencia"
+					]
+				}
+			},
+			{
+				"id": "car-09",
+				"slug": "audi-a4-avant-40-tdi-2020",
+				"status": "draft",
+				"data": {
+					"title": "Audi A4 Avant 40 TDI",
+					"price": 26900,
+					"year": 2020,
+					"mileage_km": 84000,
+					"engine_l": 2,
+					"power_hp": 204,
+					"transmission": "Automatic",
+					"doors": 5,
+					"seats": 5,
+					"color": "Blue",
+					"vin": "WAU2FTK4DL08GHRGL",
+					"condition": "Used",
+					"available_from": "2026-10-16T09:00:00.000Z",
+					"features": [
+						"Apple CarPlay",
+						"Heated seats",
+						"Keyless entry",
+						"Leather seats",
+						"Panoramic roof",
+						"Tow bar"
+					],
+					"description": [
+						{
+							"_type": "block",
+							"_key": "car-09-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-09-b0s0",
+									"text": "Audi A4 Avant 40 TDI from 2020 with 84,000 km, one owner and a ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-09-b0s1",
+									"text": "full main-dealer service history",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-09-b0s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-09-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-09-b1s0",
+									"text": "204 hp diesel engine with an automatic gearbox. ITV (MOT) passed, two keys, ready to drive away.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-09-b2",
+							"style": "normal",
+							"markDefs": [
+								{
+									"_type": "link",
+									"_key": "car-09-b2l0",
+									"href": "https://example.com/warranty"
+								}
+							],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-09-b2s0",
+									"text": "Financing available on request. See our ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-09-b2s1",
+									"text": "warranty terms",
+									"marks": [
+										"car-09-b2l0"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-09-b2s2",
+									"text": " for details.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/cars/car-04.jpg",
+							"alt": "Dark blue estate car on a driveway",
+							"filename": "car-04.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-04.jpg",
+									"alt": "Dark blue estate car on a driveway",
+									"filename": "car-04.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-09.jpg",
+									"alt": "Dashboard and steering wheel with digital instruments",
+									"filename": "car-09.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-10.jpg",
+									"alt": "Rear seats with light leather upholstery",
+									"filename": "car-10.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"make": [
+						"audi",
+						"audi-a4"
+					],
+					"body_type": [
+						"estate"
+					],
+					"fuel": [
+						"diesel"
+					],
+					"location": [
+						"benidorm"
+					]
+				}
+			},
+			{
+				"id": "car-10",
+				"slug": "audi-q5-45-tfsi-quattro-2019",
+				"status": "published",
+				"data": {
+					"title": "Audi Q5 45 TFSI quattro",
+					"price": 30500,
+					"year": 2019,
+					"mileage_km": 99800,
+					"engine_l": 2,
+					"power_hp": 265,
+					"transmission": "Automatic",
+					"doors": 5,
+					"seats": 5,
+					"color": "White",
+					"vin": "WAUXCZ044RM175DPT",
+					"condition": "Used",
+					"available_from": "2026-10-23T10:30:00.000Z",
+					"features": [
+						"Adaptive cruise control",
+						"Apple CarPlay"
+					],
+					"description": [
+						{
+							"_type": "block",
+							"_key": "car-10-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-10-b0s0",
+									"text": "Audi Q5 45 TFSI quattro from 2019 with 99,800 km, two owners and a ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-10-b0s1",
+									"text": "full main-dealer service history",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-10-b0s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-10-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-10-b1s0",
+									"text": "265 hp petrol engine with an automatic gearbox. ITV (MOT) passed, two keys, ready to drive away.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-10-b2",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-10-b2s0",
+									"text": "Part exchange welcome. Viewing by appointment at our showroom.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/cars/car-03.jpg",
+							"alt": "White mid-size SUV in a showroom",
+							"filename": "car-03.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-03.jpg",
+									"alt": "White mid-size SUV in a showroom",
+									"filename": "car-03.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-09.jpg",
+									"alt": "Dashboard and steering wheel with digital instruments",
+									"filename": "car-09.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-10.jpg",
+									"alt": "Rear seats with light leather upholstery",
+									"filename": "car-10.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"make": [
+						"audi",
+						"audi-q5"
+					],
+					"body_type": [
+						"suv"
+					],
+					"fuel": [
+						"petrol"
+					],
+					"location": [
+						"altea"
+					]
+				}
+			},
+			{
+				"id": "car-11",
+				"slug": "volkswagen-golf-1-5-tsi-life-2022",
+				"status": "published",
+				"data": {
+					"title": "Volkswagen Golf 1.5 TSI Life",
+					"price": 22400,
+					"year": 2022,
+					"mileage_km": 28700,
+					"engine_l": 1.5,
+					"power_hp": 130,
+					"transmission": "Manual",
+					"doors": 5,
+					"seats": 5,
+					"color": "Silver",
+					"vin": "WVWRDW3RX03J2K0FX",
+					"condition": "Used",
+					"available_from": "2026-10-30T11:00:00.000Z",
+					"features": [
+						"Adaptive cruise control",
+						"Keyless entry",
+						"LED headlights",
+						"Leather seats",
+						"Navigation",
+						"Panoramic roof",
+						"Parking camera"
+					],
+					"description": [
+						{
+							"_type": "block",
+							"_key": "car-11-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-11-b0s0",
+									"text": "Volkswagen Golf 1.5 TSI Life from 2022 with 28,700 km, one owner and a ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-11-b0s1",
+									"text": "full main-dealer service history",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-11-b0s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-11-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-11-b1s0",
+									"text": "130 hp petrol engine with a manual gearbox. ITV (MOT) passed, two keys, ready to drive away.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-11-b2",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-11-b2s0",
+									"text": "Part exchange welcome. Viewing by appointment at our showroom.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/cars/car-01.jpg",
+							"alt": "Silver compact hatchback on a dealership forecourt",
+							"filename": "car-01.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-01.jpg",
+									"alt": "Silver compact hatchback on a dealership forecourt",
+									"filename": "car-01.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-09.jpg",
+									"alt": "Dashboard and steering wheel with digital instruments",
+									"filename": "car-09.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-10.jpg",
+									"alt": "Rear seats with light leather upholstery",
+									"filename": "car-10.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"make": [
+						"volkswagen",
+						"volkswagen-golf"
+					],
+					"body_type": [
+						"hatchback"
+					],
+					"fuel": [
+						"petrol"
+					],
+					"location": [
+						"malaga"
+					]
+				}
+			},
+			{
+				"id": "car-12",
+				"slug": "volkswagen-passat-variant-2-0-tdi-2018",
+				"status": "published",
+				"data": {
+					"title": "Volkswagen Passat Variant 2.0 TDI",
+					"price": 15900,
+					"year": 2018,
+					"mileage_km": 148000,
+					"engine_l": 2,
+					"power_hp": 150,
+					"transmission": "Automatic",
+					"doors": 5,
+					"seats": 5,
+					"color": "Blue",
+					"vin": "WVWYUVKSKXRTPV63S",
+					"condition": "Used",
+					"available_from": "2026-11-06T12:30:00.000Z",
+					"features": [
+						"Keyless entry",
+						"LED headlights",
+						"Parking sensors",
+						"Tow bar"
+					],
+					"description": [
+						{
+							"_type": "block",
+							"_key": "car-12-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-12-b0s0",
+									"text": "Volkswagen Passat Variant 2.0 TDI from 2018 with 148,000 km, one owner and a ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-12-b0s1",
+									"text": "full main-dealer service history",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-12-b0s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-12-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-12-b1s0",
+									"text": "150 hp diesel engine with an automatic gearbox. ITV (MOT) passed, two keys, ready to drive away.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-12-b2",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-12-b2s0",
+									"text": "Part exchange welcome. Viewing by appointment at our showroom.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/cars/car-04.jpg",
+							"alt": "Dark blue estate car on a driveway",
+							"filename": "car-04.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-04.jpg",
+									"alt": "Dark blue estate car on a driveway",
+									"filename": "car-04.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-09.jpg",
+									"alt": "Dashboard and steering wheel with digital instruments",
+									"filename": "car-09.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-10.jpg",
+									"alt": "Rear seats with light leather upholstery",
+									"filename": "car-10.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"make": [
+						"volkswagen",
+						"volkswagen-passat"
+					],
+					"body_type": [
+						"estate"
+					],
+					"fuel": [
+						"diesel"
+					],
+					"location": [
+						"alicante"
+					]
+				}
+			},
+			{
+				"id": "car-13",
+				"slug": "volkswagen-tiguan-2-0-tdi-4motion-2021",
+				"status": "published",
+				"data": {
+					"title": "Volkswagen Tiguan 2.0 TDI 4Motion",
+					"price": 29800,
+					"year": 2021,
+					"mileage_km": 59900,
+					"engine_l": 2,
+					"power_hp": 150,
+					"transmission": "Automatic",
+					"doors": 5,
+					"seats": 5,
+					"color": "Green",
+					"vin": "WVWJ7J1WU5Z7EL6GC",
+					"condition": "Used",
+					"available_from": "2026-11-13T09:00:00.000Z",
+					"features": [
+						"Heated seats",
+						"LED headlights",
+						"Leather seats",
+						"Navigation",
+						"Panoramic roof",
+						"Parking sensors"
+					],
+					"description": [
+						{
+							"_type": "block",
+							"_key": "car-13-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-13-b0s0",
+									"text": "Volkswagen Tiguan 2.0 TDI 4Motion from 2021 with 59,900 km, one owner and a ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-13-b0s1",
+									"text": "full main-dealer service history",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-13-b0s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-13-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-13-b1s0",
+									"text": "150 hp diesel engine with an automatic gearbox. ITV (MOT) passed, two keys, ready to drive away.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-13-b2",
+							"style": "normal",
+							"markDefs": [
+								{
+									"_type": "link",
+									"_key": "car-13-b2l0",
+									"href": "https://example.com/warranty"
+								}
+							],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-13-b2s0",
+									"text": "Financing available on request. See our ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-13-b2s1",
+									"text": "warranty terms",
+									"marks": [
+										"car-13-b2l0"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-13-b2s2",
+									"text": " for details.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/cars/car-07.jpg",
+							"alt": "Dark green crossover on a countryside road",
+							"filename": "car-07.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-07.jpg",
+									"alt": "Dark green crossover on a countryside road",
+									"filename": "car-07.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-09.jpg",
+									"alt": "Dashboard and steering wheel with digital instruments",
+									"filename": "car-09.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-10.jpg",
+									"alt": "Rear seats with light leather upholstery",
+									"filename": "car-10.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"make": [
+						"volkswagen",
+						"volkswagen-tiguan"
+					],
+					"body_type": [
+						"suv"
+					],
+					"fuel": [
+						"diesel"
+					],
+					"location": [
+						"valencia"
+					]
+				}
+			},
+			{
+				"id": "car-14",
+				"slug": "volkswagen-id-3-pro-performance-2023",
+				"status": "published",
+				"data": {
+					"title": "Volkswagen ID.3 Pro Performance",
+					"price": 27900,
+					"year": 2023,
+					"mileage_km": 18400,
+					"engine_l": null,
+					"power_hp": 204,
+					"transmission": "Automatic",
+					"doors": 5,
+					"seats": 5,
+					"color": "Grey",
+					"vin": "WVW449U89RAXADE2M",
+					"condition": "New",
+					"available_from": "2026-10-06T10:30:00.000Z",
+					"features": [
+						"Adaptive cruise control",
+						"Apple CarPlay",
+						"Navigation"
+					],
+					"description": [
+						{
+							"_type": "block",
+							"_key": "car-14-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-14-b0s0",
+									"text": "Volkswagen ID.3 Pro Performance from 2023 with 18,400 km, one owner and a ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-14-b0s1",
+									"text": "full main-dealer service history",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-14-b0s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-14-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-14-b1s0",
+									"text": "204 hp electric drive with an automatic gearbox. ITV (MOT) passed, two keys, ready to drive away.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-14-b2",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-14-b2s0",
+									"text": "Part exchange welcome. Viewing by appointment at our showroom.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/cars/car-06.jpg",
+							"alt": "Grey electric fastback at a charging station",
+							"filename": "car-06.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-06.jpg",
+									"alt": "Grey electric fastback at a charging station",
+									"filename": "car-06.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-09.jpg",
+									"alt": "Dashboard and steering wheel with digital instruments",
+									"filename": "car-09.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-10.jpg",
+									"alt": "Rear seats with light leather upholstery",
+									"filename": "car-10.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"make": [
+						"volkswagen",
+						"volkswagen-id-3"
+					],
+					"body_type": [
+						"hatchback"
+					],
+					"fuel": [
+						"electric"
+					],
+					"location": [
+						"valencia"
+					]
+				}
+			},
+			{
+				"id": "car-15",
+				"slug": "toyota-corolla-1-8-hybrid-active-2021",
+				"status": "published",
+				"data": {
+					"title": "Toyota Corolla 1.8 Hybrid Active",
+					"price": 19900,
+					"year": 2021,
+					"mileage_km": 52300,
+					"engine_l": 1.8,
+					"power_hp": 122,
+					"transmission": "Automatic",
+					"doors": 5,
+					"seats": 5,
+					"color": "Silver",
+					"vin": "SB1UZ0PF7EKGURSNK",
+					"condition": "Used",
+					"available_from": "2026-10-13T11:00:00.000Z",
+					"features": [
+						"Apple CarPlay",
+						"Heated seats",
+						"Panoramic roof",
+						"Parking sensors",
+						"Tow bar"
+					],
+					"description": [
+						{
+							"_type": "block",
+							"_key": "car-15-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-15-b0s0",
+									"text": "Toyota Corolla 1.8 Hybrid Active from 2021 with 52,300 km, one owner and a ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-15-b0s1",
+									"text": "full main-dealer service history",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-15-b0s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-15-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-15-b1s0",
+									"text": "122 hp hybrid engine with an automatic gearbox. ITV (MOT) passed, two keys, ready to drive away.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-15-b2",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-15-b2s0",
+									"text": "Part exchange welcome. Viewing by appointment at our showroom.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/cars/car-01.jpg",
+							"alt": "Silver compact hatchback on a dealership forecourt",
+							"filename": "car-01.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-01.jpg",
+									"alt": "Silver compact hatchback on a dealership forecourt",
+									"filename": "car-01.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-09.jpg",
+									"alt": "Dashboard and steering wheel with digital instruments",
+									"filename": "car-09.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-10.jpg",
+									"alt": "Rear seats with light leather upholstery",
+									"filename": "car-10.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"make": [
+						"toyota",
+						"toyota-corolla"
+					],
+					"body_type": [
+						"hatchback"
+					],
+					"fuel": [
+						"hybrid"
+					],
+					"location": [
+						"marbella"
+					]
+				}
+			},
+			{
+				"id": "car-16",
+				"slug": "toyota-rav4-2-5-hybrid-awd-2022",
+				"status": "published",
+				"data": {
+					"title": "Toyota RAV4 2.5 Hybrid AWD",
+					"price": 36500,
+					"year": 2022,
+					"mileage_km": 38800,
+					"engine_l": 2.5,
+					"power_hp": 222,
+					"transmission": "Automatic",
+					"doors": 5,
+					"seats": 5,
+					"color": "White",
+					"vin": "SB1SG3B640D6EV9GD",
+					"condition": "Used",
+					"available_from": "2026-10-20T12:30:00.000Z",
+					"features": [
+						"Apple CarPlay",
+						"Navigation",
+						"Panoramic roof",
+						"Parking sensors",
+						"Tow bar"
+					],
+					"description": [
+						{
+							"_type": "block",
+							"_key": "car-16-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-16-b0s0",
+									"text": "Toyota RAV4 2.5 Hybrid AWD from 2022 with 38,800 km, one owner and a ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-16-b0s1",
+									"text": "documented service history",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-16-b0s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-16-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-16-b1s0",
+									"text": "222 hp hybrid engine with an automatic gearbox. ITV (MOT) passed, two keys, ready to drive away.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-16-b2",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-16-b2s0",
+									"text": "Part exchange welcome. Viewing by appointment at our showroom.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/cars/car-11.jpg",
+							"alt": "Pearl white large SUV on a coastal road",
+							"filename": "car-11.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-11.jpg",
+									"alt": "Pearl white large SUV on a coastal road",
+									"filename": "car-11.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-09.jpg",
+									"alt": "Dashboard and steering wheel with digital instruments",
+									"filename": "car-09.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-10.jpg",
+									"alt": "Rear seats with light leather upholstery",
+									"filename": "car-10.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"make": [
+						"toyota",
+						"toyota-rav4"
+					],
+					"body_type": [
+						"suv"
+					],
+					"fuel": [
+						"hybrid"
+					],
+					"location": [
+						"estepona"
+					]
+				}
+			},
+			{
+				"id": "car-17",
+				"slug": "toyota-yaris-1-5-hybrid-2020",
+				"status": "published",
+				"data": {
+					"title": "Toyota Yaris 1.5 Hybrid",
+					"price": 15400,
+					"year": 2020,
+					"mileage_km": 61000,
+					"engine_l": 1.5,
+					"power_hp": 116,
+					"transmission": "Automatic",
+					"doors": 5,
+					"seats": 5,
+					"color": "Red",
+					"vin": "SB1GJF0DVA2CT2HFL",
+					"condition": "Used",
+					"available_from": "2026-10-27T09:00:00.000Z",
+					"features": [
+						"Apple CarPlay",
+						"Heated seats",
+						"Leather seats",
+						"Panoramic roof",
+						"Parking camera",
+						"Tow bar"
+					],
+					"description": [
+						{
+							"_type": "block",
+							"_key": "car-17-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-17-b0s0",
+									"text": "Toyota Yaris 1.5 Hybrid from 2020 with 61,000 km, one owner and a ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-17-b0s1",
+									"text": "full main-dealer service history",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-17-b0s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-17-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-17-b1s0",
+									"text": "116 hp hybrid engine with an automatic gearbox. ITV (MOT) passed, two keys, ready to drive away.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-17-b2",
+							"style": "normal",
+							"markDefs": [
+								{
+									"_type": "link",
+									"_key": "car-17-b2l0",
+									"href": "https://example.com/warranty"
+								}
+							],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-17-b2s0",
+									"text": "Financing available on request. See our ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-17-b2s1",
+									"text": "warranty terms",
+									"marks": [
+										"car-17-b2l0"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-17-b2s2",
+									"text": " for details.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/cars/car-05.jpg",
+							"alt": "Red city car on a Mediterranean street",
+							"filename": "car-05.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-05.jpg",
+									"alt": "Red city car on a Mediterranean street",
+									"filename": "car-05.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-09.jpg",
+									"alt": "Dashboard and steering wheel with digital instruments",
+									"filename": "car-09.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-10.jpg",
+									"alt": "Rear seats with light leather upholstery",
+									"filename": "car-10.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"make": [
+						"toyota",
+						"toyota-yaris"
+					],
+					"body_type": [
+						"city-car"
+					],
+					"fuel": [
+						"hybrid"
+					],
+					"location": [
+						"malaga"
+					]
+				}
+			},
+			{
+				"id": "car-18",
+				"slug": "skoda-octavia-combi-2-0-tdi-style-2021",
+				"status": "draft",
+				"data": {
+					"title": "Škoda Octavia Combi 2.0 TDI Style",
+					"price": 21900,
+					"year": 2021,
+					"mileage_km": 76500,
+					"engine_l": 2,
+					"power_hp": 150,
+					"transmission": "Automatic",
+					"doors": 5,
+					"seats": 5,
+					"color": "Blue",
+					"vin": "TMBLXJ7GN2C297VZU",
+					"condition": "Used",
+					"available_from": "2026-11-03T10:30:00.000Z",
+					"features": [
+						"Heated seats",
+						"Keyless entry",
+						"Parking camera",
+						"Parking sensors"
+					],
+					"description": [
+						{
+							"_type": "block",
+							"_key": "car-18-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-18-b0s0",
+									"text": "Škoda Octavia Combi 2.0 TDI Style from 2021 with 76,500 km, two owners and a ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-18-b0s1",
+									"text": "full main-dealer service history",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-18-b0s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-18-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-18-b1s0",
+									"text": "150 hp diesel engine with an automatic gearbox. ITV (MOT) passed, two keys, ready to drive away.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-18-b2",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-18-b2s0",
+									"text": "Part exchange welcome. Viewing by appointment at our showroom.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/cars/car-04.jpg",
+							"alt": "Dark blue estate car on a driveway",
+							"filename": "car-04.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-04.jpg",
+									"alt": "Dark blue estate car on a driveway",
+									"filename": "car-04.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-09.jpg",
+									"alt": "Dashboard and steering wheel with digital instruments",
+									"filename": "car-09.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-10.jpg",
+									"alt": "Rear seats with light leather upholstery",
+									"filename": "car-10.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"make": [
+						"skoda",
+						"skoda-octavia"
+					],
+					"body_type": [
+						"estate"
+					],
+					"fuel": [
+						"diesel"
+					],
+					"location": [
+						"benidorm"
+					]
+				}
+			},
+			{
+				"id": "car-19",
+				"slug": "skoda-kodiaq-2-0-tdi-7-seater-2020",
+				"status": "published",
+				"data": {
+					"title": "Škoda Kodiaq 2.0 TDI 7-seater",
+					"price": 27900,
+					"year": 2020,
+					"mileage_km": 91200,
+					"engine_l": 2,
+					"power_hp": 150,
+					"transmission": "Automatic",
+					"doors": 5,
+					"seats": 7,
+					"color": "White",
+					"vin": "TMBX2MVM9V7Z9881M",
+					"condition": "Used",
+					"available_from": "2026-11-10T11:00:00.000Z",
+					"features": [
+						"Adaptive cruise control",
+						"Apple CarPlay",
+						"Heated seats",
+						"Keyless entry",
+						"Leather seats",
+						"Panoramic roof",
+						"Tow bar"
+					],
+					"description": [
+						{
+							"_type": "block",
+							"_key": "car-19-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-19-b0s0",
+									"text": "Škoda Kodiaq 2.0 TDI 7-seater from 2020 with 91,200 km, two owners and a ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-19-b0s1",
+									"text": "documented service history",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-19-b0s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-19-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-19-b1s0",
+									"text": "150 hp diesel engine with an automatic gearbox. ITV (MOT) passed, two keys, ready to drive away.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-19-b2",
+							"style": "normal",
+							"markDefs": [
+								{
+									"_type": "link",
+									"_key": "car-19-b2l0",
+									"href": "https://example.com/warranty"
+								}
+							],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-19-b2s0",
+									"text": "Financing available on request. See our ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-19-b2s1",
+									"text": "warranty terms",
+									"marks": [
+										"car-19-b2l0"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-19-b2s2",
+									"text": " for details.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/cars/car-08.jpg",
+							"alt": "White seven-seat MPV in a car park",
+							"filename": "car-08.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-08.jpg",
+									"alt": "White seven-seat MPV in a car park",
+									"filename": "car-08.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-09.jpg",
+									"alt": "Dashboard and steering wheel with digital instruments",
+									"filename": "car-09.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-10.jpg",
+									"alt": "Rear seats with light leather upholstery",
+									"filename": "car-10.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"make": [
+						"skoda",
+						"skoda-kodiaq"
+					],
+					"body_type": [
+						"suv"
+					],
+					"fuel": [
+						"diesel"
+					],
+					"location": [
+						"valencia"
+					]
+				}
+			},
+			{
+				"id": "car-20",
+				"slug": "renault-clio-tce-90-evolution-2022",
+				"status": "published",
+				"data": {
+					"title": "Renault Clio TCe 90 Evolution",
+					"price": 15900,
+					"year": 2022,
+					"mileage_km": 24100,
+					"engine_l": 1,
+					"power_hp": 90,
+					"transmission": "Manual",
+					"doors": 5,
+					"seats": 5,
+					"color": "Red",
+					"vin": "VF1L28Y911LNNC2AX",
+					"condition": "Used",
+					"available_from": "2026-11-17T12:30:00.000Z",
+					"features": [
+						"Adaptive cruise control",
+						"Navigation",
+						"Panoramic roof"
+					],
+					"description": [
+						{
+							"_type": "block",
+							"_key": "car-20-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-20-b0s0",
+									"text": "Renault Clio TCe 90 Evolution from 2022 with 24,100 km, two owners and a ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-20-b0s1",
+									"text": "documented service history",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-20-b0s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-20-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-20-b1s0",
+									"text": "90 hp petrol engine with a manual gearbox. ITV (MOT) passed, two keys, ready to drive away.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-20-b2",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-20-b2s0",
+									"text": "Part exchange welcome. Viewing by appointment at our showroom.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/cars/car-05.jpg",
+							"alt": "Red city car on a Mediterranean street",
+							"filename": "car-05.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-05.jpg",
+									"alt": "Red city car on a Mediterranean street",
+									"filename": "car-05.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-09.jpg",
+									"alt": "Dashboard and steering wheel with digital instruments",
+									"filename": "car-09.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-10.jpg",
+									"alt": "Rear seats with light leather upholstery",
+									"filename": "car-10.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"make": [
+						"renault",
+						"renault-clio"
+					],
+					"body_type": [
+						"city-car"
+					],
+					"fuel": [
+						"petrol"
+					],
+					"location": [
+						"alicante"
+					]
+				}
+			},
+			{
+				"id": "car-21",
+				"slug": "renault-captur-e-tech-hybrid-2023",
+				"status": "published",
+				"data": {
+					"title": "Renault Captur E-Tech Hybrid",
+					"price": 24500,
+					"year": 2023,
+					"mileage_km": 12900,
+					"engine_l": 1.6,
+					"power_hp": 145,
+					"transmission": "Automatic",
+					"doors": 5,
+					"seats": 5,
+					"color": "Green",
+					"vin": "VF1BG0SMTEG91R22R",
+					"condition": "New",
+					"available_from": "2026-10-12T09:00:00.000Z",
+					"features": [
+						"Keyless entry",
+						"Navigation",
+						"Tow bar"
+					],
+					"description": [
+						{
+							"_type": "block",
+							"_key": "car-21-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-21-b0s0",
+									"text": "Renault Captur E-Tech Hybrid from 2023 with 12,900 km, one owner and a ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-21-b0s1",
+									"text": "full main-dealer service history",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-21-b0s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-21-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-21-b1s0",
+									"text": "145 hp hybrid engine with an automatic gearbox. ITV (MOT) passed, two keys, ready to drive away.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-21-b2",
+							"style": "normal",
+							"markDefs": [
+								{
+									"_type": "link",
+									"_key": "car-21-b2l0",
+									"href": "https://example.com/warranty"
+								}
+							],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-21-b2s0",
+									"text": "Financing available on request. See our ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-21-b2s1",
+									"text": "warranty terms",
+									"marks": [
+										"car-21-b2l0"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-21-b2s2",
+									"text": " for details.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/cars/car-07.jpg",
+							"alt": "Dark green crossover on a countryside road",
+							"filename": "car-07.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-07.jpg",
+									"alt": "Dark green crossover on a countryside road",
+									"filename": "car-07.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-09.jpg",
+									"alt": "Dashboard and steering wheel with digital instruments",
+									"filename": "car-09.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-10.jpg",
+									"alt": "Rear seats with light leather upholstery",
+									"filename": "car-10.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"make": [
+						"renault",
+						"renault-captur"
+					],
+					"body_type": [
+						"crossover"
+					],
+					"fuel": [
+						"hybrid"
+					],
+					"location": [
+						"altea"
+					]
+				}
+			},
+			{
+				"id": "car-22",
+				"slug": "peugeot-308-1-2-puretech-allure-2021",
+				"status": "published",
+				"data": {
+					"title": "Peugeot 308 1.2 PureTech Allure",
+					"price": 18400,
+					"year": 2021,
+					"mileage_km": 47800,
+					"engine_l": 1.2,
+					"power_hp": 130,
+					"transmission": "Manual",
+					"doors": 5,
+					"seats": 5,
+					"color": "Orange",
+					"vin": "VF3XZVAUY1EUFPSSE",
+					"condition": "Used",
+					"available_from": "2026-10-19T10:30:00.000Z",
+					"features": [
+						"Adaptive cruise control",
+						"Apple CarPlay",
+						"Leather seats",
+						"Panoramic roof",
+						"Parking camera",
+						"Parking sensors"
+					],
+					"description": [
+						{
+							"_type": "block",
+							"_key": "car-22-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-22-b0s0",
+									"text": "Peugeot 308 1.2 PureTech Allure from 2021 with 47,800 km, two owners and a ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-22-b0s1",
+									"text": "full main-dealer service history",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-22-b0s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-22-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-22-b1s0",
+									"text": "130 hp petrol engine with a manual gearbox. ITV (MOT) passed, two keys, ready to drive away.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-22-b2",
+							"style": "normal",
+							"markDefs": [
+								{
+									"_type": "link",
+									"_key": "car-22-b2l0",
+									"href": "https://example.com/warranty"
+								}
+							],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-22-b2s0",
+									"text": "Financing available on request. See our ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-22-b2s1",
+									"text": "warranty terms",
+									"marks": [
+										"car-22-b2l0"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-22-b2s2",
+									"text": " for details.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/cars/car-12.jpg",
+							"alt": "Orange sporty hatchback in an urban car park",
+							"filename": "car-12.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-12.jpg",
+									"alt": "Orange sporty hatchback in an urban car park",
+									"filename": "car-12.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-09.jpg",
+									"alt": "Dashboard and steering wheel with digital instruments",
+									"filename": "car-09.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-10.jpg",
+									"alt": "Rear seats with light leather upholstery",
+									"filename": "car-10.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"make": [
+						"peugeot",
+						"peugeot-308"
+					],
+					"body_type": [
+						"hatchback"
+					],
+					"fuel": [
+						"petrol"
+					],
+					"location": [
+						"estepona"
+					]
+				}
+			},
+			{
+				"id": "car-23",
+				"slug": "peugeot-5008-1-5-bluehdi-gt-2020",
+				"status": "published",
+				"data": {
+					"title": "Peugeot 5008 1.5 BlueHDi GT",
+					"price": 23900,
+					"year": 2020,
+					"mileage_km": 103400,
+					"engine_l": 1.5,
+					"power_hp": 130,
+					"transmission": "Automatic",
+					"doors": 5,
+					"seats": 7,
+					"color": "White",
+					"vin": "VF32JP6SVJK09S1J2",
+					"condition": "Used",
+					"available_from": "2026-10-26T11:00:00.000Z",
+					"features": [
+						"Navigation",
+						"Parking sensors"
+					],
+					"description": [
+						{
+							"_type": "block",
+							"_key": "car-23-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-23-b0s0",
+									"text": "Peugeot 5008 1.5 BlueHDi GT from 2020 with 103,400 km, one owner and a ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-23-b0s1",
+									"text": "full main-dealer service history",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-23-b0s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-23-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-23-b1s0",
+									"text": "130 hp diesel engine with an automatic gearbox. ITV (MOT) passed, two keys, ready to drive away.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-23-b2",
+							"style": "normal",
+							"markDefs": [
+								{
+									"_type": "link",
+									"_key": "car-23-b2l0",
+									"href": "https://example.com/warranty"
+								}
+							],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-23-b2s0",
+									"text": "Financing available on request. See our ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-23-b2s1",
+									"text": "warranty terms",
+									"marks": [
+										"car-23-b2l0"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-23-b2s2",
+									"text": " for details.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/cars/car-08.jpg",
+							"alt": "White seven-seat MPV in a car park",
+							"filename": "car-08.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-08.jpg",
+									"alt": "White seven-seat MPV in a car park",
+									"filename": "car-08.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-09.jpg",
+									"alt": "Dashboard and steering wheel with digital instruments",
+									"filename": "car-09.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-10.jpg",
+									"alt": "Rear seats with light leather upholstery",
+									"filename": "car-10.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"make": [
+						"peugeot",
+						"peugeot-5008"
+					],
+					"body_type": [
+						"mpv"
+					],
+					"fuel": [
+						"diesel"
+					],
+					"location": [
+						"malaga"
+					]
+				}
+			},
+			{
+				"id": "car-24",
+				"slug": "volvo-xc60-b4-momentum-2021",
+				"status": "published",
+				"data": {
+					"title": "Volvo XC60 B4 Momentum",
+					"price": 34900,
+					"year": 2021,
+					"mileage_km": 69800,
+					"engine_l": 2,
+					"power_hp": 197,
+					"transmission": "Automatic",
+					"doors": 5,
+					"seats": 5,
+					"color": "White",
+					"vin": "YV11H5FADNE4RZW5V",
+					"condition": "Used",
+					"available_from": "2026-11-02T12:30:00.000Z",
+					"features": [
+						"Adaptive cruise control",
+						"Parking camera",
+						"Parking sensors"
+					],
+					"description": [
+						{
+							"_type": "block",
+							"_key": "car-24-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-24-b0s0",
+									"text": "Volvo XC60 B4 Momentum from 2021 with 69,800 km, two owners and a ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-24-b0s1",
+									"text": "full main-dealer service history",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-24-b0s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-24-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-24-b1s0",
+									"text": "197 hp hybrid engine with an automatic gearbox. ITV (MOT) passed, two keys, ready to drive away.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-24-b2",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-24-b2s0",
+									"text": "Part exchange welcome. Viewing by appointment at our showroom.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/cars/car-11.jpg",
+							"alt": "Pearl white large SUV on a coastal road",
+							"filename": "car-11.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-11.jpg",
+									"alt": "Pearl white large SUV on a coastal road",
+									"filename": "car-11.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-09.jpg",
+									"alt": "Dashboard and steering wheel with digital instruments",
+									"filename": "car-09.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-10.jpg",
+									"alt": "Rear seats with light leather upholstery",
+									"filename": "car-10.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"make": [
+						"volvo",
+						"volvo-xc60"
+					],
+					"body_type": [
+						"suv"
+					],
+					"fuel": [
+						"hybrid"
+					],
+					"location": [
+						"marbella"
+					]
+				}
+			},
+			{
+				"id": "car-25",
+				"slug": "volvo-v60-d4-inscription-2019",
+				"status": "published",
+				"data": {
+					"title": "Volvo V60 D4 Inscription",
+					"price": 19800,
+					"year": 2019,
+					"mileage_km": 118600,
+					"engine_l": 2,
+					"power_hp": 190,
+					"transmission": "Automatic",
+					"doors": 5,
+					"seats": 5,
+					"color": "Grey",
+					"vin": "YV12P7BYMNVDGY5W2",
+					"condition": "Used",
+					"available_from": "2026-11-09T09:00:00.000Z",
+					"features": [
+						"Keyless entry",
+						"Navigation",
+						"Parking camera"
+					],
+					"description": [
+						{
+							"_type": "block",
+							"_key": "car-25-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-25-b0s0",
+									"text": "Volvo V60 D4 Inscription from 2019 with 118,600 km, two owners and a ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-25-b0s1",
+									"text": "full main-dealer service history",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-25-b0s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-25-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-25-b1s0",
+									"text": "190 hp diesel engine with an automatic gearbox. ITV (MOT) passed, two keys, ready to drive away.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-25-b2",
+							"style": "normal",
+							"markDefs": [
+								{
+									"_type": "link",
+									"_key": "car-25-b2l0",
+									"href": "https://example.com/warranty"
+								}
+							],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-25-b2s0",
+									"text": "Financing available on request. See our ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-25-b2s1",
+									"text": "warranty terms",
+									"marks": [
+										"car-25-b2l0"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-25-b2s2",
+									"text": " for details.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/cars/car-04.jpg",
+							"alt": "Dark blue estate car on a driveway",
+							"filename": "car-04.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-04.jpg",
+									"alt": "Dark blue estate car on a driveway",
+									"filename": "car-04.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-09.jpg",
+									"alt": "Dashboard and steering wheel with digital instruments",
+									"filename": "car-09.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-10.jpg",
+									"alt": "Rear seats with light leather upholstery",
+									"filename": "car-10.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"make": [
+						"volvo",
+						"volvo-v60"
+					],
+					"body_type": [
+						"estate"
+					],
+					"fuel": [
+						"diesel"
+					],
+					"location": [
+						"valencia"
+					]
+				}
+			},
+			{
+				"id": "car-26",
+				"slug": "tesla-model-3-long-range-awd-2022",
+				"status": "published",
+				"data": {
+					"title": "Tesla Model 3 Long Range AWD",
+					"price": 33900,
+					"year": 2022,
+					"mileage_km": 45100,
+					"engine_l": null,
+					"power_hp": 440,
+					"transmission": "Automatic",
+					"doors": 4,
+					"seats": 5,
+					"color": "Grey",
+					"vin": "5YJ2P146WENAD3X85",
+					"condition": "Used",
+					"available_from": "2026-11-16T10:30:00.000Z",
+					"features": [
+						"Adaptive cruise control",
+						"Leather seats",
+						"Tow bar"
+					],
+					"description": [
+						{
+							"_type": "block",
+							"_key": "car-26-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-26-b0s0",
+									"text": "Tesla Model 3 Long Range AWD from 2022 with 45,100 km, one owner and a ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-26-b0s1",
+									"text": "full main-dealer service history",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-26-b0s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-26-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-26-b1s0",
+									"text": "440 hp electric drive with an automatic gearbox. ITV (MOT) passed, two keys, ready to drive away.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-26-b2",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-26-b2s0",
+									"text": "Part exchange welcome. Viewing by appointment at our showroom.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/cars/car-06.jpg",
+							"alt": "Grey electric fastback at a charging station",
+							"filename": "car-06.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-06.jpg",
+									"alt": "Grey electric fastback at a charging station",
+									"filename": "car-06.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-09.jpg",
+									"alt": "Dashboard and steering wheel with digital instruments",
+									"filename": "car-09.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-10.jpg",
+									"alt": "Rear seats with light leather upholstery",
+									"filename": "car-10.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"make": [
+						"tesla",
+						"tesla-model-3"
+					],
+					"body_type": [
+						"sedan"
+					],
+					"fuel": [
+						"electric"
+					],
+					"location": [
+						"malaga"
+					]
+				}
+			},
+			{
+				"id": "car-27",
+				"slug": "ford-focus-1-0-ecoboost-st-line-2020",
+				"status": "draft",
+				"data": {
+					"title": "Ford Focus 1.0 EcoBoost ST-Line",
+					"price": 16900,
+					"year": 2020,
+					"mileage_km": 67200,
+					"engine_l": 1,
+					"power_hp": 125,
+					"transmission": "Manual",
+					"doors": 5,
+					"seats": 5,
+					"color": "Orange",
+					"vin": "WF0UFPA17K139DWLV",
+					"condition": "Used",
+					"available_from": "2026-10-07T11:00:00.000Z",
+					"features": [
+						"LED headlights",
+						"Navigation",
+						"Panoramic roof"
+					],
+					"description": [
+						{
+							"_type": "block",
+							"_key": "car-27-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-27-b0s0",
+									"text": "Ford Focus 1.0 EcoBoost ST-Line from 2020 with 67,200 km, two owners and a ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-27-b0s1",
+									"text": "full main-dealer service history",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-27-b0s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-27-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-27-b1s0",
+									"text": "125 hp petrol engine with a manual gearbox. ITV (MOT) passed, two keys, ready to drive away.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-27-b2",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-27-b2s0",
+									"text": "Part exchange welcome. Viewing by appointment at our showroom.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/cars/car-12.jpg",
+							"alt": "Orange sporty hatchback in an urban car park",
+							"filename": "car-12.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-12.jpg",
+									"alt": "Orange sporty hatchback in an urban car park",
+									"filename": "car-12.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-09.jpg",
+									"alt": "Dashboard and steering wheel with digital instruments",
+									"filename": "car-09.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-10.jpg",
+									"alt": "Rear seats with light leather upholstery",
+									"filename": "car-10.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"make": [
+						"ford",
+						"ford-focus"
+					],
+					"body_type": [
+						"hatchback"
+					],
+					"fuel": [
+						"petrol"
+					],
+					"location": [
+						"alicante"
+					]
+				}
+			},
+			{
+				"id": "car-28",
+				"slug": "ford-kuga-2-5-phev-titanium-2022",
+				"status": "published",
+				"data": {
+					"title": "Ford Kuga 2.5 PHEV Titanium",
+					"price": 29400,
+					"year": 2022,
+					"mileage_km": 36900,
+					"engine_l": 2.5,
+					"power_hp": 225,
+					"transmission": "Automatic",
+					"doors": 5,
+					"seats": 5,
+					"color": "Green",
+					"vin": "WF0AVGFN8P7N591FX",
+					"condition": "Used",
+					"available_from": "2026-10-14T12:30:00.000Z",
+					"features": [
+						"Keyless entry",
+						"LED headlights",
+						"Leather seats",
+						"Tow bar"
+					],
+					"description": [
+						{
+							"_type": "block",
+							"_key": "car-28-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-28-b0s0",
+									"text": "Ford Kuga 2.5 PHEV Titanium from 2022 with 36,900 km, one owner and a ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-28-b0s1",
+									"text": "documented service history",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-28-b0s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-28-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-28-b1s0",
+									"text": "225 hp hybrid engine with an automatic gearbox. ITV (MOT) passed, two keys, ready to drive away.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-28-b2",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-28-b2s0",
+									"text": "Part exchange welcome. Viewing by appointment at our showroom.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/cars/car-07.jpg",
+							"alt": "Dark green crossover on a countryside road",
+							"filename": "car-07.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-07.jpg",
+									"alt": "Dark green crossover on a countryside road",
+									"filename": "car-07.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-09.jpg",
+									"alt": "Dashboard and steering wheel with digital instruments",
+									"filename": "car-09.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-10.jpg",
+									"alt": "Rear seats with light leather upholstery",
+									"filename": "car-10.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"make": [
+						"ford",
+						"ford-kuga"
+					],
+					"body_type": [
+						"crossover"
+					],
+					"fuel": [
+						"hybrid"
+					],
+					"location": [
+						"benidorm"
+					]
+				}
+			},
+			{
+				"id": "car-29",
+				"slug": "hyundai-tucson-1-6-t-gdi-hev-2023",
+				"status": "published",
+				"data": {
+					"title": "Hyundai Tucson 1.6 T-GDI HEV",
+					"price": 33400,
+					"year": 2023,
+					"mileage_km": 15800,
+					"engine_l": 1.6,
+					"power_hp": 230,
+					"transmission": "Automatic",
+					"doors": 5,
+					"seats": 5,
+					"color": "White",
+					"vin": "TMAS3J48SU68GPVRM",
+					"condition": "New",
+					"available_from": "2026-10-21T09:00:00.000Z",
+					"features": [
+						"Adaptive cruise control",
+						"Leather seats",
+						"Navigation",
+						"Panoramic roof",
+						"Parking sensors",
+						"Tow bar"
+					],
+					"description": [
+						{
+							"_type": "block",
+							"_key": "car-29-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-29-b0s0",
+									"text": "Hyundai Tucson 1.6 T-GDI HEV from 2023 with 15,800 km, one owner and a ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-29-b0s1",
+									"text": "full main-dealer service history",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-29-b0s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-29-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-29-b1s0",
+									"text": "230 hp hybrid engine with an automatic gearbox. ITV (MOT) passed, two keys, ready to drive away.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-29-b2",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-29-b2s0",
+									"text": "Part exchange welcome. Viewing by appointment at our showroom.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/cars/car-03.jpg",
+							"alt": "White mid-size SUV in a showroom",
+							"filename": "car-03.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-03.jpg",
+									"alt": "White mid-size SUV in a showroom",
+									"filename": "car-03.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-09.jpg",
+									"alt": "Dashboard and steering wheel with digital instruments",
+									"filename": "car-09.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-10.jpg",
+									"alt": "Rear seats with light leather upholstery",
+									"filename": "car-10.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"make": [
+						"hyundai",
+						"hyundai-tucson"
+					],
+					"body_type": [
+						"suv"
+					],
+					"fuel": [
+						"hybrid"
+					],
+					"location": [
+						"valencia"
+					]
+				}
+			},
+			{
+				"id": "car-30",
+				"slug": "kia-sportage-1-6-crdi-drive-2019",
+				"status": "published",
+				"data": {
+					"title": "Kia Sportage 1.6 CRDi Drive",
+					"price": 18900,
+					"year": 2019,
+					"mileage_km": 107900,
+					"engine_l": 1.6,
+					"power_hp": 136,
+					"transmission": "Manual",
+					"doors": 5,
+					"seats": 5,
+					"color": "Silver",
+					"vin": "U5YMYC2PH893B6HF7",
+					"condition": "Used",
+					"available_from": "2026-10-28T10:30:00.000Z",
+					"features": [
+						"Adaptive cruise control",
+						"Apple CarPlay",
+						"Leather seats",
+						"Parking camera",
+						"Tow bar"
+					],
+					"description": [
+						{
+							"_type": "block",
+							"_key": "car-30-b0",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-30-b0s0",
+									"text": "Kia Sportage 1.6 CRDi Drive from 2019 with 107,900 km, two owners and a ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-30-b0s1",
+									"text": "full main-dealer service history",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-30-b0s2",
+									"text": ".",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-30-b1",
+							"style": "normal",
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-30-b1s0",
+									"text": "136 hp diesel engine with a manual gearbox. ITV (MOT) passed, two keys, ready to drive away.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "car-30-b2",
+							"style": "normal",
+							"markDefs": [
+								{
+									"_type": "link",
+									"_key": "car-30-b2l0",
+									"href": "https://example.com/warranty"
+								}
+							],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "car-30-b2s0",
+									"text": "Financing available on request. See our ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "car-30-b2s1",
+									"text": "warranty terms",
+									"marks": [
+										"car-30-b2l0"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "car-30-b2s2",
+									"text": " for details.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cover": {
+						"$media": {
+							"url": "https://example.com/lynx-presets/media/cars/car-03.jpg",
+							"alt": "White mid-size SUV in a showroom",
+							"filename": "car-03.jpg"
+						}
+					},
+					"gallery": [
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-03.jpg",
+									"alt": "White mid-size SUV in a showroom",
+									"filename": "car-03.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-09.jpg",
+									"alt": "Dashboard and steering wheel with digital instruments",
+									"filename": "car-09.jpg"
+								}
+							}
+						},
+						{
+							"image": {
+								"$media": {
+									"url": "https://example.com/lynx-presets/media/cars/car-10.jpg",
+									"alt": "Rear seats with light leather upholstery",
+									"filename": "car-10.jpg"
+								}
+							}
+						}
+					]
+				},
+				"taxonomies": {
+					"make": [
+						"kia",
+						"kia-sportage"
+					],
+					"body_type": [
+						"suv"
+					],
+					"fuel": [
+						"diesel"
+					],
+					"location": [
+						"estepona"
+					]
+				}
+			}
+		]
+	}
+}
