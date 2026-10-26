@@ -75,4 +75,5 @@ export function fixCommand(problems: VersionProblem[]): string {
 
 /** For two copies of a package: one copy for the admin and the grid. */
 export const DEDUPE_COMMAND = "npm dedupe";
-export const DEDUPE_CONFIG = `vite: { resolve: { dedupe: ["react", "react-dom", "@cloudflare/kumo", "@phosphor-icons/react", "@emdash-cms/admin"] } }`;
+// The admin is pre-bundled with its own Kumo; this makes the grid share it (an npm install needs it).
+export const DEDUPE_CONFIG = `vite: { optimizeDeps: { include: ["@cloudflare/kumo", "@phosphor-icons/react"] }, resolve: { dedupe: ["react", "react-dom", "@cloudflare/kumo", "@phosphor-icons/react", "@emdash-cms/admin"] } }`;

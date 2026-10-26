@@ -1,7 +1,6 @@
 {
 	"name": "@realmag777/lynx-media",
 	"version": "0.1.0",
-	"private": true,
 	"description": "LYNX Media: sandboxed EmDash plugin that imports images by URL into the media library (companion of the LYNX core).",
 	"license": "MIT",
 	"author": "Rostislav Sofronov (realmag777) (https://realmag777.com)",
@@ -38,5 +37,23 @@
 		"typescript": "^5.9.0",
 		"vitest": "^4.1.0",
 		"zod": "4.5.4"
+	},
+	"keywords": [
+		"emdash",
+		"emdash-plugin",
+		"media",
+		"mcp",
+		"lynx"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/realmag777/lynx-emdash.git",
+		"directory": "packages/media"
+	},
+	"bugs": {
+		"url": "https://github.com/realmag777/lynx-emdash/issues"
+	},
+	"publishConfig": {
+		"access": "public"
 	}
 }

@@ -48,7 +48,8 @@ the same through MCP — and roll back any change from the history.
 
    ```js
    import { lynxGrid } from "@realmag777/lynx-grid";
-   // emdash({ plugins: [lynxGrid()] })
+   // emdash({ plugins: [lynxGrid()] }), and in the same defineConfig:
+   // vite: { optimizeDeps: { include: ["@cloudflare/kumo", "@phosphor-icons/react"] } }
    ```
 
    Then build and deploy the site; **LYNX Grid** appears in the admin menu.

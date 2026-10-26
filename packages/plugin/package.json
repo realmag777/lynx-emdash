@@ -1,7 +1,6 @@
 {
 	"name": "@realmag777/lynx",
 	"version": "0.1.0",
-	"private": true,
 	"description": "LYNX core: sandboxed EmDash plugin with jobs, history, rollback, Block Kit page and MCP tools.",
 	"license": "MIT",
 	"author": "Rostislav Sofronov (realmag777) (https://realmag777.com)",
@@ -41,5 +40,24 @@
 		"typescript": "^5.9.0",
 		"vitest": "^4.1.0",
 		"zod": "4.5.4"
+	},
+	"keywords": [
+		"emdash",
+		"emdash-plugin",
+		"bulk-edit",
+		"mcp",
+		"ai-agent",
+		"lynx"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/realmag777/lynx-emdash.git",
+		"directory": "packages/plugin"
+	},
+	"bugs": {
+		"url": "https://github.com/realmag777/lynx-emdash/issues"
+	},
+	"publishConfig": {
+		"access": "public"
 	}
 }

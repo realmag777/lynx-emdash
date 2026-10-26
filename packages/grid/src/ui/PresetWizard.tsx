@@ -1,4 +1,5 @@
 import { carsPreset, fetchClient, installPreset, realEstatePreset, type InstallProgress, type InstallResult, type Preset, type PresetImage } from "@realmag777/lynx-presets";
+import { PRESET_PHOTOS } from "@realmag777/lynx-presets/photos";
 import { Badge, Banner, Button, Checkbox, Meter } from "@cloudflare/kumo";
 import { Warning } from "@phosphor-icons/react";
 import * as React from "react";
@@ -11,20 +12,8 @@ import { SlidePanel } from "./SlidePanel.tsx";
 // to the core: creating collections and fields needs the site's schema API, and the core
 // plugin deliberately has no schema:write capability. It runs as the signed-in admin.
 
-declare global {
-	interface ImportMeta {
-		glob?: (pattern: string, options: { query: string; import: string; eager: true }) => Record<string, string>;
-	}
-}
-
-/** Photos bundled by the site's Vite build (the web copies in presets/media). */
-const PHOTOS: Record<string, string> = (() => {
-	try {
-		return import.meta.glob!("../../../../presets/media/{cars,properties}/*.jpg", { query: "?url", import: "default", eager: true });
-	} catch {
-		return {};
-	}
-})();
+/** Photos bundled by the site's Vite build, from the presets package (works from node_modules too). */
+const PHOTOS: Record<string, string> = PRESET_PHOTOS;
 
 async function loadImage(dir: string, img: PresetImage): Promise<Blob> {
 	const hit = Object.entries(PHOTOS).find(([path]) => path.endsWith(`/${dir}/${img.file}`));

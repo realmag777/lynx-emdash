@@ -31,8 +31,9 @@ import { lynxGrid } from "@realmag777/lynx-grid";
 
 export default defineConfig({
 	integrations: [emdash({ plugins: [lynxGrid()] })],
-	// Only if your package manager keeps separate copies for linked packages:
-	vite: { resolve: { dedupe: ["react", "react-dom", "@cloudflare/kumo", "@phosphor-icons/react", "@emdash-cms/admin"] } },
+	// Required: the EmDash admin is pre-bundled with its own Kumo; this makes the grid share it
+	// (without it the grid gets a second copy and its messages do not show).
+	vite: { optimizeDeps: { include: ["@cloudflare/kumo", "@phosphor-icons/react"] } },
 });
 ```
 
@@ -49,7 +50,7 @@ The grid is compiled into the admin's bundle and shares its React, Kumo, phospho
 - a second copy of React (hooks would fail) or of Kumo (the admin's toasts are out of reach).
 
 On a mismatch the page shows a banner with the exact fix, for example
-`npm install @cloudflare/kumo@"^2.6.0"`, or `npm dedupe` / the `dedupe` setting above for a
+`npm install @cloudflare/kumo@"^2.6.0"`, or the `optimizeDeps` setting above / `npm dedupe` for a
 second copy. The banner is plain markup, the grid page runs inside an error boundary, and nothing
 else in the admin is touched.
 

@@ -33,12 +33,15 @@ so there is one history and every job can be rolled back.
 
    export default defineConfig({
    	integrations: [emdash({ plugins: [lynxGrid()] /* …your options */ })],
+   	// Required: lets the grid share the admin's copy of Kumo.
+   	vite: { optimizeDeps: { include: ["@cloudflare/kumo", "@phosphor-icons/react"] } },
    });
    ```
 
    The grid's peer dependencies (`react`, `@cloudflare/kumo`, `@phosphor-icons/react`,
-   `@emdash-cms/admin`) are the ones your EmDash admin already uses. If your package manager keeps
-   several copies, add them to `vite.resolve.dedupe` so the grid uses the admin's copies.
+   `@emdash-cms/admin`) are the ones your EmDash admin already uses. The `optimizeDeps` line makes
+   the grid use the admin's copy of Kumo; if your package manager still keeps several copies, also
+   add them to `vite.resolve.dedupe`.
 
 4. Open **Admin → LYNX Grid**. With no collections yet, choose **Install demo data** (cars or
    Spanish-coast real estate, with photos) to try everything on sample data.
@@ -382,5 +385,5 @@ Fast** in the LYNX settings instead. On Cloudflare LYNX always runs in the sandb
 | The agent sees no LYNX tools | Agent access is off (or was switched off by an update), or the token lacks `mcp:tools:lynx`. |
 | Images by URL are not offered | LYNX Media is not installed or not enabled. |
 | A yellow box on the grid page: "LYNX Grid does not match the admin's packages" | The site has a version of React, Kumo, the phosphor icons or `@emdash-cms/admin` outside the grid's range. The box lists each one and gives the exact `npm install …` command; run it in the site folder, then restart the dev server or rebuild. Only the grid page is affected. |
-| A yellow box: "LYNX Grid got its own copy of the admin's packages" | Two copies of React or Kumo are loaded (common with linked or workspace packages). Run `npm dedupe`, or add `vite: { resolve: { dedupe: [...] } }` as shown in the box, then restart. |
+| A yellow box: "LYNX Grid got its own copy of the admin's packages" | Two copies of React or Kumo are loaded (common with linked or workspace packages). Add the `vite` setting shown in the box (`optimizeDeps.include` with Kumo), or run `npm dedupe`, then restart. |
 | Messages from the grid do not pop up | Same cause as the line above (the admin's toast area is in the other Kumo copy); the grid still works and writes the messages to the browser console. |
