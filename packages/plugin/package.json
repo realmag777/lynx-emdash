@@ -1,6 +1,6 @@
 {
 	"name": "@realmag777/lynx",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "LYNX core: sandboxed EmDash plugin with jobs, history, rollback, Block Kit page and MCP tools.",
 	"license": "MIT",
 	"author": "Rostislav Sofronov (realmag777) (https://realmag777.com)",

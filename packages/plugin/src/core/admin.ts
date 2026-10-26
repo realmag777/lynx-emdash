@@ -62,7 +62,6 @@ function jobRow(j: JobDoc) {
 async function overview(ctx: Ctx, flash?: Block[]): Promise<{ blocks: Block[] }> {
 	const s = stores(ctx);
 	const [cols, jobs, running, agent] = await Promise.all([ctx.schema!.listCollections(), s.jobs.query({ orderBy: { createdAt: "desc" }, limit: 15 }), s.jobs.count({ state: "running" }), lastAgentSession(ctx)]);
-	const presets = ["cars", "properties"].map((slug) => ({ slug, installed: cols.some((c) => c.slug === slug) }));
 	// EmDash switches agent tools off on every registry/marketplace update and does not let a
 	// plugin read the switch; a version change since the agent's last session is the signal.
 	const agentNotice =
@@ -108,12 +107,10 @@ async function overview(ctx: Ctx, flash?: Block[]): Promise<{ blocks: Block[] }>
 		},
 		{ type: "actions", elements: [{ type: "button", action_id: "refresh", label: "Refresh" }] },
 		{ type: "divider" },
-		header("Demo presets"),
-		{
-			type: "fields",
-			fields: presets.map((p) => ({ label: p.slug === "cars" ? "Cars" : "Real estate", value: p.installed ? "installed" : "not installed" })),
-		},
-		context("Install them from the LYNX grid. Editing entries (inline and in bulk) also lives in the grid, or goes through an AI agent; both use these jobs and this history."),
+		header("Spreadsheet editor: LYNX Grid"),
+		context("Edit like a spreadsheet: cells, Excel paste, photos, views. Your developer adds it once:"),
+		{ type: "code", language: "bash", code: "npm install @realmag777/lynx-grid\n# astro.config.mjs: emdash({ plugins: [lynxGrid()] }), then deploy" },
+		{ type: "actions", elements: [{ type: "link", label: "How to install", target: { kind: "external", url: "https://github.com/realmag777/lynx-emdash#install" } }] },
 		{ type: "divider" },
 		header("Connect an AI agent (MCP)"),
 		{
