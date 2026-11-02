@@ -300,7 +300,7 @@ applies anything, and it has to repeat the exact count to apply.
 | `lynx__rollback_bulk` | Undo a job |
 | `lynx__get_memory` / `lynx__set_memory` | Notes about this site the agent should remember |
 | `lynx__cases` / `lynx__run_case` | Ready-made starting points (reprice older stock, find incomplete entries…) |
-| `lynx-media__import_media` | Import images by URL, then set them through LYNX |
+| `…__import_media` (LYNX Media: `lynx-media__` from npm, `r_…__` from the registry) | Import images by URL, then set them through LYNX |
 
 Agent changes appear in the grid's history like any other job and can be rolled back there.
 

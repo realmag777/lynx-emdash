@@ -7,7 +7,7 @@ export const WORKING_ORDER = [
 	"3. preview_bulk shows before and after values for a sample, writing nothing, with warnings.",
 	"4. apply_bulk starts the change. It needs the selection_id AND confirm_count equal to the count you were given. Then call job_status again and again, straight away, until finished is true.",
 	"5. rollback_bulk reverts a finished or running job by its job_key.",
-	"New entries: create_entries with dry_run (the default) checks rows in the list_fields shape; show the problems, fix them with the user, then call it with dry_run false and confirm_count. Images by URL: lynx-media__import_media (the LYNX Media plugin) first, then use the values it returns; if that tool is not in your tool list, LYNX Media is not installed or its agent access is off - tell the user.",
+	"New entries: create_entries with dry_run (the default) checks rows in the list_fields shape; show the problems, fix them with the user, then call it with dry_run false and confirm_count. Images by URL: the LYNX Media tool ending in __import_media first, then use the values it returns; if your tool list has none, LYNX Media is not installed or its agent access is off - tell the user.",
 ];
 
 export const RULES = [
