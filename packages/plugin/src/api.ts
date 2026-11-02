@@ -14,7 +14,7 @@ import { stores, type JobDoc } from "./core/store.ts";
 import { notes } from "./core/texts.ts";
 import { columnMap } from "@realmag777/lynx-engine";
 
-export const VERSION = "0.1.0";
+export const VERSION = "0.1.2";
 
 type Handler = (routeCtx: SandboxedRouteContext, ctx: PluginContext) => Promise<unknown>;
 

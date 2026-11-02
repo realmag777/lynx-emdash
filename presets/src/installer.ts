@@ -72,6 +72,8 @@ export interface InstallOptions {
 	onProgress?: (p: InstallProgress) => void;
 	/** Only install the schema and taxonomies, no demo entries or media. */
 	schemaOnly?: boolean;
+	/** The LYNX core's plugin id: "lynx" from npm, a generated one from the registry; null = not installed. */
+	corePlugin?: string | null;
 }
 
 export interface InstallResult {
@@ -136,8 +138,9 @@ export async function installPreset(client: InstallerClient, preset: Preset, opt
 	}
 	// One-term taxonomies are a LYNX setting (EmDash allows several terms everywhere). Without the
 	// LYNX core on the site there is nobody to keep it: the install goes on.
-	for (const t of preset.taxonomies.filter((x) => x.single)) {
-		await client.json("POST", "/plugins/lynx/taxonomy/single", { taxonomy: t.name, single: true }).catch(() => undefined);
+	const core = options.corePlugin === undefined ? "lynx" : options.corePlugin;
+	for (const t of core === null ? [] : preset.taxonomies.filter((x) => x.single)) {
+		await client.json("POST", `/plugins/${core}/taxonomy/single`, { taxonomy: t.name, single: true }).catch(() => undefined);
 	}
 
 	// 3. Terms, parents first

@@ -6,6 +6,9 @@
 
 import type { Operation } from "@realmag777/lynx-engine";
 
+import { pluginId } from "./plugins.ts";
+
+/** The core's routes for an npm install; a registry install has a generated id (model/plugins.ts). */
 export const CORE = "/_emdash/api/plugins/lynx";
 export const GRID = "/_emdash/api/plugins/lynx-grid";
 
@@ -189,18 +192,20 @@ export interface SavedView {
 
 class PluginApi {
 	private readonly fetcher: Fetcher;
-	private readonly base: string;
+	private readonly base: string | (() => Promise<string | null>);
 	private readonly missing: string;
-	constructor(base: string, missing: string, fetcher: Fetcher = defaultFetch) {
+	constructor(base: string | (() => Promise<string | null>), missing: string, fetcher: Fetcher = defaultFetch) {
 		this.base = base;
 		this.missing = missing;
 		this.fetcher = fetcher;
 	}
 
 	async call<T>(route: string, input: unknown = {}): Promise<T> {
+		const base = typeof this.base === "string" ? this.base : await this.base();
+		if (base === null) throw new LynxApiError("CORE_MISSING", this.missing);
 		let res: Response;
 		try {
-			res = await this.fetcher(`${this.base}/${route}`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(input) });
+			res = await this.fetcher(`${base}/${route}`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(input) });
 		} catch {
 			throw new LynxApiError("NETWORK", "The site did not answer. Check the connection and try again.");
 		}
@@ -222,7 +227,13 @@ class PluginApi {
 
 export class CoreApi extends PluginApi {
 	constructor(fetcher?: Fetcher) {
-		super(CORE, "The LYNX core plugin is not installed or not active on this site.", fetcher);
+		const base = fetcher
+			? CORE
+			: async () => {
+					const id = await pluginId("lynx", "LYNX");
+					return id === null ? null : `/_emdash/api/plugins/${id}`;
+				};
+		super(base, "The LYNX core plugin is not installed or not active on this site.", fetcher);
 	}
 
 	capabilities() {

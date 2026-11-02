@@ -4,6 +4,7 @@ import { Badge, Banner, Button, Checkbox, Meter } from "@cloudflare/kumo";
 import { Warning } from "@phosphor-icons/react";
 import * as React from "react";
 
+import { pluginId } from "../model/plugins.ts";
 import { errorText } from "./context.tsx";
 import { SlidePanel } from "./SlidePanel.tsx";
 
@@ -63,7 +64,7 @@ export function PresetWizard(props: { open: boolean; onClose: () => void; existi
 		setResult(null);
 		setProgress({ step: "schema", message: "Starting" });
 		try {
-			const res = await installPreset(fetchClient(window.location.origin), preset, { loadImage, onProgress: setProgress, schemaOnly: !withEntries });
+			const res = await installPreset(fetchClient(window.location.origin), preset, { loadImage, onProgress: setProgress, schemaOnly: !withEntries, corePlugin: await pluginId("lynx", "LYNX") });
 			setResult(res);
 			props.onInstalled(preset.collection.slug);
 		} catch (e) {

@@ -25,6 +25,7 @@ import { PresetWizard } from "./PresetWizard.tsx";
 import { GalleryPanel } from "./GalleryPanel.tsx";
 import { IndexToggle } from "./IndexToggle.tsx";
 import { SettingsPanel } from "./SettingsPanel.tsx";
+import { pluginId } from "../model/plugins.ts";
 import { ADMIN_ROLE, currentRole, indexable } from "../model/schema.ts";
 import { RichTextPanel } from "./RichTextPanel.tsx";
 
@@ -35,7 +36,6 @@ import { RichTextPanel } from "./RichTextPanel.tsx";
 // and removing empty drafts (admin REST discard-draft), each as the signed-in user.
 
 const LAST_COLLECTION = "lynx-grid:collection";
-const MEDIA_PLUGIN = "lynx-media";
 
 type Panel = "filter" | "bulk" | "new" | "history" | "preset" | "richtext" | "gallery" | "settings" | null;
 
@@ -54,20 +54,13 @@ function lsSet(k: string, v: string) {
 	}
 }
 
-/** Is LYNX Media installed and enabled? Read from the admin manifest (the core cannot tell). */
+/** Is LYNX Media installed and enabled? Asked of the site (the core cannot tell); npm or registry id. */
 async function detectMediaPlugin(): Promise<boolean> {
-	try {
-		const res = await fetch("/_emdash/api/manifest", { credentials: "same-origin", headers: { "X-EmDash-Request": "1" } });
-		const body = (await res.json()) as { data?: { plugins?: Record<string, { enabled?: boolean }> } };
-		const p = body.data?.plugins?.[MEDIA_PLUGIN];
-		return Boolean(p && p.enabled !== false);
-	} catch {
-		return false;
-	}
+	return (await pluginId("lynx-media", null)) !== null;
 }
 
 async function importViaMedia(url: string): Promise<unknown> {
-	const res = await fetch(`/_emdash/api/plugins/${MEDIA_PLUGIN}/import`, {
+	const res = await fetch(`/_emdash/api/plugins/${await pluginId("lynx-media", null)}/import`, {
 		method: "POST",
 		credentials: "same-origin",
 		headers: { "content-type": "application/json", "X-EmDash-Request": "1" },

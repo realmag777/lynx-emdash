@@ -119,13 +119,13 @@ async function overview(ctx: Ctx, flash?: Block[]): Promise<{ blocks: Block[] }>
 			code: [
 				`# 1. Plugins → LYNX → Agent access: switch it on.`,
 				`# 2. Settings → API tokens: create a token with the LYNX tools scope`,
-				`#    (mcp:tools:lynx) plus content read/write.`,
+				`#    (mcp:tools:${ctx.plugin.id}) plus content read/write.`,
 				`# 3. Point your MCP client at:`,
-				`${ctx.site.url.replace(/\/$/, "")}/_emdash/api/mcp`,
+				`${ctx.site.url.replace(/\/$/, "") || "https://site"}/_emdash/api/mcp`,
 				`#    with the header  Authorization: Bearer <token>`,
 			].join("\n"),
 		},
-		context("Every plugin update switches agent access off until an administrator switches it on again."),
+		context("Every plugin update switches agent access off until an admin switches it on."),
 		{ type: "actions", elements: [{ type: "link", label: "LYNX settings", target: { kind: "plugin-settings" } }] },
 	];
 	return { blocks };
