@@ -26,7 +26,7 @@ import { invalidateCollection } from "./server/read.ts";
 import { routes } from "./server/routes.ts";
 
 export const GRID_PLUGIN_ID = "lynx-grid";
-export const GRID_VERSION = "0.2.1";
+export const GRID_VERSION = "0.2.2";
 
 /** Read-only access: rows, terms, draft revisions, and the media library for the photo panel (never a write). */
 const CAPABILITIES = ["content:read", "content:revisions:read", "schema:read", "taxonomies:read", "media:read"] as const;
